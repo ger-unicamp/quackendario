@@ -10,6 +10,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"strings"
 	"time"
 
 	"github.com/gin-contrib/cors"
@@ -88,7 +89,7 @@ func main() {
 
 	// Cors
 	router.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:8080", "https://www.schej.it", "https://schej.it", "https://www.timeful.app", "https://timeful.app"},
+		AllowOrigins:     getCorsOrigins(),
 		AllowMethods:     []string{"GET", "POST", "PATCH", "PUT", "DELETE"},
 		AllowHeaders:     []string{"Content-Type"},
 		ExposeHeaders:    []string{"Content-Length"},
@@ -118,39 +119,46 @@ func main() {
 	routes.InitFolders(apiRouter)
 	slackbot.InitSlackbot(apiRouter)
 
-	// Get frontend path
+	// Get frontend path (optional when deploying API only)
 	frontendPath := "../frontend/dist"
-	err = filepath.WalkDir(frontendPath, func(path string, d fs.DirEntry, err error) error {
-		if !d.IsDir() && d.Name() != "index.html" {
-			split := splitPath(path)
-			newPath := filepath.Join(split[3:]...)
-			router.StaticFile(fmt.Sprintf("/%s", newPath), path)
+	if stat, statErr := os.Stat(frontendPath); statErr == nil && stat.IsDir() {
+		err = filepath.WalkDir(frontendPath, func(path string, d fs.DirEntry, err error) error {
+			if !d.IsDir() && d.Name() != "index.html" {
+				split := splitPath(path)
+				newPath := filepath.Join(split[3:]...)
+				router.StaticFile(fmt.Sprintf("/%s", newPath), path)
+			}
+			return nil
+		})
+		if err != nil {
+			log.Fatalf("failed to walk directories: %s", err)
 		}
-		return nil
-	})
-	if err != nil {
-		log.Fatalf("failed to walk directories: %s", err)
-	}
 
-	router.LoadHTMLFiles(filepath.Join(frontendPath, "index.html"))
-	router.NoRoute(noRouteHandler())
+		router.LoadHTMLFiles(filepath.Join(frontendPath, "index.html"))
+		router.NoRoute(noRouteHandler())
+	} else {
+		logger.StdOut.Println("frontend dist not found; running API-only")
+	}
 
 	// Init swagger documentation
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 
 	// Run server
-	if os.Getenv("NODE_ENV") == "staging" {
-		router.Run(":3003")
-	} else {
-		router.Run(":3002")
+	port := os.Getenv("PORT")
+	if port == "" {
+		if os.Getenv("NODE_ENV") == "staging" {
+			port = "3003"
+		} else {
+			port = "3002"
+		}
 	}
+	router.Run(":" + port)
 }
 
 // Load .env variables
 func loadDotEnv() {
-	err := godotenv.Load(".env")
-	if err != nil {
-		logger.StdErr.Panicln("Error loading .env file")
+	if err := godotenv.Load(".env"); err != nil {
+		logger.StdOut.Println(".env not found; relying on environment variables")
 	}
 
 	// Load stripe key
@@ -158,6 +166,36 @@ func loadDotEnv() {
 
 	// Validate session secret
 	validateSessionSecret()
+}
+
+func getCorsOrigins() []string {
+	defaultOrigins := []string{
+		"http://localhost:8080",
+		"https://www.schej.it",
+		"https://schej.it",
+		"https://www.timeful.app",
+		"https://timeful.app",
+	}
+
+	originsEnv := os.Getenv("CORS_ORIGINS")
+	if originsEnv == "" {
+		return defaultOrigins
+	}
+
+	parts := strings.Split(originsEnv, ",")
+	origins := make([]string, 0, len(parts))
+	for _, part := range parts {
+		origin := strings.TrimSpace(part)
+		if origin != "" {
+			origins = append(origins, origin)
+		}
+	}
+
+	if len(origins) == 0 {
+		return defaultOrigins
+	}
+
+	return origins
 }
 
 // validateSessionSecret ensures SESSION_SECRET is set and meets security requirements
