@@ -4,7 +4,7 @@
   >
     <v-btn @click="prevWeek" icon><v-icon>mdi-chevron-left</v-icon></v-btn>
     <div class="tw-text-center">
-      Showing calendário for week of {{ weekText }}
+      Showing calendar for week of {{ weekText }}
     </div>
     <v-btn @click="nextWeek" icon><v-icon>mdi-chevron-right</v-icon></v-btn>
   </div>

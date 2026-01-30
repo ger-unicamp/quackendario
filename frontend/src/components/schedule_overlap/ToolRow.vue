@@ -72,7 +72,7 @@
           <v-spacer />
           <div class="tw-min-w-fit">
             <GCalWeekSelector
-              v-if="calendárioPermissionGranted"
+              v-if="calendarPermissionGranted"
               :week-offset="weekOffset"
               :event="event"
               @update:weekOffset="(val) => $emit('update:weekOffset', val)"
@@ -93,7 +93,7 @@
             class="tw-w-full tw-text-blue"
             @click="(e) => $emit('scheduleEvent', e)"
           >
-            <v-icon small>mdi-calendário-check</v-icon>
+            <v-icon small>mdi-calendar-check</v-icon>
             <span class="tw-ml-2">Schedule event</span>
           </v-btn>
         </template>
@@ -184,7 +184,7 @@ export default {
     showBestTimes: { type: Boolean, required: true },
     hideIfNeeded: { type: Boolean, required: true },
     isWeekly: { type: Boolean, required: true },
-    calendárioPermissionGranted: { type: Boolean, required: true },
+    calendarPermissionGranted: { type: Boolean, required: true },
     weekOffset: { type: Number, required: true },
     numResponses: { type: Number, required: true },
     mobileNumDays: { type: Number, default: 3 }, // The number of days to show at a time on mobile

@@ -11,7 +11,6 @@
       :no-tabs="newDialogOptions.eventOnly"
       :folder-id="newDialogOptions.folderId"
     />
-    <CookieConsent />
     <div
       v-if="showHeader"
       class="tw-fixed tw-z-40 tw-h-14 tw-w-screen tw-bg-white sm:tw-h-16"
@@ -216,14 +215,13 @@ import Logo from "@/components/Logo.vue"
 import isWebview from "is-ua-webview"
 import NewDialog from "./components/NewDialog.vue"
 import SignInDialog from "@/components/SignInDialog.vue"
-import CookieConsent from "@/components/CookieConsent.vue"
 
 export default {
   name: "App",
 
   metaInfo: {
     htmlAttrs: {
-      lang: "en-US",
+      lang: "pt-BR",
     },
   },
 
@@ -234,7 +232,6 @@ export default {
     NewDialog,
     Logo,
     SignInDialog,
-    CookieConsent,
   },
 
   data: () => ({

@@ -54,9 +54,9 @@
         </div>
         <div class="tw-flex tw-flex-col tw-gap-5 sm:tw-flex-row sm:tw-gap-28">
           <div class="tw-text-black">
-            We do not store your calendário data anywhere on our servers, and we
-            only fetch your calendário events for the time frame you specify in
-            order to display your calendário events while you fill out your
+            We do not store your calendar data anywhere on our servers, and we
+            only fetch your calendar events for the time frame you specify in
+            order to display your calendar events while you fill out your
             availability.
           </div>
           <v-btn
@@ -64,7 +64,7 @@
             class="tw-text-red"
             href="https://myaccount.google.com/connections?filters=3,4&hl=en"
             target="_blank"
-            >Revoke calendário access</v-btn
+            >Revoke calendar access</v-btn
           >
         </div>
         <CalendarAccounts></CalendarAccounts>
@@ -194,13 +194,13 @@ export default {
     heading: ["Permission", "Purpose", "Requested When"],
     content: [
       [
-        "View all calendário events",
-        "Allows us to display the names/times of your calendário events",
+        "View all calendar events",
+        "Allows us to display the names/times of your calendar events",
         "User tries to input availability automatically with Google Calendar",
       ],
       [
-        "View all calendários subscribed to",
-        "Allows us to display calendário events on all your calendários instead of just your primary calendário",
+        "View all calendars subscribed to",
+        "Allows us to display calendar events on all your calendars instead of just your primary calendar",
         "User tries to input availability automatically with Google Calendar",
       ],
     ],

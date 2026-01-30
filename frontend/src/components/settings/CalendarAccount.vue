@@ -67,7 +67,7 @@
       >
     </div>
 
-    <!-- Sub-calendário accounts -->
+    <!-- Sub-calendar accounts -->
 
     <v-expand-transition>
       <div v-if="showSubCalendars" class="tw-space-y-2 tw-bg-brand-primary-lighter tw-py-2">
@@ -112,7 +112,7 @@ export default {
     toggleState: { type: Boolean, default: false },
     account: { type: Object, default: () => {} },
     eventId: { type: String, default: "" },
-    calendárioEventsMap: { type: Object, default: () => {} }, // Object of different users' calendário events
+    calendarEventsMap: { type: Object, default: () => {} }, // Object of different users' calendar events
     removeDialog: { type: Boolean, default: false },
     selectedRemoveEmail: { type: String, default: "" },
     syncWithBackend: { type: Boolean, default: true },
@@ -138,10 +138,10 @@ export default {
     },
     accountHasError() {
       const account =
-        this.calendárioEventsMap?.[
+        this.calendarEventsMap?.[
           getCalendarAccountKey(this.account.email, this.account.calendarType)
         ]
-      return account?.error && account?.calendárioEvents?.length === 0
+      return account?.error && account?.calendarEvents?.length === 0
     },
     /** don't show account if in toggle state and account has an error */
     showAccount() {
@@ -193,14 +193,14 @@ export default {
     },
     toggleSubCalendarAccount(enabled, subCalendarId) {
       if (this.syncWithBackend) {
-        post(`/user/toggle-sub-calendário`, {
+        post(`/user/toggle-sub-calendar`, {
           email: this.account.email,
           calendarType: this.account.calendarType,
           enabled,
           subCalendarId,
         }).catch((err) => {
           this.showError(
-            "There was a problem with toggling your calendário account! Please try again later."
+            "There was a problem with toggling your calendar account! Please try again later."
           )
         })
       } else {
@@ -217,13 +217,13 @@ export default {
       if (!enabled) this.showSubCalendars = false
 
       if (this.syncWithBackend) {
-        post(`/user/toggle-calendário`, {
+        post(`/user/toggle-calendar`, {
           email: this.account.email,
           calendarType: this.account.calendarType,
           enabled,
         }).catch((err) => {
           this.showError(
-            "There was a problem with toggling your calendário account! Please try again later."
+            "There was a problem with toggling your calendar account! Please try again later."
           )
         })
       } else {

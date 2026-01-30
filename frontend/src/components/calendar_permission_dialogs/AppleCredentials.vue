@@ -84,7 +84,7 @@ export default {
     ...mapActions(["showError", "refreshAuthUser"]),
     submit() {
       this.loading = true
-      post(`/user/add-apple-calendário-account`, {
+      post(`/user/add-apple-calendar-account`, {
         email: this.email,
         password: this.password,
       })

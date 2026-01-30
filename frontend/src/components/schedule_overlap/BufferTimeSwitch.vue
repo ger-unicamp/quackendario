@@ -2,7 +2,7 @@
   <div>
     <div class="tw-mb-1 tw-text-sm tw-text-black">Buffer time</div>
     <div class="tw-mb-2 tw-text-xs tw-text-dark-gray">
-      Add time around calendário events
+      Add time around calendar events
     </div>
     <v-switch
       id="buffer-time-switch"
@@ -68,7 +68,7 @@ export default {
         [key]: val,
       }
       if (this.syncWithBackend) {
-        patch(`/user/calendário-options`, {
+        patch(`/user/calendar-options`, {
           bufferTime,
         })
       }

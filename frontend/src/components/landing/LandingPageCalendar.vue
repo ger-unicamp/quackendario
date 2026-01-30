@@ -5,8 +5,8 @@
       <ScheduleOverlap
         ref="scheduleOverlap"
         :event="event"
-        :sampleCalendarEventsByDay="calendárioEventsByDay"
-        calendárioOnly
+        :sampleCalendarEventsByDay="calendarEventsByDay"
+        calendarOnly
         :interactable="false"
         :showSnackbar="false"
         :alwaysShowCalendarEvents="true"
@@ -43,7 +43,7 @@ export default {
 
     responses: {},
 
-    calendárioEventsByDay: [],
+    calendarEventsByDay: [],
   }),
 
   computed: {
@@ -96,7 +96,7 @@ export default {
         })
       }
 
-      this.calendárioEventsByDay = processTimeBlocks(
+      this.calendarEventsByDay = processTimeBlocks(
         this.dates,
         this.duration,
         events
@@ -263,7 +263,7 @@ export default {
     },
     reset() {
       this.responses = {}
-      this.calendárioEventsByDay = []
+      this.calendarEventsByDay = []
     },
     playAnimation() {
       this.reset()

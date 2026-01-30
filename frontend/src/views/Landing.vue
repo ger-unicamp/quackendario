@@ -46,7 +46,7 @@
                   class="tw-cursor-pointer tw-border-b tw-border-dashed tw-border-dark-gray"
                   v-bind="attrs"
                   v-on="on"
-                  >calendário</span
+                  >calendar</span
                 >
               </template>
               <span

@@ -78,7 +78,7 @@
                 </v-expand-transition>
 
                 <ToolRow
-                  v-if="!isPhone && !calendárioOnly"
+                  v-if="!isPhone && !calendarOnly"
                   :event="event"
                   :state="state"
                   :states="states"
@@ -86,7 +86,7 @@
                   :show-best-times.sync="showBestTimes"
                   :hide-if-needed.sync="hideIfNeeded"
                   :is-weekly="isWeekly"
-                  :calendar-permission-granted="calendárioPermissionGranted"
+                  :calendar-permission-granted="calendarPermissionGranted"
                   :week-offset="weekOffset"
                   :num-responses="respondents.length"
                   :mobile-num-days.sync="mobileNumDays"
@@ -104,11 +104,11 @@
             <template v-else>
               <!-- Times -->
               <div
-                :class="calendárioOnly ? 'tw-w-12' : ''"
+                :class="calendarOnly ? 'tw-w-12' : ''"
                 class="tw-w-8 tw-flex-none sm:tw-w-12"
               >
                 <div
-                  :class="calendárioOnly ? 'tw-invisible' : 'tw-visible'"
+                  :class="calendarOnly ? 'tw-invisible' : 'tw-visible'"
                   class="tw-sticky tw-top-14 tw-z-10 -tw-ml-3 tw-mb-3 tw-h-11 tw-bg-white sm:tw-top-16 sm:tw-ml-0"
                 >
                   <div
@@ -126,7 +126,7 @@
                 </div>
 
                 <div
-                  :class="calendárioOnly ? '' : '-tw-ml-3'"
+                  :class="calendarOnly ? '' : '-tw-ml-3'"
                   class="-tw-mt-[8px] sm:tw-ml-0"
                 >
                   <div
@@ -148,7 +148,7 @@
                   ></div>
                   <div
                     v-if="splitTimes[1].length > 0"
-                    :class="calendárioOnly ? '' : '-tw-ml-3'"
+                    :class="calendarOnly ? '' : '-tw-ml-3'"
                     class="sm:tw-ml-0"
                   >
                     <div
@@ -167,7 +167,7 @@
               <!-- Middle section -->
               <div class="tw-grow">
                 <div
-                  ref="calendário"
+                  ref="calendar"
                   @scroll="onCalendarScroll"
                   class="tw-relative tw-flex tw-flex-col"
                 >
@@ -303,14 +303,14 @@
                                   alwaysShowCalendarEvents ||
                                   showCalendarEvents)
                               "
-                              v-for="calendárioEvent in calendárioEventsByDay[
+                              v-for="calendarEvent in calendarEventsByDay[
                                 d + page * maxDaysPerPage
                               ]"
                             >
                               <CalendarEventBlock
-                                :blockStyle="getTimeBlockStyle(calendárioEvent)"
-                                :key="calendárioEvent.id"
-                                :calendárioEvent="calendárioEvent"
+                                :blockStyle="getTimeBlockStyle(calendarEvent)"
+                                :key="calendarEvent.id"
+                                :calendarEvent="calendarEvent"
                                 :isGroup="isGroup"
                                 :isEditingAvailability="
                                   state === states.EDIT_AVAILABILITY
@@ -479,7 +479,7 @@
                 </v-expand-transition>
 
                 <ToolRow
-                  v-if="!isPhone && !calendárioOnly"
+                  v-if="!isPhone && !calendarOnly"
                   :event="event"
                   :state="state"
                   :states="states"
@@ -487,7 +487,7 @@
                   :show-best-times.sync="showBestTimes"
                   :hide-if-needed.sync="hideIfNeeded"
                   :is-weekly="isWeekly"
-                  :calendar-permission-granted="calendárioPermissionGranted"
+                  :calendar-permission-granted="calendarPermissionGranted"
                   :week-offset="weekOffset"
                   :num-responses="respondents.length"
                   :mobile-num-days.sync="mobileNumDays"
@@ -503,8 +503,8 @@
               </div>
 
               <div
-                v-if="!calendárioOnly"
-                :class="calendárioOnly ? 'tw-invisible' : 'tw-visible'"
+                v-if="!calendarOnly"
+                :class="calendarOnly ? 'tw-invisible' : 'tw-visible'"
                 class="tw-sticky tw-top-14 tw-z-10 tw-mb-4 tw-h-11 tw-bg-white sm:tw-top-16"
               >
                 <div
@@ -522,7 +522,7 @@
           <!-- Right hand side content -->
 
           <div
-            v-if="!calendárioOnly"
+            v-if="!calendarOnly"
             class="tw-px-4 tw-py-4 sm:tw-sticky sm:tw-top-16 sm:tw-flex-none sm:tw-self-start sm:tw-py-0 sm:tw-pl-0 sm:tw-pr-0 sm:tw-pt-14"
             :style="{ width: rightSideWidth }"
           >
@@ -572,7 +572,7 @@
                 <div
                   v-if="
                     !(
-                      calendárioPermissionGranted &&
+                      calendarPermissionGranted &&
                       !event.daysOnly &&
                       !addingAvailabilityAsGuest
                     )
@@ -641,22 +641,22 @@
                   />
                   <ColorLegend />
                 </div>
-                <!-- User's calendário accounts -->
+                <!-- User's calendar accounts -->
                 <CalendarAccounts
                   v-if="
-                    calendárioPermissionGranted &&
+                    calendarPermissionGranted &&
                     !event.daysOnly &&
                     !addingAvailabilityAsGuest
                   "
                   :toggleState="true"
                   :eventId="event._id"
-                  :calendário-events-map="calendárioEventsMap"
+                  :calendar-events-map="calendarEventsMap"
                   :syncWithBackend="!isGroup"
                   :allowAddCalendarAccount="!isGroup"
                   @toggleCalendarAccount="toggleCalendarAccount"
                   @toggleSubCalendarAccount="toggleSubCalendarAccount"
                   :initialCalendarAccountsData="
-                    isGroup ? sharedCalendarAccounts : authUser.calendárioAccounts
+                    isGroup ? sharedCalendarAccounts : authUser.calendarAccounts
                   "
                 ></CalendarAccounts>
 
@@ -693,7 +693,7 @@
                     <div class="tw-flex tw-flex-col tw-gap-5 tw-pt-2.5">
                       <v-dialog
                         v-if="showCalendarOptions"
-                        v-model="calendárioOptionsDialog"
+                        v-model="calendarOptionsDialog"
                         width="500"
                       >
                         <template v-slot:activator="{ on, attrs }">
@@ -711,7 +711,7 @@
                           <v-card-title class="tw-flex">
                             <div>Calendar options</div>
                             <v-spacer />
-                            <v-btn icon @click="calendárioOptionsDialog = false">
+                            <v-btn icon @click="calendarOptionsDialog = false">
                               <v-icon>mdi-close</v-icon>
                             </v-btn>
                           </v-card-title>
@@ -813,7 +813,7 @@
                   :timezone="curTimezone"
                   :show-best-times.sync="showBestTimes"
                   :hide-if-needed.sync="hideIfNeeded"
-                  :start-calendário-on-monday.sync="startCalendarOnMonday"
+                  :start-calendar-on-monday.sync="startCalendarOnMonday"
                   :show-event-options="showEventOptions"
                   :guestAddedAvailability="guestAddedAvailability"
                   :addingAvailabilityAsGuest="addingAvailabilityAsGuest"
@@ -832,7 +832,7 @@
         </div>
 
         <ToolRow
-          v-if="isPhone && !calendárioOnly"
+          v-if="isPhone && !calendarOnly"
           class="tw-px-4"
           :event="event"
           :state="state"
@@ -840,9 +840,9 @@
           :cur-timezone.sync="curTimezone"
           :show-best-times.sync="showBestTimes"
           :hide-if-needed.sync="hideIfNeeded"
-          :start-calendário-on-monday.sync="startCalendarOnMonday"
+          :start-calendar-on-monday.sync="startCalendarOnMonday"
           :is-weekly="isWeekly"
-          :calendar-permission-granted="calendárioPermissionGranted"
+          :calendar-permission-granted="calendarPermissionGranted"
           :week-offset="weekOffset"
           :num-responses="respondents.length"
           :mobile-num-days.sync="mobileNumDays"
@@ -858,7 +858,7 @@
 
         <!-- Fixed bottom section for mobile -->
         <div
-          v-if="isPhone && !calendárioOnly"
+          v-if="isPhone && !calendarOnly"
           class="tw-fixed tw-bottom-16 tw-z-20 tw-w-full"
         >
           <!-- Hint text (mobile) -->
@@ -896,7 +896,7 @@
 
           <!-- GCal week selector -->
           <v-expand-transition>
-            <div v-if="isWeekly && editing && calendárioPermissionGranted">
+            <div v-if="isWeekly && editing && calendarPermissionGranted">
               <div class="tw-h-16 tw-text-sm">
                 <GCalWeekSelector
                   :week-offset="weekOffset"
@@ -1017,7 +1017,7 @@ import {
 } from "@/utils"
 import {
   availabilityTypes,
-  calendárioOptionsDefaults,
+  calendarOptionsDefaults,
   eventTypes,
   guestUserId,
   timeTypes,
@@ -1057,16 +1057,16 @@ export default {
     event: { type: Object, required: true },
     fromEditEvent: { type: Boolean, default: false },
 
-    loadingCalendarEvents: { type: Boolean, default: false }, // Whether we are currently loading the calendário events
-    calendárioEventsMap: { type: Object, default: () => {} }, // Object of different users' calendário events
-    sampleCalendarEventsByDay: { type: Array, required: false }, // Sample calendário events to use for example calendários
-    calendárioPermissionGranted: { type: Boolean, default: false }, // Whether user has granted google calendário permissions
+    loadingCalendarEvents: { type: Boolean, default: false }, // Whether we are currently loading the calendar events
+    calendarEventsMap: { type: Object, default: () => {} }, // Object of different users' calendar events
+    sampleCalendarEventsByDay: { type: Array, required: false }, // Sample calendar events to use for example calendars
+    calendarPermissionGranted: { type: Boolean, default: false }, // Whether user has granted google calendar permissions
 
-    weekOffset: { type: Number, default: 0 }, // Week offset used for displaying calendário events on weekly Timefuls
+    weekOffset: { type: Number, default: 0 }, // Week offset used for displaying calendar events on weekly Timefuls
 
-    alwaysShowCalendarEvents: { type: Boolean, default: false }, // Whether to show calendário events all the time
+    alwaysShowCalendarEvents: { type: Boolean, default: false }, // Whether to show calendar events all the time
     noEventNames: { type: Boolean, default: false }, // Whether to show "busy" instead of the event name
-    calendárioOnly: { type: Boolean, default: false }, // Whether to only show calendário and not respondents or any other controls
+    calendarOnly: { type: Boolean, default: false }, // Whether to only show calendar and not respondents or any other controls
     interactable: { type: Boolean, default: true }, // Whether to allow user to interact with component
     showSnackbar: { type: Boolean, default: true }, // Whether to show snackbar when availability is automatically filled in
     animateTimeslotAlways: { type: Boolean, default: false }, // Whether to animate timeslots all the time
@@ -1078,7 +1078,7 @@ export default {
     initialTimezone: { type: Object, default: () => ({}) },
 
     // Availability Groups
-    calendárioAvailabilities: { type: Object, default: () => ({}) },
+    calendarAvailabilities: { type: Object, default: () => ({}) },
   },
   data() {
     return {
@@ -1106,7 +1106,7 @@ export default {
       curTimeslotAvailability: {}, // The users available for the current timeslot
       curRespondent: "", // Id of the active respondent (set on hover)
       curRespondents: [], // Id of currently selected respondents (set on click)
-      sharedCalendarAccounts: {}, // The user's calendário accounts for changing calendário options for groups
+      sharedCalendarAccounts: {}, // The user's calendar accounts for changing calendar options for groups
       fetchedResponses: {}, // Responses fetched from the server for the dates currently shown
       loadingResponses: { loading: false, lastFetched: new Date().getTime() }, // Whether we're currently fetching the responses
       responsesFormatted: new Map(), // Map where date/time is mapped to the people that are available then
@@ -1123,8 +1123,8 @@ export default {
           : localStorage["showEditOptions"] == "true",
       availabilityType: availabilityTypes.AVAILABLE, // The current availability type
       overlayAvailability: false, // Whether to overlay everyone's availability when editing
-      bufferTime: calendárioOptionsDefaults.bufferTime, // Set in mounted()
-      workingHours: calendárioOptionsDefaults.workingHours, // Set in mounted()
+      bufferTime: calendarOptionsDefaults.bufferTime, // Set in mounted()
+      workingHours: calendarOptionsDefaults.workingHours, // Set in mounted()
 
       /* Event Options */
       showEventOptions:
@@ -1165,14 +1165,14 @@ export default {
 
       /* Dialogs */
       deleteAvailabilityDialog: false,
-      calendárioOptionsDialog: false,
+      calendarOptionsDialog: false,
       editGuestNameDialog: false,
       newGuestName: "",
 
       /* Variables for scrolling */
       optionsVisible: false,
-      calendárioScrollLeft: 0, // The current scroll position of the calendário
-      calendárioMaxScroll: 0, // The maximum scroll amount of the calendário, scrolling to this point means we have scrolled to the end
+      calendarScrollLeft: 0, // The current scroll position of the calendar
+      calendarMaxScroll: 0, // The maximum scroll amount of the calendar, scrolling to this point means we have scrolled to the end
       scrolledToRespondents: false, // whether we have scrolled to the respondents section
       delayedShowStickyRespondents: false, // showStickyRespondents variable but changes 100ms after the actual variable changes (to add some delay)
       delayedShowStickyRespondentsTimeout: null, // Timeout that sets delayedShowStickyRespondents
@@ -1211,7 +1211,7 @@ export default {
   },
   computed: {
     ...mapState(["authUser", "overlayAvailabilitiesEnabled"]),
-    /** Returns the width of the right side of the calendário */
+    /** Returns the width of the right side of the calendar */
     rightSideWidth() {
       if (this.isPhone) return "100%"
       return this.isSignUp ? "18rem" : "13rem"
@@ -1245,9 +1245,9 @@ export default {
         this.state === this.states.SET_SPECIFIC_TIMES
       )
     },
-    /** Returns an array of calendário events for all of the authUser's enabled calendários, separated by the day they occur on */
-    calendárioEventsByDay() {
-      // If this is an example calendário
+    /** Returns an array of calendar events for all of the authUser's enabled calendars, separated by the day they occur on */
+    calendarEventsByDay() {
+      // If this is an example calendar
       if (this.sampleCalendarEventsByDay) return this.sampleCalendarEventsByDay
 
       // If the user isn't logged in or is adding availability as a guest
@@ -1256,22 +1256,22 @@ export default {
       let events = []
       let event
 
-      const calendárioAccounts = this.isGroup
+      const calendarAccounts = this.isGroup
         ? this.sharedCalendarAccounts
-        : this.authUser.calendárioAccounts
+        : this.authUser.calendarAccounts
 
-      // Adds events from calendário accounts that are enabled
-      for (const id in calendárioAccounts) {
-        if (!calendárioAccounts[id].enabled) continue
+      // Adds events from calendar accounts that are enabled
+      for (const id in calendarAccounts) {
+        if (!calendarAccounts[id].enabled) continue
 
-        if (this.calendárioEventsMap.hasOwnProperty(id)) {
-          for (const index in this.calendárioEventsMap[id].calendárioEvents) {
-            event = this.calendárioEventsMap[id].calendárioEvents[index]
+        if (this.calendarEventsMap.hasOwnProperty(id)) {
+          for (const index in this.calendarEventsMap[id].calendarEvents) {
+            event = this.calendarEventsMap[id].calendarEvents[index]
 
-            // Check if we need to update authUser (to get latest subcalendários)
-            const subCalendars = calendárioAccounts[id].subCalendars
-            if (!subCalendars || !(event.calendárioId in subCalendars)) {
-              // authUser doesn't contain the subCalendar, so push event to events without checking if subcalendário is enabled
+            // Check if we need to update authUser (to get latest subcalendars)
+            const subCalendars = calendarAccounts[id].subCalendars
+            if (!subCalendars || !(event.calendarId in subCalendars)) {
+              // authUser doesn't contain the subCalendar, so push event to events without checking if subcalendar is enabled
               // and queue the authUser to be refreshed
               events.push(event)
               if (!this.hasRefreshedAuthUser && !this.isGroup) {
@@ -1280,8 +1280,8 @@ export default {
               continue
             }
 
-            // Push event to events if subcalendário is enabled
-            if (subCalendars[event.calendárioId].enabled) {
+            // Push event to events if subcalendar is enabled
+            if (subCalendars[event.calendarId].enabled) {
               events.push(event)
             }
           }
@@ -1290,27 +1290,27 @@ export default {
 
       const eventsCopy = JSON.parse(JSON.stringify(events))
 
-      const calendárioEventsByDay = splitTimeBlocksByDay(
+      const calendarEventsByDay = splitTimeBlocksByDay(
         this.event,
         eventsCopy,
         this.weekOffset,
         this.timezoneOffset
       )
 
-      return calendárioEventsByDay
+      return calendarEventsByDay
     },
-    /** [SPECIFIC TO GROUPS] Returns an object mapping user ids to their calendário events separated by the day they occur on */
+    /** [SPECIFIC TO GROUPS] Returns an object mapping user ids to their calendar events separated by the day they occur on */
     groupCalendarEventsByDay() {
       if (this.event.type !== eventTypes.GROUP) return {}
 
       const userIdToEventsByDay = {}
       for (const userId in this.event.responses) {
         if (userId === this.authUser._id) {
-          userIdToEventsByDay[userId] = this.calendárioEventsByDay
-        } else if (userId in this.calendárioAvailabilities) {
+          userIdToEventsByDay[userId] = this.calendarEventsByDay
+        } else if (userId in this.calendarAvailabilities) {
           userIdToEventsByDay[userId] = splitTimeBlocksByDay(
             this.event,
-            this.calendárioAvailabilities[userId],
+            this.calendarAvailabilities[userId],
             this.weekOffset,
             this.timezoneOffset
           )
@@ -1725,11 +1725,11 @@ export default {
     parsedResponses() {
       const parsed = {}
 
-      // Return calendário availability if group
+      // Return calendar availability if group
       if (this.event.type === eventTypes.GROUP) {
         for (const userId in this.event.responses) {
-          const calendárioEventsByDay = this.groupCalendarEventsByDay[userId]
-          if (calendárioEventsByDay) {
+          const calendarEventsByDay = this.groupCalendarEventsByDay[userId]
+          if (calendarEventsByDay) {
             // Get manual availability and convert to DOW dates
             const fetchedManualAvailability = this.getManualAvailabilityDow(
               this.fetchedResponses[userId]?.manualAvailability
@@ -1739,20 +1739,20 @@ export default {
                 ? this.getManualAvailabilityDow(this.manualAvailability)
                 : {}
 
-            // Get availability from calendário events and use manual availability on the
+            // Get availability from calendar events and use manual availability on the
             // "touched" days
             const availability = this.getAvailabilityFromCalendarEvents({
-              calendárioEventsByDay,
+              calendarEventsByDay,
               includeTouchedAvailability: true,
               fetchedManualAvailability: fetchedManualAvailability ?? {},
               curManualAvailability: curManualAvailability ?? {},
-              calendárioOptions:
+              calendarOptions:
                 userId === this.authUser._id
                   ? {
                       bufferTime: this.bufferTime,
                       workingHours: this.workingHours,
                     }
-                  : this.fetchedResponses[userId]?.calendárioOptions ?? undefined,
+                  : this.fetchedResponses[userId]?.calendarOptions ?? undefined,
             })
 
             parsed[userId] = {
@@ -2002,10 +2002,10 @@ export default {
       return this.authUser && this.authUser._id in this.parsedResponses
     },
     showLeftZigZag() {
-      return this.calendárioScrollLeft > 0
+      return this.calendarScrollLeft > 0
     },
     showRightZigZag() {
-      return Math.ceil(this.calendárioScrollLeft) < this.calendárioMaxScroll
+      return Math.ceil(this.calendarScrollLeft) < this.calendarMaxScroll
     },
     maxDaysPerPage() {
       return this.isPhone ? this.mobileNumDays : 7
@@ -2050,7 +2050,7 @@ export default {
       if (this.isPhone) {
         switch (this.state) {
           case this.isGroup && this.states.EDIT_AVAILABILITY:
-            return "Toggle which calendários are used. Tap and drag to edit your availability."
+            return "Toggle which calendars are used. Tap and drag to edit your availability."
           case this.states.EDIT_AVAILABILITY:
             const daysOrTimes = this.event.daysOnly ? "days" : "times"
             if (this.availabilityType === availabilityTypes.IF_NEEDED) {
@@ -2058,7 +2058,7 @@ export default {
             }
             return `Tap and drag to add your "available" ${daysOrTimes} in green.`
           case this.states.SCHEDULE_EVENT:
-            return "Tap and drag on the calendário to schedule a Google Calendar event during those times."
+            return "Tap and drag on the calendar to schedule a Google Calendar event during those times."
           default:
             return ""
         }
@@ -2066,7 +2066,7 @@ export default {
 
       switch (this.state) {
         case this.isGroup && this.states.EDIT_AVAILABILITY:
-          return "Toggle which calendários are used. Click and drag to edit your availability."
+          return "Toggle which calendars are used. Click and drag to edit your availability."
         case this.states.EDIT_AVAILABILITY:
           const daysOrTimes = this.event.daysOnly ? "days" : "times"
           if (this.availabilityType === availabilityTypes.IF_NEEDED) {
@@ -2074,7 +2074,7 @@ export default {
           }
           return `Click and drag to add your "available" ${daysOrTimes} in green.`
         case this.states.SCHEDULE_EVENT:
-          return "Click and drag on the calendário to schedule a Google Calendar event during those times."
+          return "Click and drag on the calendar to schedule a Google Calendar event during those times."
         default:
           return ""
       }
@@ -2142,7 +2142,7 @@ export default {
     /** Whether to show spinner on top of availability grid */
     showLoader() {
       return (
-        // Loading calendário events
+        // Loading calendar events
         ((this.isGroup || this.alwaysShowCalendarEvents || this.editing) &&
           this.loadingCalendarEvents) ||
         // Loading responses
@@ -2252,7 +2252,7 @@ export default {
     showCalendarOptions() {
       return (
         !this.addingAvailabilityAsGuest &&
-        this.calendárioPermissionGranted &&
+        this.calendarPermissionGranted &&
         (this.isGroup || (!this.isGroup && !this.userHasResponded))
       )
     },
@@ -2413,7 +2413,7 @@ export default {
 
     /** Fetches responses from server */
     fetchResponses() {
-      if (this.calendárioOnly) {
+      if (this.calendarOnly) {
         this.fetchedResponses = this.event.responses
         return
       }
@@ -2610,7 +2610,7 @@ export default {
       this.ifNeeded = new Set(this.parsedResponses[id]?.ifNeeded) ?? new Set()
       this.$nextTick(() => (this.unsavedChanges = false))
     },
-    /** Returns true if the calendário event is in the first split */
+    /** Returns true if the calendar event is in the first split */
     getIsTimeBlockInFirstSplit(timeBlock) {
       return (
         timeBlock.hoursOffset >= this.splitTimes[0][0].hoursOffset &&
@@ -2618,7 +2618,7 @@ export default {
           this.splitTimes[0][this.splitTimes[0].length - 1].hoursOffset
       )
     },
-    /** Returns the style for the calendário event block */
+    /** Returns the style for the calendar event block */
     getTimeBlockStyle(timeBlock) {
       const style = {}
       const hasSecondSplit = this.splitTimes[1].length > 0
@@ -2637,13 +2637,13 @@ export default {
       }
       return style
     },
-    /** Returns a set containing the available times based on the given calendário events object */
+    /** Returns a set containing the available times based on the given calendar events object */
     getAvailabilityFromCalendarEvents({
-      calendárioEventsByDay = [],
+      calendarEventsByDay = [],
       includeTouchedAvailability = false, // Whether to include manual availability for touched days
       fetchedManualAvailability = {}, // Object mapping unix timestamp to array of manual availability (fetched from server)
       curManualAvailability = {}, // Manual availability with edits (takes precedence over fetchedManualAvailability)
-      calendárioOptions = calendárioOptionsDefaults, // User id of the user we are getting availability for
+      calendarOptions = calendarOptionsDefaults, // User id of the user we are getting availability for
     }) {
       const availability = new Set()
 
@@ -2688,21 +2688,21 @@ export default {
         }
 
         // Calculate buffer time
-        const bufferTimeInMS = calendárioOptions.bufferTime.enabled
-          ? calendárioOptions.bufferTime.time * 1000 * 60
+        const bufferTimeInMS = calendarOptions.bufferTime.enabled
+          ? calendarOptions.bufferTime.time * 1000 * 60
           : 0
 
         // Calculate working hours
         const startTimeString = timeNumToTimeString(
-          calendárioOptions.workingHours.startTime
+          calendarOptions.workingHours.startTime
         )
         const isoDateString = getISODateString(getDateWithTimezone(date), true)
         const workingHoursStartDate = dayjs
           .tz(`${isoDateString} ${startTimeString}`, this.curTimezone.value)
           .toDate()
         let duration =
-          calendárioOptions.workingHours.endTime -
-          calendárioOptions.workingHours.startTime
+          calendarOptions.workingHours.endTime -
+          calendarOptions.workingHours.startTime
         if (duration <= 0) duration += 24
         const workingHoursEndDate = getDateHoursOffset(
           workingHoursStartDate,
@@ -2718,7 +2718,7 @@ export default {
           )
 
           // Working hours
-          if (calendárioOptions.workingHours.enabled) {
+          if (calendarOptions.workingHours.enabled) {
             if (
               endDate.getTime() <= workingHoursStartDate.getTime() ||
               startDate.getTime() >= workingHoursEndDate.getTime()
@@ -2727,8 +2727,8 @@ export default {
             }
           }
 
-          // Check if there exists a calendário event that overlaps [startDate, endDate]
-          const index = calendárioEventsByDay[i]?.findIndex((e) => {
+          // Check if there exists a calendar event that overlaps [startDate, endDate]
+          const index = calendarEventsByDay[i]?.findIndex((e) => {
             const startDateBuffered = new Date(
               e.startDate.getTime() - bufferTimeInMS
             )
@@ -2748,13 +2748,13 @@ export default {
       }
       return availability
     },
-    /** Constructs the availability array using calendárioEvents array */
+    /** Constructs the availability array using calendarEvents array */
     setAvailabilityAutomatically() {
       // This is not a computed property because we should be able to change it manually from what it automatically fills in
       this.availability = new Set()
       const tmpAvailability = this.getAvailabilityFromCalendarEvents({
-        calendárioEventsByDay: this.calendárioEventsByDay,
-        calendárioOptions: {
+        calendarEventsByDay: this.calendarEventsByDay,
+        calendarOptions: {
           bufferTime: this.bufferTime,
           workingHours: this.workingHours,
         },
@@ -2823,9 +2823,9 @@ export default {
       let payload = {}
 
       let type = ""
-      // If this is a group submit enabled calendários, otherwise submit availability
+      // If this is a group submit enabled calendars, otherwise submit availability
       if (this.isGroup) {
-        type = "group availability and calendários"
+        type = "group availability and calendars"
         payload = generateEnabledCalendarsPayload(this.sharedCalendarAccounts)
         payload.manualAvailability = {}
         for (const day of Object.keys(this.manualAvailability)) {
@@ -2833,7 +2833,7 @@ export default {
             ...this.manualAvailability[day],
           ].map((a) => new Date(a))
         }
-        payload.calendárioOptions = {
+        payload.calendarOptions = {
           bufferTime: this.bufferTime,
           workingHours: this.workingHours,
         }
@@ -3601,20 +3601,20 @@ export default {
         const end = endDate.toISOString().replace(/([-:]|\.000)/g, "")
 
         // Construct Google Calendar event creation template url
-        url = `https://calendário.google.com/calendário/render?action=TEMPLATE&text=${encodeURIComponent(
+        url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
           this.event.name
         )}&dates=${start}/${end}&details=${encodeURIComponent(
           "\n\nThis event was scheduled with Timeful: https://timeful.app/e/"
         )}${eventId}&ctz=${this.curTimezone.value}&add=${emailsString}`
       } else {
-        url = `https://outlook.live.com/calendário/0/deeplink/compose?subject=${encodeURIComponent(
+        url = `https://outlook.live.com/calendar/0/deeplink/compose?subject=${encodeURIComponent(
           this.event.name
         )}&body=${encodeURIComponent(
           "\n\nThis event was scheduled with Timeful: https://timeful.app/e/" +
             eventId
         )}&startdt=${startDate.toISOString()}&enddt=${endDate.toISOString()}&location=${encodeURIComponent(
           this.event.location || ""
-        )}&path=/calendário/action/compose&timezone=${this.curTimezone.value}`
+        )}&path=/calendar/action/compose&timezone=${this.curTimezone.value}`
       }
 
       // Navigate to url and reset state
@@ -3775,12 +3775,12 @@ export default {
                 true
               )
 
-              // If date not touched, then add all of the existing calendário availabilities and mark it as touched
+              // If date not touched, then add all of the existing calendar availabilities and mark it as touched
               if (!(startDateOfDay.getTime() in this.manualAvailability)) {
                 // Create new set
                 this.manualAvailability[startDateOfDay.getTime()] = new Set()
 
-                // Add the existing calendário availabilities
+                // Add the existing calendar availabilities
                 const existingAvailability = this.getAvailabilityForColumn(c)
                 for (const a of existingAvailability) {
                   const convertedDate = dateToDowDate(
@@ -3965,7 +3965,7 @@ export default {
     // -----------------------------------
     getLocalTimezone() {
       const split = new Date(this.event.dates[0])
-        .toLocaleTimeString("en-us", { timeZoneName: "short" })
+        .toLocaleTimeString("pt-br", { timeZoneName: "short" })
         .split(" ")
       const localTimezone = split[split.length - 1]
 
@@ -3999,8 +3999,8 @@ export default {
     //#region Scroll
     // -----------------------------------
     onCalendarScroll(e) {
-      this.calendárioMaxScroll = e.target.scrollWidth - e.target.offsetWidth
-      this.calendárioScrollLeft = e.target.scrollLeft
+      this.calendarMaxScroll = e.target.scrollWidth - e.target.offsetWidth
+      this.calendarScrollLeft = e.target.scrollLeft
     },
     onScroll(e) {
       this.checkElementsVisible()
@@ -4081,7 +4081,7 @@ export default {
     //#region Group
     // -----------------------------------
 
-    /** Toggles calendário account - in groups to enable/disable calendários */
+    /** Toggles calendar account - in groups to enable/disable calendars */
     toggleCalendarAccount(payload) {
       this.sharedCalendarAccounts[
         getCalendarAccountKey(payload.email, payload.calendarType)
@@ -4091,7 +4091,7 @@ export default {
       )
     },
 
-    /** Toggles sub calendário account - in groups to enable/disable sub calendários */
+    /** Toggles sub calendar account - in groups to enable/disable sub calendars */
     toggleSubCalendarAccount(payload) {
       this.sharedCalendarAccounts[
         getCalendarAccountKey(payload.email, payload.calendarType)
@@ -4105,12 +4105,12 @@ export default {
     initSharedCalendarAccounts() {
       if (!this.authUser) return
 
-      // Init shared calendário accounts to current calendário accounts
+      // Init shared calendar accounts to current calendar accounts
       this.sharedCalendarAccounts = JSON.parse(
-        JSON.stringify(this.authUser.calendárioAccounts)
+        JSON.stringify(this.authUser.calendarAccounts)
       )
 
-      // Disable all calendários
+      // Disable all calendars
       for (const id in this.sharedCalendarAccounts) {
         this.sharedCalendarAccounts[id].enabled = false
         if (this.sharedCalendarAccounts[id].subCalendars) {
@@ -4123,7 +4123,7 @@ export default {
         }
       }
 
-      // Enable calendários based on responses
+      // Enable calendars based on responses
       if (this.authUser._id in this.event.responses) {
         const enabledCalendars =
           this.event.responses[this.authUser._id].enabledCalendars
@@ -4368,7 +4368,7 @@ export default {
 
     //#endregion
 
-    /** Recalculate availability the calendário based on calendário events */
+    /** Recalculate availability the calendar based on calendar events */
     reanimateAvailability() {
       if (
         this.state === this.states.EDIT_AVAILABILITY &&
@@ -4428,7 +4428,7 @@ export default {
         }
       },
     },
-    calendárioEventsByDay(val, oldVal) {
+    calendarEventsByDay(val, oldVal) {
       if (JSON.stringify(val) !== JSON.stringify(oldVal)) {
         this.reanimateAvailability()
       }
@@ -4548,37 +4548,37 @@ export default {
       this.state = "heatmap"
     }
 
-    // Set calendário options defaults
+    // Set calendar options defaults
     if (this.authUser) {
       this.bufferTime =
-        this.authUser?.calendárioOptions?.bufferTime ??
-        calendárioOptionsDefaults.bufferTime
+        this.authUser?.calendarOptions?.bufferTime ??
+        calendarOptionsDefaults.bufferTime
       this.workingHours =
-        this.authUser?.calendárioOptions?.workingHours ??
-        calendárioOptionsDefaults.workingHours
+        this.authUser?.calendarOptions?.workingHours ??
+        calendarOptionsDefaults.workingHours
       if (this.isGroup) {
-        if (this.event.responses[this.authUser._id]?.calendárioOptions) {
-          // Update calendário options if user has changed them for this specific group
+        if (this.event.responses[this.authUser._id]?.calendarOptions) {
+          // Update calendar options if user has changed them for this specific group
           const { bufferTime, workingHours } =
-            this.event.responses[this.authUser._id]?.calendárioOptions
+            this.event.responses[this.authUser._id]?.calendarOptions
           if (bufferTime) this.bufferTime = bufferTime
           if (workingHours) this.workingHours = workingHours
         } else {
-          this.bufferTime = calendárioOptionsDefaults.bufferTime
-          this.workingHours = calendárioOptionsDefaults.workingHours
+          this.bufferTime = calendarOptionsDefaults.bufferTime
+          this.workingHours = calendarOptionsDefaults.workingHours
         }
       }
     }
 
-    // Set initial calendário max scroll
-    // this.calendárioMaxScroll =
-    //   this.$refs.calendário.scrollWidth - this.$refs.calendário.offsetWidth
+    // Set initial calendar max scroll
+    // this.calendarMaxScroll =
+    //   this.$refs.calendar.scrollWidth - this.$refs.calendar.offsetWidth
 
     // Get timeslot size
     this.setTimeslotSize()
     addEventListener("resize", this.onResize)
     addEventListener("scroll", this.onScroll)
-    if (!this.calendárioOnly) {
+    if (!this.calendarOnly) {
       const timesEl = document.getElementById("drag-section")
       if (isTouchEnabled()) {
         timesEl.addEventListener("touchstart", this.startDrag)

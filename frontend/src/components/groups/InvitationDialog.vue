@@ -14,18 +14,18 @@
           <div
             class="tw-mb-5 tw-text-wrap tw-text-xl tw-font-medium tw-text-black"
           >
-            <template v-if="isOwner"> Share calendário availability </template>
+            <template v-if="isOwner"> Share calendar availability </template>
             <template v-else>
-              Accept invitation to share your calendário availability with "{{
+              Accept invitation to share your calendar availability with "{{
                 group.name
               }}"?
             </template>
           </div>
           <v-expand-transition>
-            <div v-if="calendárioPermissionGranted">
+            <div v-if="calendarPermissionGranted">
               <CalendarAccounts
                 :sync-with-backend="false"
-                :allow-add-calendário-account="false"
+                :allow-add-calendar-account="false"
                 :toggle-state="true"
                 :fill-space="true"
                 @toggleCalendarAccount="toggleCalendarAccount"
@@ -34,7 +34,7 @@
 
               <div class="tw-mt-5 tw-space-y-4">
                 <div class="tw-font-medium tw-text-black">
-                  Your calendário availability from these calendários will be shared
+                  Your calendar availability from these calendars will be shared
                   with:
                 </div>
                 <div
@@ -51,14 +51,14 @@
                   <div>No members added yet</div>
                 </div>
                 <div class="tw-text-xs tw-text-dark-gray">
-                  Your calendário events will NOT be visible to others
+                  Your calendar events will NOT be visible to others
                 </div>
               </div>
             </div>
           </v-expand-transition>
 
           <v-expand-transition>
-            <div class="tw-p-5 tw-text-black" v-if="!calendárioPermissionGranted">
+            <div class="tw-p-5 tw-text-black" v-if="!calendarPermissionGranted">
               <CalendarPermissionsCard
                 v-show="true"
                 cancelLabel=""
@@ -78,7 +78,7 @@
           <v-btn
             color="primary"
             @click="acceptInvitation"
-            :disabled="!calendárioPermissionGranted"
+            :disabled="!calendarPermissionGranted"
             class="tw-px-6"
             >Compartilhar</v-btn
           >
@@ -113,7 +113,7 @@
           <v-btn
             class="tw-bg-brand-primary tw-px-5 tw-text-white tw-transition-opacity"
             @click="acceptInvitation"
-            :disabled="!calendárioPermissionGranted"
+            :disabled="!calendarPermissionGranted"
             >Accept Invitation</v-btn
           >
         </v-card-actions>
@@ -137,7 +137,7 @@ export default {
   props: {
     value: { type: Boolean, required: true },
     group: { type: Object },
-    calendárioPermissionGranted: { type: Boolean, required: true },
+    calendarPermissionGranted: { type: Boolean, required: true },
   },
 
   components: {
@@ -147,13 +147,13 @@ export default {
   },
 
   data: () => ({
-    calendárioAccounts: {},
+    calendarAccounts: {},
     rejectDialog: false,
   }),
 
   mounted() {
-    this.calendárioAccounts = JSON.parse(
-      JSON.stringify(this.authUser.calendárioAccounts)
+    this.calendarAccounts = JSON.parse(
+      JSON.stringify(this.authUser.calendarAccounts)
     )
   },
 
@@ -182,7 +182,7 @@ export default {
     },
 
     acceptInvitation() {
-      const payload = generateEnabledCalendarsPayload(this.calendárioAccounts)
+      const payload = generateEnabledCalendarsPayload(this.calendarAccounts)
 
       post(`/events/${this.group._id}/response`, payload).then((res) => {
         this.$emit("input", false)
@@ -191,13 +191,13 @@ export default {
     },
 
     toggleCalendarAccount(payload) {
-      this.calendárioAccounts[
+      this.calendarAccounts[
         `${payload.email}_${payload.calendarType}`
       ].enabled = payload.enabled
     },
 
     toggleSubCalendarAccount(payload) {
-      this.calendárioAccounts[
+      this.calendarAccounts[
         `${payload.email}_${payload.calendarType}`
       ].subCalendars[payload.subCalendarId].enabled = payload.enabled
     },

@@ -17,7 +17,7 @@
         </h1>
         <div class="tw-text-center tw-text-dark-gray">
           Join the group now to share your real-time <br v-if="!isPhone" />
-          calendário availability with each other!
+          calendar availability with each other!
         </div>
       </div>
       <v-btn @click="join" color="primary" class="tw-mb-8"
@@ -29,13 +29,13 @@
       </div>
 
       <v-dialog
-        v-model="calendárioPermissionsDialog"
+        v-model="calendarPermissionsDialog"
         width="400"
         content-class="tw-m-0"
       >
         <v-card class="tw-p-4 sm:tw-p-6">
           <CalendarPermissionsCard
-            @cancel="calendárioPermissionsDialog = false"
+            @cancel="calendarPermissionsDialog = false"
             @allow="allowCalendarAccess"
           />
         </v-card>
@@ -71,7 +71,7 @@ export default {
     return {
       owner: {},
       loaded: false,
-      calendárioPermissionsDialog: false,
+      calendarPermissionsDialog: false,
       webviewDialog: false,
     }
   },
@@ -84,7 +84,7 @@ export default {
 
   methods: {
     join() {
-      this.calendárioPermissionsDialog = true
+      this.calendarPermissionsDialog = true
     },
     allowCalendarAccess() {
       if (isWebview(navigator.userAgent)) {

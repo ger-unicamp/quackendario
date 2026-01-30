@@ -23,10 +23,10 @@
             isGroup
               ? "mdi-account-group"
               : isDow
-              ? "mdi-calendário-range"
+              ? "mdi-calendar-range"
               : event.daysOnly
-              ? "mdi-calendário-month"
-              : "mdi-calendário"
+              ? "mdi-calendar-month"
+              : "mdi-calendar"
           }}</v-icon>
         </div>
         <div class="tw-ml-3">

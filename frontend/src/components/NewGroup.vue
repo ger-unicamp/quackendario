@@ -13,7 +13,7 @@
           v-if="dialog && showHelp"
           class="tw-text-xs tw-font-normal tw-italic tw-text-dark-gray"
         >
-          Ideal for viewing weekly calendário availability
+          Ideal for viewing weekly calendar availability
         </div>
       </div>
       <v-spacer />
@@ -27,8 +27,8 @@
         <HelpDialog v-model="helpDialog">
           <template v-slot:header>Availability groups</template>
           <div class="mb-4">
-            Use availability groups to see group members' weekly calendário
-            availabilities from Google Calendar. Your actual calendário events
+            Use availability groups to see group members' weekly calendar
+            availabilities from Google Calendar. Your actual calendar events
             will NOT be visible to others.
           </div>
         </HelpDialog>

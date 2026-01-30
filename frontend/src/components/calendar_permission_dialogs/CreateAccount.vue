@@ -19,15 +19,7 @@
         @click="$emit('signInLinkApple')"
         class="tw-mb-3 tw-w-full"
       />
-      <div class="tw-text-center tw-text-xs tw-text-dark-gray">
-        Ao continuar, você concorda com nossa
-        <router-link
-          class="tw-text-blue"
-          target="_blank"
-          :to="{ name: 'privacy-policy' }"
-          >política de privacidade</router-link
-        >
-      </div>
+      
     </div>
     <div v-else>
       <div

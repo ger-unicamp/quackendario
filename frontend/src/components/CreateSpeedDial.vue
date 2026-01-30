@@ -16,7 +16,7 @@
         <v-icon small>mdi-account-group</v-icon>
       </v-btn>
       <v-btn fab small dark class="tw-bg-dark-gray">
-        <v-icon small>mdi-calendário-cursor</v-icon>
+        <v-icon small>mdi-calendar-cursor</v-icon>
       </v-btn>
     </v-speed-dial>
   </v-scale-transition>

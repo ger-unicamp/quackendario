@@ -10,7 +10,7 @@
         :class="containerClass"
       >
         <div :class="textColor" class="ph-no-capture tw-font-medium">
-          {{ noEventNames ? "BUSY" : calendárioEvent.summary }}
+          {{ noEventNames ? "BUSY" : calendarEvent.summary }}
         </div>
       </div>
     </div>
@@ -25,7 +25,7 @@ export default {
       type: Object,
       default: () => ({}),
     },
-    calendárioEvent: {
+    calendarEvent: {
       type: Object,
       required: true,
     },
@@ -48,7 +48,7 @@ export default {
   },
   computed: {
     containerClass() {
-      if (this.calendárioEvent.free) {
+      if (this.calendarEvent.free) {
         return this.isGroup && !this.isEditingAvailability
           ? "tw-border-white tw-bg-light-blue tw-opacity-50"
           : "tw-border-dashed tw-border-blue"
