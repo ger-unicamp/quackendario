@@ -67,7 +67,7 @@
       >
     </div>
 
-    <!-- Sub-calendar accounts -->
+    <!-- Sub-calendário accounts -->
 
     <v-expand-transition>
       <div v-if="showSubCalendars" class="tw-space-y-2 tw-bg-brand-primary-lighter tw-py-2">
@@ -96,7 +96,7 @@
 
 <script>
 import { mapState, mapActions } from "vuex"
-import { authTypes, calendarTypes } from "@/constants"
+import { authTypes, calendárioTypes } from "@/constants"
 import {
   post,
   _delete,
@@ -112,7 +112,7 @@ export default {
     toggleState: { type: Boolean, default: false },
     account: { type: Object, default: () => {} },
     eventId: { type: String, default: "" },
-    calendarEventsMap: { type: Object, default: () => {} }, // Object of different users' calendar events
+    calendárioEventsMap: { type: Object, default: () => {} }, // Object of different users' calendário events
     removeDialog: { type: Boolean, default: false },
     selectedRemoveEmail: { type: String, default: "" },
     syncWithBackend: { type: Boolean, default: true },
@@ -131,28 +131,28 @@ export default {
     ...mapState(["authUser"]),
     allowDelete() {
       return !(
-        (this.account.calendarType == calendarTypes.GOOGLE &&
+        (this.account.calendárioType == calendárioTypes.GOOGLE &&
           this.account.email == this.authUser.email) ||
         this.toggleState
       )
     },
     accountHasError() {
       const account =
-        this.calendarEventsMap?.[
-          getCalendarAccountKey(this.account.email, this.account.calendarType)
+        this.calendárioEventsMap?.[
+          getCalendarAccountKey(this.account.email, this.account.calendárioType)
         ]
-      return account?.error && account?.calendarEvents?.length === 0
+      return account?.error && account?.calendárioEvents?.length === 0
     },
     /** don't show account if in toggle state and account has an error */
     showAccount() {
       return !(this.toggleState && this.accountHasError)
     },
     reauthenticateBtnText() {
-      if (this.account.calendarType == calendarTypes.GOOGLE) {
+      if (this.account.calendárioType == calendárioTypes.GOOGLE) {
         return "Calendar access not granted, click to reauthenticate"
-      } else if (this.account.calendarType == calendarTypes.APPLE) {
+      } else if (this.account.calendárioType == calendárioTypes.APPLE) {
         return "Error with Apple Calendar account, click to remove"
-      } else if (this.account.calendarType == calendarTypes.OUTLOOK) {
+      } else if (this.account.calendárioType == calendárioTypes.OUTLOOK) {
         return "Error with Outlook Calendar account, click to remove"
       }
     },
@@ -173,7 +173,7 @@ export default {
       })
     },
     reauthenticateCalendarAccount() {
-      if (this.account.calendarType == calendarTypes.GOOGLE) {
+      if (this.account.calendárioType == calendárioTypes.GOOGLE) {
         signInGoogle({
           state: {
             type: this.toggleState
@@ -185,28 +185,28 @@ export default {
           selectAccount: false,
           loginHint: this.account.email,
         })
-      } else if (this.account.calendarType == calendarTypes.APPLE) {
+      } else if (this.account.calendárioType == calendárioTypes.APPLE) {
         this.openRemoveDialog()
-      } else if (this.account.calendarType == calendarTypes.OUTLOOK) {
+      } else if (this.account.calendárioType == calendárioTypes.OUTLOOK) {
         this.openRemoveDialog()
       }
     },
     toggleSubCalendarAccount(enabled, subCalendarId) {
       if (this.syncWithBackend) {
-        post(`/user/toggle-sub-calendar`, {
+        post(`/user/toggle-sub-calendário`, {
           email: this.account.email,
-          calendarType: this.account.calendarType,
+          calendárioType: this.account.calendárioType,
           enabled,
           subCalendarId,
         }).catch((err) => {
           this.showError(
-            "There was a problem with toggling your calendar account! Please try again later."
+            "There was a problem with toggling your calendário account! Please try again later."
           )
         })
       } else {
         this.$emit("toggleSubCalendarAccount", {
           email: this.account.email,
-          calendarType: this.account.calendarType,
+          calendárioType: this.account.calendárioType,
           enabled,
           subCalendarId,
         })
@@ -217,19 +217,19 @@ export default {
       if (!enabled) this.showSubCalendars = false
 
       if (this.syncWithBackend) {
-        post(`/user/toggle-calendar`, {
+        post(`/user/toggle-calendário`, {
           email: this.account.email,
-          calendarType: this.account.calendarType,
+          calendárioType: this.account.calendárioType,
           enabled,
         }).catch((err) => {
           this.showError(
-            "There was a problem with toggling your calendar account! Please try again later."
+            "There was a problem with toggling your calendário account! Please try again later."
           )
         })
       } else {
         this.$emit("toggleCalendarAccount", {
           email: this.account.email,
-          calendarType: this.account.calendarType,
+          calendárioType: this.account.calendárioType,
           enabled,
         })
       }
@@ -237,7 +237,7 @@ export default {
     openRemoveDialog() {
       this.$emit("openRemoveDialog", {
         email: this.account.email,
-        calendarType: this.account.calendarType,
+        calendárioType: this.account.calendárioType,
       })
     },
   },

@@ -18,7 +18,7 @@
       </div>
     </div>
     <v-btn color="primary" @click="saveTempTimes" :disabled="numTempTimes === 0"
-      >Next</v-btn
+      >Próximo</v-btn
     >
   </div>
 </template>

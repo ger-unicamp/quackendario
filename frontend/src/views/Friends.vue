@@ -9,7 +9,7 @@
         </div>
       </div>
 
-      <v-text-field label="Search" outlined dense></v-text-field>
+      <v-text-field label="Buscar" outlined dense></v-text-field>
 
       <FriendItem
         class="tw-mb-2"

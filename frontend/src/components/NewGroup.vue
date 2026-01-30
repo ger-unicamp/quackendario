@@ -13,7 +13,7 @@
           v-if="dialog && showHelp"
           class="tw-text-xs tw-font-normal tw-italic tw-text-dark-gray"
         >
-          Ideal for viewing weekly calendar availability
+          Ideal for viewing weekly calendário availability
         </div>
       </div>
       <v-spacer />
@@ -27,8 +27,8 @@
         <HelpDialog v-model="helpDialog">
           <template v-slot:header>Availability groups</template>
           <div class="mb-4">
-            Use availability groups to see group members' weekly calendar
-            availabilities from Google Calendar. Your actual calendar events
+            Use availability groups to see group members' weekly calendário
+            availabilities from Google Calendar. Your actual calendário events
             will NOT be visible to others.
           </div>
         </HelpDialog>
@@ -45,7 +45,7 @@
         <v-text-field
           ref="name-field"
           v-model="name"
-          placeholder="Name your group..."
+          placeholder="Dê um nome ao seu grupo..."
           hide-details="auto"
           solo
           @keyup.enter="blurNameField"
@@ -87,20 +87,20 @@
               solo
               color="primary"
             >
-              <v-btn depressed v-show="!startOnMonday"> Sun </v-btn>
-              <v-btn depressed> Mon </v-btn>
-              <v-btn depressed> Tue </v-btn>
-              <v-btn depressed> Wed </v-btn>
-              <v-btn depressed> Thu </v-btn>
-              <v-btn depressed> Fri </v-btn>
-              <v-btn depressed> Sat </v-btn>
-              <v-btn depressed v-show="startOnMonday"> Sun </v-btn>
+              <v-btn depressed v-show="!startOnMonday"> Dom </v-btn>
+              <v-btn depressed> Seg </v-btn>
+              <v-btn depressed> Ter </v-btn>
+              <v-btn depressed> Qua </v-btn>
+              <v-btn depressed> Qui </v-btn>
+              <v-btn depressed> Sex </v-btn>
+              <v-btn depressed> Sáb </v-btn>
+              <v-btn depressed v-show="startOnMonday"> Dom </v-btn>
             </v-btn-toggle>
           </v-input>
           <v-checkbox class="tw-mt-2" v-model="startOnMonday" hide-details>
             <template v-slot:label>
               <span class="tw-text-sm tw-text-very-dark-gray">
-                Start on Monday
+                Começar na segunda-feira
               </span>
             </template>
           </v-checkbox>
@@ -177,7 +177,7 @@ import {
 import { mapState, mapActions } from "vuex"
 import { eventTypes, dayIndexToDayString, authTypes } from "@/constants"
 import HelpDialog from "./HelpDialog.vue"
-import CalendarPermissionsCard from "./calendar_permission_dialogs/CalendarPermissionsCard.vue"
+import CalendarPermissionsCard from "./calendário_permission_dialogs/CalendarPermissionsCard.vue"
 import TimezoneSelector from "./schedule_overlap/TimezoneSelector.vue"
 import EmailInput from "./event/EmailInput.vue"
 

@@ -3,7 +3,7 @@
     <v-expand-transition>
       <div v-show="state === states.PICK_CALENDAR">
         <v-card-title class="tw-px-0 tw-pt-0"
-          >Choose a calendar provider</v-card-title
+          >Choose a calendário provider</v-card-title
         >
         <v-card-text class="tw-p-0">
           <div class="tw-flex tw-flex-col tw-gap-2">
@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import AppleCredentials from "@/components/calendar_permission_dialogs/AppleCredentials.vue"
+import AppleCredentials from "@/components/calendário_permission_dialogs/AppleCredentials.vue"
 
 export default {
   name: "CalendarTypeSelector",
@@ -73,10 +73,10 @@ export default {
   data() {
     return {
       states: {
-        PICK_CALENDAR: "pick-calendar",
+        PICK_CALENDAR: "pick-calendário",
         APPLE_CREDENTIALS: "apple-credentials",
       },
-      state: "pick-calendar",
+      state: "pick-calendário",
     }
   },
 }

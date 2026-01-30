@@ -23,14 +23,14 @@ export default {
     return {
       options: [
         {
-          text: "Available",
+          text: "Disponível",
           activeClass: "tw-text-brand-primary tw-bg-brand-primary/5",
           borderClass: "tw-border-brand-primary",
           borderStyle: { boxShadow: "0px 2px 8px 0px var(--color-brand-primary-dark)" },
           value: availabilityTypes.AVAILABLE,
         },
         {
-          text: "If needed",
+          text: "Se necessário",
           activeClass: "tw-text-secondary-orange-dark tw-bg-secondary-yellow/5",
           borderClass: "tw-border-secondary-orange",
           borderStyle: { boxShadow: "0px 2px 8px 0px var(--color-secondary-orange)" },

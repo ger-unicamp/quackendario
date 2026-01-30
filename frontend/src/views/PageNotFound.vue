@@ -11,13 +11,13 @@
     />
     <div class="tw-mb-8 tw-max-w-[19rem]">
       <h1 class="tw-mb-2 tw-text-center tw-text-2xl tw-font-medium">
-        404 - Page not found
+        404 - Página não encontrada
       </h1>
       <div class="tw-text-center tw-text-dark-gray">
         The page you’re looking for doesn’t exist or an error occurred.
       </div>
     </div>
-    <v-btn href="/home" color="primary">Back to home</v-btn>
+    <v-btn href="/home" color="primary">Voltar ao início</v-btn>
   </div>
 </template>
 
@@ -28,7 +28,7 @@ export default {
   name: "PageNotFound",
 
   metaInfo: {
-    title: "Page not found - Timeful",
+    title: "Página não encontrada - Timeful",
   },
 
   computed: {

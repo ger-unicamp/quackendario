@@ -12,7 +12,7 @@
           height="20"
           width="20"
         />
-        <div>View events on all your calendars.</div>
+        <div>View events on all your calendários.</div>
       </div>
       <div class="tw-flex tw-gap-2 tw-text-sm">
         <v-img
@@ -21,7 +21,7 @@
           height="20"
           width="20"
         />
-        <div>See the list of Google calendars you’re subscribed to.</div>
+        <div>See the list of Google calendários you’re subscribed to.</div>
       </div>
     </div>
 
@@ -29,10 +29,10 @@
     <div
       class="tw-mb-8 tw-flex tw-flex-col tw-gap-4 tw-text-sm tw-text-very-dark-gray"
     >
-      <div>Allow us to display the names/times of your calendar events</div>
+      <div>Allow us to display the names/times of your calendário events</div>
       <div>
-        Allow us to display calendar events on all calendars, not just your
-        primary calendar
+        Allow us to display calendário events on all calendários, not just your
+        primary calendário
       </div>
     </div>
 
@@ -53,7 +53,7 @@ export default {
   name: "CalendarPermissionsCard",
 
   props: {
-    cancelLabel: { type: String, default: "Cancel" },
+    cancelLabel: { type: String, default: "Cancelar" },
     allowLabel: { type: String, default: "Allow" },
   },
 }

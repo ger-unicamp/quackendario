@@ -17,7 +17,7 @@
         </h1>
         <div class="tw-text-center tw-text-dark-gray">
           Join the group now to share your real-time <br v-if="!isPhone" />
-          calendar availability with each other!
+          calendário availability with each other!
         </div>
       </div>
       <v-btn @click="join" color="primary" class="tw-mb-8"
@@ -25,17 +25,17 @@
       >
       <div class="tw-text-center tw-text-dark-gray">
         Already have a Timeful account?
-        <a @click="signIn" class="tw-underline">Sign in</a>
+        <a @click="signIn" class="tw-underline">Entrar</a>
       </div>
 
       <v-dialog
-        v-model="calendarPermissionsDialog"
+        v-model="calendárioPermissionsDialog"
         width="400"
         content-class="tw-m-0"
       >
         <v-card class="tw-p-4 sm:tw-p-6">
           <CalendarPermissionsCard
-            @cancel="calendarPermissionsDialog = false"
+            @cancel="calendárioPermissionsDialog = false"
             @allow="allowCalendarAccess"
           />
         </v-card>
@@ -49,7 +49,7 @@
 <script>
 import { get, isPhone, signInGoogle } from "@/utils"
 import { authTypes } from "@/constants"
-import CalendarPermissionsCard from "@/components/calendar_permission_dialogs/CalendarPermissionsCard.vue"
+import CalendarPermissionsCard from "@/components/calendário_permission_dialogs/CalendarPermissionsCard.vue"
 import SignInNotSupportedDialog from "@/components/SignInNotSupportedDialog.vue"
 import UserAvatarContent from "@/components/UserAvatarContent.vue"
 import isWebview from "is-ua-webview"
@@ -71,7 +71,7 @@ export default {
     return {
       owner: {},
       loaded: false,
-      calendarPermissionsDialog: false,
+      calendárioPermissionsDialog: false,
       webviewDialog: false,
     }
   },
@@ -84,7 +84,7 @@ export default {
 
   methods: {
     join() {
-      this.calendarPermissionsDialog = true
+      this.calendárioPermissionsDialog = true
     },
     allowCalendarAccess() {
       if (isWebview(navigator.userAgent)) {

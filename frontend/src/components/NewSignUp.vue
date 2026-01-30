@@ -25,7 +25,7 @@
           <v-icon>mdi-close</v-icon>
         </v-btn>
         <HelpDialog v-model="helpDialog">
-          <template v-slot:header>Events</template>
+          <template v-slot:header>Eventos</template>
           <div class="tw-mb-4">
             Use events to collect people's availabilities and compare them
             across certain days.
@@ -47,7 +47,7 @@
         <v-text-field
           ref="name-field"
           v-model="name"
-          placeholder="Name your event..."
+          placeholder="Dê um nome ao seu evento..."
           hide-details="auto"
           solo
           @keyup.enter="blurNameField"
@@ -66,7 +66,7 @@
           <v-expand-transition>
             <div v-if="!daysOnly">
               <div class="tw-mb-2 tw-text-lg tw-text-black">
-                What times might work?
+                Quais horários podem funcionar?
               </div>
               <div
                 class="tw-mb-6 tw-flex tw-items-baseline tw-justify-center tw-space-x-2"
@@ -111,7 +111,7 @@
           <v-expand-transition>
             <div v-if="selectedDateOption === dateOptions.SPECIFIC || daysOnly">
               <div class="tw-mb-2 tw-text-xs tw-text-dark-gray">
-                Drag to select multiple dates
+                Arraste para selecionar múltiplas datas
               </div>
               <v-input
                 v-model="selectedDays"
@@ -139,20 +139,20 @@
                   solo
                   color="primary"
                 >
-                  <v-btn depressed v-show="!startOnMonday"> Sun </v-btn>
-                  <v-btn depressed> Mon </v-btn>
-                  <v-btn depressed> Tue </v-btn>
-                  <v-btn depressed> Wed </v-btn>
-                  <v-btn depressed> Thu </v-btn>
-                  <v-btn depressed> Fri </v-btn>
-                  <v-btn depressed> Sat </v-btn>
-                  <v-btn depressed v-show="startOnMonday"> Sun </v-btn>
+                  <v-btn depressed v-show="!startOnMonday"> Dom </v-btn>
+                  <v-btn depressed> Seg </v-btn>
+                  <v-btn depressed> Ter </v-btn>
+                  <v-btn depressed> Qua </v-btn>
+                  <v-btn depressed> Qui </v-btn>
+                  <v-btn depressed> Sex </v-btn>
+                  <v-btn depressed> Sáb </v-btn>
+                  <v-btn depressed v-show="startOnMonday"> Dom </v-btn>
                 </v-btn-toggle>
               </v-input>
               <v-checkbox class="tw-mt-2" v-model="startOnMonday" hide-details>
                 <template v-slot:label>
                   <span class="tw-text-sm tw-text-very-dark-gray">
-                    Start on Monday
+                    Começar na segunda-feira
                   </span>
                 </template>
               </v-checkbox>
@@ -179,7 +179,7 @@
         <div class="tw-flex tw-flex-col tw-gap-2">
           <!-- <ExpandableSection
             v-if="authUser"
-            label="Email reminders"
+            label="Lembretes por e-mail"
             v-model="showEmailReminders"
             :auto-scroll="dialog"
           >
@@ -261,8 +261,8 @@
                   >
                     {{ message }}
                     <span class="tw-font-medium tw-text-very-dark-gray"
-                      ><a @click="$emit('signIn')">Sign in</a>
-                      to use this feature
+                      ><a @click="$emit('signIn')">Entrar</a>
+                      para usar este recurso
                     </span>
                   </div>
                 </template>
@@ -314,7 +314,7 @@
           class="tw-mt-4 tw-bg-brand-primary"
           @click="submit"
         >
-          {{ edit ? "Save edits" : "Create event" }}
+          {{ edit ? "Save edits" : "Criar evento" }}
         </v-btn>
         <div
           :class="formValid ? 'tw-invisible' : 'tw-visible'"
@@ -416,7 +416,7 @@ export default {
     }),
     selectedDateOption: "Specific dates",
 
-    // Email reminders
+    // Lembretes por e-mail
     showEmailReminders: false,
     emails: [], // For email reminders
 

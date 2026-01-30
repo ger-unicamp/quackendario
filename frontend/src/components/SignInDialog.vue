@@ -6,12 +6,12 @@
     content-class="tw-m-0"
   >
     <v-card>
-      <v-card-title>Sign in</v-card-title>
+      <v-card-title>Entrar</v-card-title>
       <v-card-text class="tw-flex tw-flex-col tw-items-center">
         <div class="tw-mb-4 tw-flex tw-w-full tw-flex-col tw-gap-2">
           <v-btn
             block
-            @click="signIn(calendarTypes.GOOGLE)"
+            @click="signIn(calendárioTypes.GOOGLE)"
             class="tw-bg-white"
           >
             <div class="tw-flex tw-w-full tw-items-center tw-gap-2">
@@ -22,13 +22,13 @@
                 src="@/assets/google_logo.svg"
               />
               <v-spacer />
-              Sign in with Google
+              Entrar com Google
               <v-spacer />
             </div>
           </v-btn>
           <v-btn
             block
-            @click="signIn(calendarTypes.OUTLOOK)"
+            @click="signIn(calendárioTypes.OUTLOOK)"
             class="tw-bg-white"
           >
             <div class="tw-flex tw-w-full tw-items-center tw-gap-2">
@@ -39,15 +39,15 @@
                 src="@/assets/outlook_logo.svg"
               />
               <v-spacer />
-              Sign in with Outlook
+              Entrar com Outlook
               <v-spacer />
             </div>
           </v-btn>
         </div>
         <div class="tw-text-center tw-text-xs">
-          By continuing, you agree to our
+          Ao continuar, você concorda com nossa
           <router-link class="tw-text-blue" :to="{ name: 'privacy-policy' }"
-            >privacy policy</router-link
+            >política de privacidade</router-link
           >
         </div>
       </v-card-text>
@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { calendarTypes } from "@/constants"
+import { calendárioTypes } from "@/constants"
 
 export default {
   name: "SignInDialog",
@@ -65,7 +65,7 @@ export default {
   },
   data() {
     return {
-      calendarTypes,
+      calendárioTypes,
     }
   },
   methods: {

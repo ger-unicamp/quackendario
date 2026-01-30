@@ -14,18 +14,18 @@
           <div
             class="tw-mb-5 tw-text-wrap tw-text-xl tw-font-medium tw-text-black"
           >
-            <template v-if="isOwner"> Share calendar availability </template>
+            <template v-if="isOwner"> Share calendário availability </template>
             <template v-else>
-              Accept invitation to share your calendar availability with "{{
+              Accept invitation to share your calendário availability with "{{
                 group.name
               }}"?
             </template>
           </div>
           <v-expand-transition>
-            <div v-if="calendarPermissionGranted">
+            <div v-if="calendárioPermissionGranted">
               <CalendarAccounts
                 :sync-with-backend="false"
-                :allow-add-calendar-account="false"
+                :allow-add-calendário-account="false"
                 :toggle-state="true"
                 :fill-space="true"
                 @toggleCalendarAccount="toggleCalendarAccount"
@@ -34,7 +34,7 @@
 
               <div class="tw-mt-5 tw-space-y-4">
                 <div class="tw-font-medium tw-text-black">
-                  Your calendar availability from these calendars will be shared
+                  Your calendário availability from these calendários will be shared
                   with:
                 </div>
                 <div
@@ -51,14 +51,14 @@
                   <div>No members added yet</div>
                 </div>
                 <div class="tw-text-xs tw-text-dark-gray">
-                  Your calendar events will NOT be visible to others
+                  Your calendário events will NOT be visible to others
                 </div>
               </div>
             </div>
           </v-expand-transition>
 
           <v-expand-transition>
-            <div class="tw-p-5 tw-text-black" v-if="!calendarPermissionGranted">
+            <div class="tw-p-5 tw-text-black" v-if="!calendárioPermissionGranted">
               <CalendarPermissionsCard
                 v-show="true"
                 cancelLabel=""
@@ -73,14 +73,14 @@
         </v-card-text>
 
         <v-card-actions v-if="isOwner">
-          <v-btn class="tw-px-6" @click="goHome" text>Back</v-btn>
+          <v-btn class="tw-px-6" @click="goHome" text>Voltar</v-btn>
           <v-spacer />
           <v-btn
             color="primary"
             @click="acceptInvitation"
-            :disabled="!calendarPermissionGranted"
+            :disabled="!calendárioPermissionGranted"
             class="tw-px-6"
-            >Share</v-btn
+            >Compartilhar</v-btn
           >
         </v-card-actions>
         <v-card-actions v-else>
@@ -101,7 +101,7 @@
                   text
                   class="tw-text-dark-gray"
                   @click="rejectDialog = false"
-                  >Cancel</v-btn
+                  >Cancelar</v-btn
                 >
                 <v-btn text @click="rejectInvitation" color="error"
                   >I'm sure</v-btn
@@ -113,7 +113,7 @@
           <v-btn
             class="tw-bg-brand-primary tw-px-5 tw-text-white tw-transition-opacity"
             @click="acceptInvitation"
-            :disabled="!calendarPermissionGranted"
+            :disabled="!calendárioPermissionGranted"
             >Accept Invitation</v-btn
           >
         </v-card-actions>
@@ -126,7 +126,7 @@
 import { mapState } from "vuex"
 import { isPhone, post, generateEnabledCalendarsPayload } from "@/utils"
 import CalendarAccounts from "@/components/settings/CalendarAccounts.vue"
-import CalendarPermissionsCard from "@/components/calendar_permission_dialogs/CalendarPermissionsCard.vue"
+import CalendarPermissionsCard from "@/components/calendário_permission_dialogs/CalendarPermissionsCard.vue"
 import UserChip from "@/components/general/UserChip.vue"
 
 export default {
@@ -137,7 +137,7 @@ export default {
   props: {
     value: { type: Boolean, required: true },
     group: { type: Object },
-    calendarPermissionGranted: { type: Boolean, required: true },
+    calendárioPermissionGranted: { type: Boolean, required: true },
   },
 
   components: {
@@ -147,13 +147,13 @@ export default {
   },
 
   data: () => ({
-    calendarAccounts: {},
+    calendárioAccounts: {},
     rejectDialog: false,
   }),
 
   mounted() {
-    this.calendarAccounts = JSON.parse(
-      JSON.stringify(this.authUser.calendarAccounts)
+    this.calendárioAccounts = JSON.parse(
+      JSON.stringify(this.authUser.calendárioAccounts)
     )
   },
 
@@ -182,7 +182,7 @@ export default {
     },
 
     acceptInvitation() {
-      const payload = generateEnabledCalendarsPayload(this.calendarAccounts)
+      const payload = generateEnabledCalendarsPayload(this.calendárioAccounts)
 
       post(`/events/${this.group._id}/response`, payload).then((res) => {
         this.$emit("input", false)
@@ -191,14 +191,14 @@ export default {
     },
 
     toggleCalendarAccount(payload) {
-      this.calendarAccounts[
-        `${payload.email}_${payload.calendarType}`
+      this.calendárioAccounts[
+        `${payload.email}_${payload.calendárioType}`
       ].enabled = payload.enabled
     },
 
     toggleSubCalendarAccount(payload) {
-      this.calendarAccounts[
-        `${payload.email}_${payload.calendarType}`
+      this.calendárioAccounts[
+        `${payload.email}_${payload.calendárioType}`
       ].subCalendars[payload.subCalendarId].enabled = payload.enabled
     },
   },

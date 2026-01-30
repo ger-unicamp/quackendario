@@ -42,7 +42,7 @@
         hide-details
       >
         <template v-slot:label>
-          <div class="tw-text-sm tw-text-black">Overlay calendar events</div>
+          <div class="tw-text-sm tw-text-black">Overlay calendário events</div>
         </template>
       </v-switch>
 
@@ -50,13 +50,13 @@
       <v-switch
         v-if="event.daysOnly"
         inset
-        id="start-calendar-on-monday-toggle"
+        id="start-calendário-on-monday-toggle"
         :input-value="startCalendarOnMonday"
         @change="(val) => $emit('update:startCalendarOnMonday', !!val)"
         hide-details
       >
         <template v-slot:label>
-          <div class="tw-text-sm tw-text-black">Start on Monday</div>
+          <div class="tw-text-sm tw-text-black">Começar na segunda-feira</div>
         </template>
       </v-switch>
     </div>

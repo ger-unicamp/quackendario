@@ -5,13 +5,13 @@
       <div
         class="tw-h-4 tw-w-4 tw-rounded tw-border tw-border-border-primary tw-bg-brand-primary/50"
       ></div>
-      <span class="tw-text-sm">Available</span>
+      <span class="tw-text-sm">Disponível</span>
     </div>
     <div class="tw-flex tw-items-center tw-gap-2">
       <div
         class="tw-h-4 tw-w-4 tw-rounded tw-border tw-border-border-primary tw-bg-secondary-yellow"
       ></div>
-      <span class="tw-text-sm">If needed</span>
+      <span class="tw-text-sm">Se necessário</span>
     </div>
     <div class="tw-flex tw-items-center tw-gap-2">
       <div

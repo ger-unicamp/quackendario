@@ -10,7 +10,7 @@
       text
       @click="toggleShowCalendars"
     >
-      <span class="tw-mr-1 tw-text-base tw-font-medium">My calendars</span>
+      <span class="tw-mr-1 tw-text-base tw-font-medium">My calendários</span>
       <v-icon :class="`tw-rotate-${showCalendars ? '180' : '0'}`"
         >mdi-chevron-down</v-icon
       ></v-btn
@@ -19,19 +19,19 @@
       v-else
       class="tw-border-b tw-border-off-white tw-px-4 tw-py-3 tw-font-medium"
     >
-      My calendars
+      My calendários
     </div>
     <v-expand-transition>
       <span v-if="showCalendars || !toggleState">
         <div :class="toggleState ? '' : 'tw-px-4 tw-py-2'">
           <CalendarAccount
-            v-for="(account, key) in calendarAccounts"
+            v-for="(account, key) in calendárioAccounts"
             :key="key"
             :syncWithBackend="syncWithBackend"
             :toggleState="toggleState"
             :account="account"
             :eventId="eventId"
-            :calendarEventsMap="calendarEventsMapCopy"
+            :calendárioEventsMap="calendárioEventsMapCopy"
             :removeDialog="removeDialog"
             :selectedRemoveEmail="removePayload.email"
             :fillSpace="fillSpace"
@@ -59,7 +59,7 @@
               "
               v-bind="attrs"
               v-on="on"
-              >+ Add calendar</v-btn
+              >+ Add calendário</v-btn
             >
           </template>
           <CalendarTypeSelector
@@ -79,8 +79,8 @@
         >
         <v-card-actions>
           <v-spacer />
-          <v-btn text @click="removeDialog = false">Cancel</v-btn>
-          <v-btn text color="error" @click="removeAccount">Remove</v-btn>
+          <v-btn text @click="removeDialog = false">Cancelar</v-btn>
+          <v-btn text color="error" @click="removeAccount">Remover</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -89,7 +89,7 @@
 
 <script>
 import { mapState, mapActions, mapMutations } from "vuex"
-import { authTypes, calendarTypes } from "@/constants"
+import { authTypes, calendárioTypes } from "@/constants"
 import {
   get,
   post,
@@ -105,12 +105,12 @@ export default {
   name: "CalendarAccounts",
 
   props: {
-    toggleState: { type: Boolean, default: false }, // Whether to allow user to toggle calendar accounts
+    toggleState: { type: Boolean, default: false }, // Whether to allow user to toggle calendário accounts
     eventId: { type: String, default: "" },
-    calendarEventsMap: { type: Object, default: () => {} }, // Object of different users' calendar events
-    syncWithBackend: { type: Boolean, default: true }, // Whether toggling calendar accounts also updates the backend
-    allowAddCalendarAccount: { type: Boolean, default: true }, // Whether to allow user to add a new calendar account
-    initialCalendarAccountsData: { type: Object, default: () => {} }, // Initial data to display for enabled calendar accounts
+    calendárioEventsMap: { type: Object, default: () => {} }, // Object of different users' calendário events
+    syncWithBackend: { type: Boolean, default: true }, // Whether toggling calendário accounts also updates the backend
+    allowAddCalendarAccount: { type: Boolean, default: true }, // Whether to allow user to add a new calendário account
+    initialCalendarAccountsData: { type: Object, default: () => {} }, // Initial data to display for enabled calendário accounts
     fillSpace: { type: Boolean, default: false }, // Whether to fill the available space up
   },
 
@@ -120,13 +120,13 @@ export default {
 
     addCalendarAccountDialog: false,
 
-    calendarAccounts: {},
+    calendárioAccounts: {},
     showCalendars:
       localStorage["showCalendars"] == undefined
         ? true
         : localStorage["showCalendars"] == "true",
 
-    calendarEventsMapCopy: {},
+    calendárioEventsMapCopy: {},
   }),
 
   computed: {
@@ -134,8 +134,8 @@ export default {
   },
 
   mounted() {
-    this.calendarAccounts = !this.initialCalendarAccountsData
-      ? this.authUser.calendarAccounts
+    this.calendárioAccounts = !this.initialCalendarAccountsData
+      ? this.authUser.calendárioAccounts
       : this.initialCalendarAccountsData
   },
 
@@ -149,7 +149,7 @@ export default {
             ? authTypes.ADD_CALENDAR_ACCOUNT_FROM_EDIT
             : authTypes.ADD_CALENDAR_ACCOUNT,
           eventId: this.eventId,
-          calendarType: calendarTypes.GOOGLE,
+          calendárioType: calendárioTypes.GOOGLE,
         },
         requestCalendarPermission: true,
         selectAccount: true,
@@ -157,7 +157,7 @@ export default {
     },
     addedAppleCalendar() {
       this.addCalendarAccountDialog = false
-      this.calendarAccounts = this.authUser.calendarAccounts
+      this.calendárioAccounts = this.authUser.calendárioAccounts
     },
     addOutlookCalendar() {
       signInOutlook({
@@ -166,7 +166,7 @@ export default {
             ? authTypes.ADD_CALENDAR_ACCOUNT_FROM_EDIT
             : authTypes.ADD_CALENDAR_ACCOUNT,
           eventId: this.eventId,
-          calendarType: calendarTypes.OUTLOOK,
+          calendárioType: calendárioTypes.OUTLOOK,
         },
         requestCalendarPermission: true,
       })
@@ -176,14 +176,14 @@ export default {
       this.removePayload = payload
     },
     removeAccount() {
-      _delete(`/user/remove-calendar-account`, this.removePayload)
+      _delete(`/user/remove-calendário-account`, this.removePayload)
         .then(async () => {
-          // Remove calendar account locally
-          const calendarAccountKey = getCalendarAccountKey(
+          // Remove calendário account locally
+          const calendárioAccountKey = getCalendarAccountKey(
             this.removePayload.email,
-            this.removePayload.calendarType
+            this.removePayload.calendárioType
           )
-          delete this.authUser.calendarAccounts[calendarAccountKey]
+          delete this.authUser.calendárioAccounts[calendárioAccountKey]
           this.setAuthUser(this.authUser)
 
           this.removeDialog = false
@@ -207,25 +207,25 @@ export default {
   },
 
   watch: {
-    calendarEventsMap: {
+    calendárioEventsMap: {
       immediate: true,
       async handler() {
-        // Do a test request to calendarevents route to check if calendar access is allowed for each account
+        // Do a test request to calendárioevents route to check if calendário access is allowed for each account
         if (
-          !this.calendarEventsMap ||
-          Object.keys(this.calendarEventsMap).length === 0
+          !this.calendárioEventsMap ||
+          Object.keys(this.calendárioEventsMap).length === 0
         ) {
           const timeMin = new Date()
           const timeMax = new Date()
           try {
-            this.calendarEventsMapCopy = await get(
-              `/user/calendars?timeMin=${timeMin.toISOString()}&timeMax=${timeMax.toISOString()}`
+            this.calendárioEventsMapCopy = await get(
+              `/user/calendários?timeMin=${timeMin.toISOString()}&timeMax=${timeMax.toISOString()}`
             )
           } catch (err) {
             console.error(err)
           }
         } else {
-          this.calendarEventsMapCopy = this.calendarEventsMap
+          this.calendárioEventsMapCopy = this.calendárioEventsMap
         }
       },
     },

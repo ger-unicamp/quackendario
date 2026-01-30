@@ -227,7 +227,7 @@ import {
 } from "@/utils"
 import {
   authTypes,
-  calendarTypes,
+  calendárioTypes,
   eventTypes,
   numFreeEvents,
   upgradeDialogTypes,
@@ -334,7 +334,7 @@ export default {
         this.signInDialog = true
       }
     },
-    _signIn(calendarType) {
+    _signIn(calendárioType) {
       if (
         this.$route.name === "event" ||
         this.$route.name === "group" ||
@@ -352,12 +352,12 @@ export default {
             type: authTypes.GROUP_SIGN_IN,
           }
         }
-        if (calendarType === calendarTypes.GOOGLE) {
+        if (calendárioType === calendárioTypes.GOOGLE) {
           signInGoogle({
             state,
             selectAccount: true,
           })
-        } else if (calendarType === calendarTypes.OUTLOOK) {
+        } else if (calendárioType === calendárioTypes.OUTLOOK) {
           signInOutlook({
             state,
             selectAccount: true,

@@ -44,7 +44,7 @@
             @click="convertW2M"
             class="tw-cursor-pointer tw-text-sm tw-font-normal tw-text-fg-secondary tw-underline"
           >
-            Convert When2meet to Timeful
+            Converter When2meet para Timeful
           </div>
         </div>
       </div>
@@ -60,7 +60,7 @@
           class="tw-text-xs tw-font-medium tw-text-gray"
           :to="{ name: 'privacy-policy' }"
         >
-          Privacy Policy
+          Política de Privacidade
         </router-link>
       </div>
 
@@ -90,10 +90,10 @@ import { eventTypes } from "@/constants"
 import { isPhone, get } from "@/utils"
 
 export default {
-  name: "Home",
+  name: "Início",
 
   metaInfo: {
-    title: "Home - Timeful",
+    title: "Início - Timeful",
   },
 
   components: {

@@ -12,14 +12,14 @@
           <template v-if="curRespondents.length === 0">
             {{
               isCurTimeslotSelected
-                ? `(${numUsersAvailable}/${respondents.length})`
+                ? `(${numUsersDisponível}/${respondents.length})`
                 : `(${respondents.length})`
             }}
           </template>
           <template v-else>
             {{
               isCurTimeslotSelected
-                ? `(${numCurRespondentsAvailable}/${curRespondents.length})`
+                ? `(${numCurRespondentsDisponível}/${curRespondents.length})`
                 : `(${curRespondents.length})`
             }}
           </template>
@@ -63,7 +63,7 @@
                       text
                       @click="exportCsvDialog.visible = false"
                       :disabled="exportCsvDialog.loading"
-                      >Cancel</v-btn
+                      >Cancelar</v-btn
                     >
                     <v-btn
                       text
@@ -362,7 +362,7 @@
         >
         <v-card-actions>
           <v-spacer />
-          <v-btn text @click="deleteAvailabilityDialog = false">Cancel</v-btn>
+          <v-btn text @click="deleteAvailabilityDialog = false">Cancelar</v-btn>
           <v-btn
             text
             color="error"
@@ -372,7 +372,7 @@
                 deleteAvailabilityDialog = false
               }
             "
-            >Delete</v-btn
+            >Excluir</v-btn
           >
         </v-card-actions>
       </v-card>
@@ -388,7 +388,7 @@
       hide-details
     >
       <template v-slot:label>
-        <div class="tw-text-sm tw-text-black">Overlay calendar events</div>
+        <div class="tw-text-sm tw-text-black">Overlay calendário events</div>
       </template>
     </v-switch>
 
@@ -469,11 +469,11 @@ export default {
       exportCsvDialog: {
         visible: false,
         loading: false,
-        type: "datesToAvailable",
+        type: "datesToDisponível",
         types: [
           {
             text: "Dates <> people available",
-            value: "datesToAvailable",
+            value: "datesToDisponível",
           },
           { text: "Name <> dates available", value: "nameToDates" },
         ],
@@ -506,7 +506,7 @@ export default {
         this.curTimeslot.dayIndex !== -1 && this.curTimeslot.timeIndex !== -1
       )
     },
-    numUsersAvailable() {
+    numUsersDisponível() {
       this.curTimeslot
       let numUsers = 0
       for (const key in this.curTimeslotAvailability) {
@@ -514,7 +514,7 @@ export default {
       }
       return numUsers
     },
-    numCurRespondentsAvailable() {
+    numCurRespondentsDisponível() {
       this.curTimeslot
       let numUsers = 0
       for (const key in this.curTimeslotAvailability) {
@@ -686,7 +686,7 @@ export default {
         a.user.firstName.localeCompare(b.user.firstName)
       )
 
-      if (this.exportCsvDialog.type === "datesToAvailable") {
+      if (this.exportCsvDialog.type === "datesToDisponível") {
         // Write CSV header
         const header = ["Date / Time"]
         header.push(
@@ -705,9 +705,9 @@ export default {
             // Iterate through the responses and mark whether they are available or not
             for (const response of responses) {
               if (response.availability.has(curDate.getTime())) {
-                row.push("Available")
+                row.push("Disponível")
               } else if (response.ifNeeded.has(curDate.getTime())) {
-                row.push("If needed")
+                row.push("Se necessário")
               } else {
                 row.push("")
               }

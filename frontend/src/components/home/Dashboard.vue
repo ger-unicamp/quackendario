@@ -69,11 +69,11 @@
               </template>
               <v-list dense class="tw-py-1">
                 <v-list-item @click.stop.prevent="openEditFolderDialog(folder)">
-                  <v-list-item-title>Edit</v-list-item-title>
+                  <v-list-item-title>Editar</v-list-item-title>
                 </v-list-item>
                 <v-list-item @click.stop.prevent="openDeleteDialog(folder)">
                   <v-list-item-title class="tw-text-red"
-                    >Delete</v-list-item-title
+                    >Excluir</v-list-item-title
                   >
                 </v-list-item>
               </v-list>
@@ -160,8 +160,8 @@
         >
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn text @click="deleteDialog = false">Cancel</v-btn>
-          <v-btn color="red darken-1" text @click="confirmDelete">Delete</v-btn>
+          <v-btn text @click="deleteDialog = false">Cancelar</v-btn>
+          <v-btn color="red darken-1" text @click="confirmDelete">Excluir</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -196,7 +196,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn text @click="closeFolderDialog">Cancel</v-btn>
+          <v-btn text @click="closeFolderDialog">Cancelar</v-btn>
           <v-btn color="primary" text @click="confirmFolderDialog">{{
             folderDialogConfirmText
           }}</v-btn>
@@ -322,7 +322,7 @@ export default {
       return this.isEditingFolder ? "Edit folder" : "New folder"
     },
     folderDialogConfirmText() {
-      return this.isEditingFolder ? "Save" : "Create"
+      return this.isEditingFolder ? "Salvar" : "Criar"
     },
     allFolders() {
       const folders = this.folders.map((folder) => ({

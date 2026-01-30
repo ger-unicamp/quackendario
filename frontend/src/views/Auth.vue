@@ -3,7 +3,7 @@
 <script>
 import { get, post, getEventsCreated, deleteEventsCreated } from "@/utils"
 import { mapMutations } from "vuex"
-import { authTypes, calendarTypes } from "@/constants"
+import { authTypes, calendárioTypes } from "@/constants"
 
 export default {
   name: "Auth",
@@ -24,21 +24,21 @@ export default {
         state?.type === authTypes.ADD_CALENDAR_ACCOUNT ||
         state?.type === authTypes.ADD_CALENDAR_ACCOUNT_FROM_EDIT
       ) {
-        if (state.calendarType === calendarTypes.GOOGLE) {
-          await post("/user/add-google-calendar-account", { code, scope })
-        } else if (state.calendarType === calendarTypes.OUTLOOK) {
-          await post("/user/add-outlook-calendar-account", {
+        if (state.calendárioType === calendárioTypes.GOOGLE) {
+          await post("/user/add-google-calendário-account", { code, scope })
+        } else if (state.calendárioType === calendárioTypes.OUTLOOK) {
+          await post("/user/add-outlook-calendário-account", {
             code,
             scope: state.scope,
           })
         } else {
-          throw new Error("Invalid calendar type")
+          throw new Error("Invalid calendário type")
         }
       } else {
         const user = await post("/auth/sign-in", {
           code,
           scope: scope ?? state.scope,
-          calendarType: state.calendarType,
+          calendárioType: state.calendárioType,
           timezoneOffset: new Date().getTimezoneOffset(),
           eventsToLink: getEventsCreated(),
         })

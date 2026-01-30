@@ -15,14 +15,14 @@
               v-model="firstName"
               hide-details
               outlined
-              placeholder="First name"
+              placeholder="Primeiro nome"
               :dense="isPhone"
             />
             <v-text-field
               v-model="lastName"
               hide-details
               outlined
-              placeholder="Last name"
+              placeholder="Sobrenome"
               :dense="isPhone"
             />
           </div>
@@ -34,7 +34,7 @@
                   color="primary"
                   outlined
                   class="tw-mr-2"
-                  >Cancel</v-btn
+                  >Cancelar</v-btn
                 >
                 <v-btn @click="saveName" color="primary">Save changes</v-btn>
               </div>
@@ -69,9 +69,9 @@
         </div>
         <div class="tw-flex tw-flex-col tw-gap-5 sm:tw-flex-row sm:tw-gap-28">
           <div class="tw-text-black">
-            We do not store your calendar data anywhere on our servers, and we
-            only fetch your calendar events for the time frame you specify in
-            order to display your calendar events while you fill out your
+            We do not store your calendário data anywhere on our servers, and we
+            only fetch your calendário events for the time frame you specify in
+            order to display your calendário events while you fill out your
             availability.
           </div>
           <v-btn
@@ -79,7 +79,7 @@
             class="tw-text-red"
             href="https://myaccount.google.com/connections?filters=3,4&hl=en"
             target="_blank"
-            >Revoke calendar access</v-btn
+            >Revoke calendário access</v-btn
           >
         </div>
         <CalendarAccounts></CalendarAccounts>
@@ -171,13 +171,13 @@
               </div>
               <v-card-actions>
                 <v-spacer />
-                <v-btn text @click="deleteDialog = false">Cancel</v-btn>
+                <v-btn text @click="deleteDialog = false">Cancelar</v-btn>
                 <v-btn
                   text
                   color="error"
                   @click="deleteAccount()"
                   :disabled="authUser.email != deleteValidateEmail"
-                  >Delete</v-btn
+                  >Excluir</v-btn
                 >
               </v-card-actions>
             </v-card>
@@ -194,10 +194,10 @@ import { _delete, patch, isPhone, get } from "@/utils"
 import CalendarAccounts from "@/components/settings/CalendarAccounts.vue"
 
 export default {
-  name: "Settings",
+  name: "Configurações",
 
   metaInfo: {
-    title: "Settings - Timeful",
+    title: "Configurações - Timeful",
   },
 
   components: { CalendarAccounts },
@@ -209,13 +209,13 @@ export default {
     heading: ["Permission", "Purpose", "Requested When"],
     content: [
       [
-        "View all calendar events",
-        "Allows us to display the names/times of your calendar events",
+        "View all calendário events",
+        "Allows us to display the names/times of your calendário events",
         "User tries to input availability automatically with Google Calendar",
       ],
       [
-        "View all calendars subscribed to",
-        "Allows us to display calendar events on all your calendars instead of just your primary calendar",
+        "View all calendários subscribed to",
+        "Allows us to display calendário events on all your calendários instead of just your primary calendário",
         "User tries to input availability automatically with Google Calendar",
       ],
     ],

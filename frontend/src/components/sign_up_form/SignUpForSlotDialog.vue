@@ -30,7 +30,7 @@
               v-model="name"
               @keyup.enter="submit"
               :rules="nameRules"
-              placeholder="Enter your name..."
+              placeholder="Digite seu nome..."
               autofocus
               hide-details="auto"
               autocomplete="off"
@@ -41,7 +41,7 @@
               v-model="email"
               @keyup.enter="submit"
               :rules="emailRules"
-              placeholder="Enter your email..."
+              placeholder="Digite seu e-mail..."
               hint="The event creator is collecting emails. We will never share your email with anyone or contact you in any way."
               persistent-hint
               solo

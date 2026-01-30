@@ -20,12 +20,12 @@
         class="tw-mb-3 tw-w-full"
       />
       <div class="tw-text-center tw-text-xs tw-text-dark-gray">
-        By continuing, you agree to our
+        Ao continuar, você concorda com nossa
         <router-link
           class="tw-text-blue"
           target="_blank"
           :to="{ name: 'privacy-policy' }"
-          >privacy policy</router-link
+          >política de privacidade</router-link
         >
       </div>
     </div>
@@ -40,13 +40,13 @@
       </div>
     </div>
     <div class="tw-flex tw-items-center tw-gap-2">
-      <v-btn text class="tw-grow" @click="$emit('back')">Back</v-btn>
+      <v-btn text class="tw-grow" @click="$emit('back')">Voltar</v-btn>
       <v-btn
         color="primary"
         class="tw-grow"
         :disabled="!authUser"
         @click="$emit('continue')"
-        >Continue</v-btn
+        >Continuar</v-btn
       >
     </div>
   </div>

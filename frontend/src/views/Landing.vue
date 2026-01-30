@@ -14,7 +14,7 @@
             <div v-if="authUser" class="tw-ml-2">
               <AuthUserMenu />
             </div>
-            <v-btn v-else text @click="signIn">Sign in</v-btn>
+            <v-btn v-else text @click="signIn">Entrar</v-btn>
           </LandingPageHeader>
         </div>
       </div>
@@ -28,15 +28,15 @@
             id="header"
             class="tw-mb-4 tw-text-center tw-text-2xl tw-font-medium sm:tw-text-4xl lg:tw-text-4xl xl:tw-text-5xl"
           >
-            <h1>Find a time to meet</h1>
+            <h1>Encontre um horário para reunir</h1>
           </div>
 
           <div
             class="lg:tw-text-md tw-text-center tw-text-sm tw-text-very-dark-gray sm:tw-text-lg md:tw-text-lg xl:tw-text-lg"
           >
-            Coordinate group meetings without the back and forth.
+            Coordene reuniões em grupo sem idas e vindas.
             <br class="tw-hidden sm:tw-block" />
-            Integrates with your
+            Integra com o seu
             <v-tooltip
               top
               content-class="tw-bg-very-dark-gray tw-shadow-lg tw-opacity-100"
@@ -46,7 +46,7 @@
                   class="tw-cursor-pointer tw-border-b tw-border-dashed tw-border-dark-gray"
                   v-bind="attrs"
                   v-on="on"
-                  >calendar</span
+                  >calendário</span
                 >
               </template>
               <span
@@ -66,13 +66,13 @@
             large
             :x-large="$vuetify.breakpoint.mdAndUp"
           >
-            {{ authUser ? "Open dashboard" : "Create event" }}
+            {{ authUser ? "Abrir painel" : "Criar evento" }}
           </v-btn>
           <div
             v-if="!authUser"
             class="tw-text-center tw-text-xs tw-text-dark-gray sm:tw-text-sm"
           >
-            It's free! No login required.
+            É grátis! Não precisa de login.
           </div>
         </div>
         <div class="tw-relative tw-w-full">
@@ -130,7 +130,7 @@ export default {
   name: "Landing",
 
   metaInfo: {
-    title: "Timeful (formerly Schej) - Find a time to meet",
+    title: "Timeful (formerly Schej) - Encontre um horário para reunir",
   },
 
   components: {
@@ -187,10 +187,10 @@ export default {
       //   this.rive.play("wave")
       // }
     },
-    _signIn(calendarType) {
-      if (calendarType === calendarTypes.GOOGLE) {
+    _signIn(calendarTypes) {
+      if (calendarTypes === calendarTypes.GOOGLE) {
         signInGoogle({ state: null, selectAccount: true })
-      } else if (calendarType === calendarTypes.OUTLOOK) {
+      } else if (calendarTypes === calendarTypes.OUTLOOK) {
         // NOTE: selectAccount is not supported implemented yet for Outlook, maybe add it later
         signInOutlook({ state: null, selectAccount: true })
       }

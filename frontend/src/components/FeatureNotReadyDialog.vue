@@ -28,7 +28,7 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn text @click="dialog = false">Close</v-btn>
-        <v-btn color="primary" @click="submitFeedback">Submit</v-btn>
+        <v-btn color="primary" @click="submitFeedback">Enviar</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

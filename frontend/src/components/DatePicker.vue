@@ -19,7 +19,7 @@
       :first-day-of-week="startCalendarOnMonday ? 1 : 0"
     ></v-date-picker>
     <!-- <div class="tw-mt-2 tw-text-xs tw-text-very-dark-gray">
-      Drag to select multiple dates
+      Arraste para selecionar múltiplas datas
     </div> -->
   </div>
 </template>

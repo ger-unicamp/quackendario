@@ -7,10 +7,10 @@
         :initialState="linkApple ? 'create_account_apple' : 'choices'"
         @signInLinkApple="signInLinkApple"
         @allowGoogleCalendar="
-          () => setAvailabilityAutomatically(calendarTypes.GOOGLE)
+          () => setAvailabilityAutomatically(calendárioTypes.GOOGLE)
         "
         @allowOutlookCalendar="
-          () => setAvailabilityAutomatically(calendarTypes.OUTLOOK)
+          () => setAvailabilityAutomatically(calendárioTypes.OUTLOOK)
         "
         @setAvailabilityManually="setAvailabilityManually"
         @addedAppleCalendar="addedAppleCalendar"
@@ -51,7 +51,7 @@
         v-if="isGroup"
         v-model="invitationDialog"
         :group="event"
-        :calendarPermissionGranted="calendarPermissionGranted"
+        :calendárioPermissionGranted="calendárioPermissionGranted"
         @refreshEvent="refreshEvent"
         @setAvailabilityAutomatically="setAvailabilityAutomatically"
       ></InvitationDialog>
@@ -74,7 +74,7 @@
           >
           <v-card-actions>
             <v-spacer />
-            <v-btn text @click="pagesNotVisitedDialog = false">Cancel</v-btn>
+            <v-btn text @click="pagesNotVisitedDialog = false">Cancelar</v-btn>
             <v-btn
               text
               color="primary"
@@ -119,8 +119,8 @@
                     <template v-slot:header>Availability group</template>
                     <div class="mb-4">
                       Use availability groups to see group members' weekly
-                      calendar availabilities from Google Calendar. Your actual
-                      calendar events are NOT visible to others.
+                      calendário availabilities from Google Calendar. Your actual
+                      calendário events are NOT visible to others.
                     </div>
                   </HelpDialog>
                 </template>
@@ -153,7 +153,7 @@
                   class="tw-mr-1 tw-text-very-dark-gray sm:tw-mr-2.5"
                   @click="resetWeekOffset"
                 >
-                  <v-icon class="sm:tw-mr-2">mdi-calendar-today</v-icon>
+                  <v-icon class="sm:tw-mr-2">mdi-calendário-today</v-icon>
                   <span v-if="!isPhone">Today</span>
                 </v-btn>
                 <v-btn
@@ -248,9 +248,9 @@
           :event="event"
           :fromEditEvent="fromEditEvent"
           :loadingCalendarEvents="loading"
-          :calendarEventsMap="calendarEventsMap"
-          :calendarPermissionGranted="calendarPermissionGranted"
-          :calendar-availabilities="calendarAvailabilities"
+          :calendárioEventsMap="calendárioEventsMap"
+          :calendárioPermissionGranted="calendárioPermissionGranted"
+          :calendário-availabilities="calendárioAvailabilities"
           :weekOffset.sync="weekOffset"
           :curGuestId="curGuestId"
           :initial-timezone="initialTimezone"
@@ -295,7 +295,7 @@
             class="tw-w-full tw-border-t tw-border-solid tw-border-gray"
           ></div>
           <v-btn class="tw-h-16" block text :to="{ name: 'privacy-policy' }">
-            Privacy Policy
+            Política de Privacidade
           </v-btn>
         </div>
       </template>
@@ -307,7 +307,7 @@
           class="tw-text-xs tw-font-medium tw-text-gray"
           :to="{ name: 'privacy-policy' }"
         >
-          Privacy Policy
+          Política de Privacidade
         </router-link>
       </div>
 
@@ -414,10 +414,10 @@ import NewDialog from "@/components/NewDialog.vue"
 import ScheduleOverlap from "@/components/schedule_overlap/ScheduleOverlap.vue"
 import GuestDialog from "@/components/GuestDialog.vue"
 import SignUpForSlotDialog from "@/components/sign_up_form/SignUpForSlotDialog.vue"
-import { errors, authTypes, eventTypes, calendarTypes, dayIndexToDayString, allTimezones } from "@/constants"
+import { errors, authTypes, eventTypes, calendárioTypes, dayIndexToDayString, allTimezones } from "@/constants"
 import isWebview from "is-ua-webview"
 import SignInNotSupportedDialog from "@/components/SignInNotSupportedDialog.vue"
-import MarkAvailabilityDialog from "@/components/calendar_permission_dialogs/MarkAvailabilityDialog.vue"
+import MarkAvailabilityDialog from "@/components/calendário_permission_dialogs/MarkAvailabilityDialog.vue"
 import InvitationDialog from "@/components/groups/InvitationDialog.vue"
 import HelpDialog from "@/components/HelpDialog.vue"
 import EventDescription from "@/components/event/EventDescription.vue"
@@ -458,13 +458,13 @@ export default {
     helpDialog: false,
 
     loading: true,
-    calendarEventsMap: {},
+    calendárioEventsMap: {},
     event: null,
     scheduleOverlapComponent: null,
     scheduleOverlapComponentLoaded: false,
 
     curGuestId: "", // Id of the current guest being edited
-    calendarPermissionGranted: true,
+    calendárioPermissionGranted: true,
     addingAvailabilityAsGuest: false, // Whether a signed in user is current adding availability as a guest
 
     weekOffset: 0,
@@ -473,7 +473,7 @@ export default {
     hasRefetchedAuthUserCalendarEvents: false,
 
     // Availability Groups
-    calendarAvailabilities: {}, // maps userId to their calendar events
+    calendárioAvailabilities: {}, // maps userId to their calendário events
 
     // Sign Up Forms
     currSignUpBlock: null,
@@ -482,7 +482,7 @@ export default {
   mounted() {
     // If coming from enabling contacts, show the dialog. Checks if contactsPayload is not an Observer.
     this.editEventDialog = Object.keys(this.contactsPayload).length > 0
-    // If coming from signing in to link apple calendar, show the mark availability dialog
+    // If coming from signing in to link apple calendário, show the mark availability dialog
     if (this.linkApple) {
       this.choiceDialog = true
     }
@@ -494,8 +494,8 @@ export default {
     allowScheduleEvent() {
       return this.scheduleOverlapComponent?.allowScheduleEvent
     },
-    calendarTypes() {
-      return calendarTypes
+    calendárioTypes() {
+      return calendárioTypes
     },
     dateString() {
       return getDateRangeStringForEvent(this.event)
@@ -584,9 +584,9 @@ export default {
         return
       }
 
-      // Start editing if calendar permission granted or user has responded, otherwise show choice dialog
+      // Start editing if calendário permission granted or user has responded, otherwise show choice dialog
       if (
-        (this.authUser && this.calendarPermissionGranted) ||
+        (this.authUser && this.calendárioPermissionGranted) ||
         this.userHasResponded
       ) {
         this.scheduleOverlapComponent.startEditing()
@@ -649,7 +649,7 @@ export default {
       processEvent(this.event)
     },
 
-    setAvailabilityAutomatically(calendarType = calendarTypes.GOOGLE) {
+    setAvailabilityAutomatically(calendárioType = calendárioTypes.GOOGLE) {
       /* Prompts user to sign in when "set availability automatically" button clicked */
       if (isWebview(navigator.userAgent)) {
         // Show dialog prompting user to use a real browser
@@ -658,7 +658,7 @@ export default {
         // Or sign in if user is already using a real browser
         let signInParams
         if (this.authUser) {
-          // Request permission if calendar permissions not yet granted
+          // Request permission if calendário permissions not yet granted
           signInParams = {
             state: {
               type: this.isGroup
@@ -681,9 +681,9 @@ export default {
           }
         }
 
-        if (calendarType === calendarTypes.GOOGLE) {
+        if (calendárioType === calendárioTypes.GOOGLE) {
           signInGoogle(signInParams)
-        } else if (calendarType === calendarTypes.OUTLOOK) {
+        } else if (calendárioType === calendárioTypes.OUTLOOK) {
           signInOutlook(signInParams)
         }
       }
@@ -796,7 +796,7 @@ export default {
       }, 100)
     },
 
-    /** Sign in with google to link apple calendar */
+    /** Sign in with google to link apple calendário */
     signInLinkApple() {
       if (isWebview(navigator.userAgent)) {
         // Show dialog prompting user to use a real browser
@@ -811,43 +811,43 @@ export default {
         })
       }
     },
-    /** Called when user adds apple calendar account */
+    /** Called when user adds apple calendário account */
     addedAppleCalendar() {
       this.choiceDialog = false
       this.scheduleOverlapComponent?.startEditing()
       this.scheduleOverlapComponent?.setAvailabilityAutomatically()
     },
 
-    /** Refresh calendar availabilities of everybody in the group */
+    /** Refresh calendário availabilities of everybody in the group */
     async fetchCalendarAvailabilities() {
       if (this.event.type !== eventTypes.GROUP) return
 
-      // this.calendarAvailabilities = {}
+      // this.calendárioAvailabilities = {}
       const curWeekOffset = this.weekOffset
       return getCalendarEventsMap(this.event, {
         weekOffset: curWeekOffset,
         eventId: this.event._id,
       })
-        .then((calendarAvailabilities) => {
-          // Don't update calendar availabilities if user
-          // selected a different weekoffset by the time these calendar events load
+        .then((calendárioAvailabilities) => {
+          // Don't update calendário availabilities if user
+          // selected a different weekoffset by the time these calendário events load
           if (curWeekOffset !== this.weekOffset) return
 
-          this.calendarAvailabilities = calendarAvailabilities
+          this.calendárioAvailabilities = calendárioAvailabilities
 
           // Fix DST bug
-          for (const userId in this.calendarAvailabilities) {
-            for (const index in this.calendarAvailabilities[userId]) {
-              const event = this.calendarAvailabilities[userId][index]
+          for (const userId in this.calendárioAvailabilities) {
+            for (const index in this.calendárioAvailabilities[userId]) {
+              const event = this.calendárioAvailabilities[userId][index]
               const startDate = new Date(event.startDate)
               const endDate = new Date(event.endDate)
               if (doesDstExist(startDate) && !isDstObserved(startDate)) {
                 startDate.setHours(startDate.getHours() - 1)
                 endDate.setHours(endDate.getHours() - 1)
               }
-              this.calendarAvailabilities[userId][index].startDate =
+              this.calendárioAvailabilities[userId][index].startDate =
                 startDate.toISOString()
-              this.calendarAvailabilities[userId][index].endDate =
+              this.calendárioAvailabilities[userId][index].endDate =
                 endDate.toISOString()
             }
           }
@@ -857,19 +857,19 @@ export default {
         })
     },
 
-    /** Fetch current user's calendar events */
+    /** Fetch current user's calendário events */
     async fetchAuthUserCalendarEvents() {
       if (!this.authUser) {
-        this.calendarPermissionGranted = false
+        this.calendárioPermissionGranted = false
         return
       }
 
-      // this.calendarEventsMap = {}
+      // this.calendárioEventsMap = {}
       const curWeekOffset = this.weekOffset
       return getCalendarEventsMap(this.event, { weekOffset: curWeekOffset })
         .then((eventsMap) => {
-          // If all calendars have error, then set calendarPermissionGranted to false
-          // TODO: What happens if user signed in without enabling calendar??
+          // If all calendários have error, then set calendárioPermissionGranted to false
+          // TODO: What happens if user signed in without enabling calendário??
           // let noError = false
           // for (const key in eventsMap) {
           //   if (!eventsMap[key].error) {
@@ -878,36 +878,36 @@ export default {
           //   }
           // }
           // if (!noError) {
-          //   this.calendarPermissionGranted = false
+          //   this.calendárioPermissionGranted = false
           //   return
           // }
 
-          // Don't set calendar events / set availability if user has already
-          // selected a different weekoffset by the time these calendar events load
+          // Don't set calendário events / set availability if user has already
+          // selected a different weekoffset by the time these calendário events load
           if (curWeekOffset !== this.weekOffset) return
 
-          this.calendarEventsMap = eventsMap
+          this.calendárioEventsMap = eventsMap
 
           // Fix DST bug
           if (
             this.event.type === eventTypes.GROUP ||
             this.event.type === eventTypes.DOW
           ) {
-            for (const calendarId in this.calendarEventsMap) {
-              for (const index in this.calendarEventsMap[calendarId]
-                .calendarEvents) {
+            for (const calendárioId in this.calendárioEventsMap) {
+              for (const index in this.calendárioEventsMap[calendárioId]
+                .calendárioEvents) {
                 const event =
-                  this.calendarEventsMap[calendarId].calendarEvents[index]
+                  this.calendárioEventsMap[calendárioId].calendárioEvents[index]
                 const startDate = new Date(event.startDate)
                 const endDate = new Date(event.endDate)
                 if (doesDstExist(startDate) && !isDstObserved(startDate)) {
                   startDate.setHours(startDate.getHours() - 1)
                   endDate.setHours(endDate.getHours() - 1)
                 }
-                this.calendarEventsMap[calendarId].calendarEvents[
+                this.calendárioEventsMap[calendárioId].calendárioEvents[
                   index
                 ].startDate = startDate.toISOString()
-                this.calendarEventsMap[calendarId].calendarEvents[
+                this.calendárioEventsMap[calendárioId].calendárioEvents[
                   index
                 ].endDate = endDate.toISOString()
               }
@@ -927,17 +927,17 @@ export default {
             })
           }
 
-          // calendar permission granted is false when every calendar in the calendar map has an error, true otherwise
-          this.calendarPermissionGranted = !Object.values(
-            this.calendarEventsMap
+          // calendário permission granted is false when every calendário in the calendário map has an error, true otherwise
+          this.calendárioPermissionGranted = !Object.values(
+            this.calendárioEventsMap
           ).every((c) => Boolean(c.error))
 
           if (!this.hasRefetchedAuthUserCalendarEvents) {
             const hasAtLeastOneError = Object.values(
-              this.calendarEventsMap
+              this.calendárioEventsMap
             ).some((c) => Boolean(c.error))
 
-            // Refetch calendar if there is an error
+            // Refetch calendário if there is an error
             if (hasAtLeastOneError) {
               this.hasRefetchedAuthUserCalendarEvents = true
               setTimeout(() => {
@@ -948,11 +948,11 @@ export default {
         })
         .catch((err) => {
           console.error(err)
-          this.calendarPermissionGranted = false
+          this.calendárioPermissionGranted = false
         })
     },
 
-    /** Refreshes calendar avaliabilities and fetches current user calendar events */
+    /** Refreshes calendário avaliabilities and fetches current user calendário events */
     refreshCalendar() {
       const promises = []
       promises.push(this.fetchCalendarAvailabilities())
@@ -1668,7 +1668,7 @@ export default {
     weekOffset() {
       this.refreshCalendar()
     },
-    [`authUser.calendarAccounts`]() {
+    [`authUser.calendárioAccounts`]() {
       this.fetchAuthUserCalendarEvents()
     },
   },

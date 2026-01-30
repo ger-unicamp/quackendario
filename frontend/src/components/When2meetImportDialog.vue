@@ -3,7 +3,7 @@
     <v-card>
       <v-card-title>
         <span class="tw-text-xl tw-font-medium"
-          >Convert When2meet to Timeful</span
+          >Converter When2meet para Timeful</span
         >
         <v-spacer />
         <v-btn

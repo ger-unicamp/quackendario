@@ -4,13 +4,13 @@
     <v-icon
       class="-tw-mt-1"
       :size="size"
-      v-else-if="user.calendarType === calendarTypes.APPLE"
+      v-else-if="user.calendárioType === calendárioTypes.APPLE"
     >
       mdi-apple
     </v-icon>
     <v-icon
       :size="size"
-      v-else-if="user.calendarType === calendarTypes.OUTLOOK"
+      v-else-if="user.calendárioType === calendárioTypes.OUTLOOK"
     >
       mdi-microsoft-outlook
     </v-icon>
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { calendarTypes } from "@/constants"
+import { calendárioTypes } from "@/constants"
 
 export default {
   name: "UserAvatarContent",
@@ -34,8 +34,8 @@ export default {
   },
 
   computed: {
-    calendarTypes() {
-      return calendarTypes
+    calendárioTypes() {
+      return calendárioTypes
     },
     textSize() {
       return this.size <= 24 ? "xs" : "lg"

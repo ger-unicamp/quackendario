@@ -44,14 +44,14 @@
         type="password"
       />
       <div class="tw-flex tw-items-center tw-gap-2">
-        <v-btn text class="tw-grow" @click="$emit('back')">Back</v-btn>
+        <v-btn text class="tw-grow" @click="$emit('back')">Voltar</v-btn>
         <v-btn
           :disabled="!enableSubmit"
           color="primary"
           class="tw-grow"
           :loading="loading"
           @click="submit"
-          >Submit</v-btn
+          >Enviar</v-btn
         >
       </div>
     </div>
@@ -84,7 +84,7 @@ export default {
     ...mapActions(["showError", "refreshAuthUser"]),
     submit() {
       this.loading = true
-      post(`/user/add-apple-calendar-account`, {
+      post(`/user/add-apple-calendário-account`, {
         email: this.email,
         password: this.password,
       })

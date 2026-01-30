@@ -5,11 +5,11 @@
         <!-- Logo and Info -->
         <div>
           <div class="tw-mb-3 tw-flex tw-items-center">
-            <v-icon class="tw-mr-1 tw-text-white">mdi-calendar-blank</v-icon>
+            <v-icon class="tw-mr-1 tw-text-white">mdi-calendário-blank</v-icon>
             <span class="tw-text-2xl tw-font-medium">timeful</span>
           </div>
           <div class="tw-mb-6 tw-leading-snug">
-            Made with 💚 by
+            Feito com 💚 by
             <a
               href="https://x.com/jonathanzliu/"
               target="_blank"
@@ -72,10 +72,10 @@
           </div>
           <div class="tw-flex tw-flex-col tw-gap-2">
             <router-link :to="{ name: 'privacy-policy' }" class="tw-text-sm">
-              Privacy Policy
+              Política de Privacidade
             </router-link>
             <router-link :to="{ name: 'cookie-settings' }" class="tw-text-sm">
-              Cookie Preferences
+              Preferências de Cookies
             </router-link>
           </div>
         </div>
@@ -111,7 +111,7 @@
               href="https://forms.gle/A96i4TTWeKgH3P1W6"
               target="_blank"
               class="tw-text-sm"
-              >Give Feedback</a
+              >Dar Feedback</a
             >
           </div>
         </div>

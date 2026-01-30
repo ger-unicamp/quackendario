@@ -79,7 +79,7 @@ export default {
         [key]: val,
       }
       if (this.syncWithBackend) {
-        patch(`/user/calendar-options`, {
+        patch(`/user/calendário-options`, {
           workingHours,
         })
       }

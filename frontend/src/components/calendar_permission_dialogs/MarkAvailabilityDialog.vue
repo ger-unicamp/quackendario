@@ -71,7 +71,7 @@
       <v-expand-transition>
         <CalendarPermissionsCard
           v-show="state === states.GCAL_PERMISSIONS"
-          cancelLabel="Back"
+          cancelLabel="Voltar"
           @cancel="showChoices"
           @allow="$emit('allowGoogleCalendar')"
         />

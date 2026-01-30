@@ -18,7 +18,7 @@
         <span class="tw-font-medium tw-text-brand-primary">{{ authUser.email }}</span>
       </div>
     </div>
-    <v-btn href="/home" color="primary">Back to home</v-btn>
+    <v-btn href="/home" color="primary">Voltar ao início</v-btn>
   </div>
 </template>
 

@@ -23,10 +23,10 @@
             isGroup
               ? "mdi-account-group"
               : isDow
-              ? "mdi-calendar-range"
+              ? "mdi-calendário-range"
               : event.daysOnly
-              ? "mdi-calendar-month"
-              : "mdi-calendar"
+              ? "mdi-calendário-month"
+              : "mdi-calendário"
           }}</v-icon>
         </div>
         <div class="tw-ml-3">
@@ -92,7 +92,7 @@
                   <v-text-field
                     v-model="duplicateDialogOptions.name"
                     required
-                    placeholder="Name your event..."
+                    placeholder="Dê um nome ao seu evento..."
                     :disabled="duplicateDialogOptions.loading"
                     hide-details
                     solo
@@ -111,14 +111,14 @@
                     text
                     @click="duplicateDialog = false"
                     :disabled="duplicateDialogOptions.loading"
-                    >Cancel</v-btn
+                    >Cancelar</v-btn
                   >
                   <v-btn
                     text
                     color="primary"
                     @click="duplicateEvent"
                     :loading="duplicateDialogOptions.loading"
-                    >Confirm</v-btn
+                    >Confirmar</v-btn
                   >
                 </v-card-actions>
               </v-card>
@@ -189,7 +189,7 @@
                 >
                 <v-card-actions>
                   <v-spacer />
-                  <v-btn text @click="removeDialog = false">Cancel</v-btn>
+                  <v-btn text @click="removeDialog = false">Cancelar</v-btn>
                   <v-btn text color="error" @click="removeEvent"
                     >I'm sure</v-btn
                   >
