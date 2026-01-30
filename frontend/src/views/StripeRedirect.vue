@@ -19,7 +19,7 @@
           <div class="tw-text-xl tw-font-medium">
             You've upgraded to <br class="tw-block sm:tw-hidden" />
             <span
-              class="tw-bg-gradient-to-r tw-from-darkest-green tw-to-light-green tw-bg-clip-text tw-text-transparent"
+              class="tw-bg-gradient-to-r tw-from-darkest-brand-primary tw-to-light-brand-primary tw-bg-clip-text tw-text-transparent"
               >Timeful Premium</span
             >!
           </div>

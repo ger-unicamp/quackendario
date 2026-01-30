@@ -83,7 +83,7 @@
       </button>
       <button
         @click="acceptAll"
-        class="tw-rounded-md tw-bg-green tw-px-4 tw-py-2 tw-text-sm tw-font-medium tw-text-white hover:tw-bg-dark-green"
+        class="tw-rounded-md tw-bg-brand-primary tw-px-4 tw-py-2 tw-text-sm tw-font-medium tw-text-white hover:tw-bg-dark-brand-primary"
       >
         Accept All
       </button>

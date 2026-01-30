@@ -2,7 +2,7 @@
   <div
     :data-id="signUpBlock._id"
     class="tw-flex tw-flex-col tw-rounded-md tw-border-[1px] tw-p-4"
-    :class="unsaved ? 'tw-border-light-green' : 'tw-border-light-gray-stroke'"
+    :class="unsaved ? 'tw-border-brand-primary-light' : 'tw-border-light-gray-stroke'"
   >
     <div class="tw-flex tw-items-start tw-justify-between mb-1">
       <div
@@ -13,7 +13,7 @@
           {{ isEditing ? newName : signUpBlock.name }}
         </div>
         <div>
-          (<span :class="!hasCapacity && 'tw-text-green'">{{ numberResponses }}/{{ signUpBlock.capacity }}</span>)
+          (<span :class="!hasCapacity && 'tw-text-brand-primary'">{{ numberResponses }}/{{ signUpBlock.capacity }}</span>)
         </div>
         <v-btn v-if="isEditing" icon x-small @click="isEditingName = true">
           <v-icon x-small>mdi-pencil</v-icon>
@@ -100,7 +100,7 @@
 
     <div v-if="!isOwner && hasCapacity && !infoOnly" class="tw-mt-2">
       <a
-        class="tw-text-xs tw-text-green"
+        class="tw-text-xs tw-text-brand-primary"
         text
         @click="joinSlot"
         >+ Join this slot</a

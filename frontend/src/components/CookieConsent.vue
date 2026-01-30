@@ -64,7 +64,7 @@
         </button>
         <button
           @click="acceptAll"
-          class="tw-w-full tw-flex-1 tw-cursor-pointer tw-rounded-md tw-bg-green tw-px-3 tw-py-2 tw-text-xs tw-font-medium tw-text-white sm:tw-w-auto"
+          class="tw-w-full tw-flex-1 tw-cursor-pointer tw-rounded-md tw-bg-brand-primary tw-px-3 tw-py-2 tw-text-xs tw-font-medium tw-text-white sm:tw-w-auto"
         >
           Accept all
         </button>

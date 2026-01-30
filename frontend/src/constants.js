@@ -1,7 +1,9 @@
 // Urls
 export const serverURL =
   process.env.VUE_APP_SERVER_URL ||
-  (process.env.NODE_ENV === "development" ? "http://localhost:3002/api" : "/api")
+  (process.env.NODE_ENV === "development"
+    ? "http://localhost:3002/api"
+    : "/api")
 
 // Errors enum
 export const errors = Object.freeze({
@@ -45,12 +47,6 @@ export const calendarTypes = Object.freeze({
   GOOGLE: "google",
   APPLE: "apple",
   OUTLOOK: "outlook",
-})
-
-export const upgradeDialogTypes = Object.freeze({
-  CREATE_EVENT: "create-event",
-  SCHEDULE_EVENT: "schedule-event",
-  UPGRADE_MANUALLY: "upgrade-manually",
 })
 
 export const timeslotDurations = Object.freeze({

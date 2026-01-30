@@ -19,7 +19,7 @@
           Currently
           <span
             v-if="this.user.status == 'free'"
-            class="tw-font-bold tw-text-green"
+            class="tw-font-bold tw-text-brand-primary"
             >free</span
           ><span v-else>
             in

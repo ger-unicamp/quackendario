@@ -41,7 +41,7 @@
       <v-btn v-if="cancelLabel != ''" @click="$emit('cancel')" text class="tw-mr-2 tw-flex-1">
         {{ cancelLabel }}
       </v-btn>
-      <v-btn @click="$emit('allow')" class="tw-flex-1 tw-bg-green" dark>
+      <v-btn @click="$emit('allow')" class="tw-flex-1 tw-bg-brand-primary" dark>
         {{ allowLabel }}
       </v-btn>
     </div>

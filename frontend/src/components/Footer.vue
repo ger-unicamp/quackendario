@@ -1,5 +1,5 @@
 <template>
-  <footer class="tw-bg-green tw-p-8 tw-text-white">
+  <footer class="tw-bg-brand-primary tw-p-8 tw-text-white">
     <div class="tw-mx-auto tw-max-w-7xl">
       <div class="tw-flex tw-flex-col tw-gap-8 md:tw-grid md:tw-grid-cols-4">
         <!-- Logo and Info -->
@@ -99,7 +99,7 @@
               <v-card class="tw-p-3">
                 <div class="tw-text-sm">
                   Email support at
-                  <span class="tw-text-green tw-underline"
+                  <span class="tw-text-brand-primary tw-underline"
                     >contact@timeful.app</span
                   >
                 </div>

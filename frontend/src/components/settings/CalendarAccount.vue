@@ -63,14 +63,14 @@
         } ${!allowDelete ? 'tw-hidden' : ''}`"
         class="group-hover:tw-opacity-100"
         @click="openRemoveDialog"
-        ><v-icon color="#4F4F4F">mdi-close</v-icon></v-btn
+        ><v-icon color="#757575">mdi-close</v-icon></v-btn
       >
     </div>
 
     <!-- Sub-calendar accounts -->
 
     <v-expand-transition>
-      <div v-if="showSubCalendars" class="tw-space-y-2 tw-bg-[#EBF7EF] tw-py-2">
+      <div v-if="showSubCalendars" class="tw-space-y-2 tw-bg-brand-primary-lighter tw-py-2">
         <div
           v-for="(subCalendar, id) in account.subCalendars"
           :key="id"

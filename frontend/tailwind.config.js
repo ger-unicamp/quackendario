@@ -6,11 +6,46 @@ module.exports = {
     "./public/**/*.html",
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
+  darkMode: "class",
   important: true,
   theme: {
     extend: {
       fontSize: {
         xs: ["0.813rem", "1rem"],
+      },
+      colors: {
+        /* Brand & Primary Colors - mapped from CSS variables */
+        "brand-primary": "var(--color-brand-primary)",
+        "brand-primary-light": "var(--color-brand-primary-light)",
+        "brand-primary-lighter": "var(--color-brand-primary-lighter)",
+        "brand-primary-pale": "var(--color-brand-primary-pale)",
+        "brand-primary-dark": "var(--color-brand-primary-dark)",
+        "brand-primary-darkest": "var(--color-brand-primary-darkest)",
+
+        /* Secondary Colors */
+        "secondary-blue": "var(--color-secondary-blue)",
+        "secondary-blue-light": "var(--color-secondary-blue-light)",
+        "secondary-orange": "var(--color-secondary-orange)",
+        "secondary-orange-dark": "var(--color-secondary-orange-dark)",
+        "secondary-yellow": "var(--color-secondary-yellow)",
+        "secondary-red": "var(--color-secondary-red)",
+
+        /* Surface & Background Colors */
+        "surface-primary": "var(--color-surface-primary)",
+        "surface-secondary": "var(--color-surface-secondary)",
+        "surface-tertiary": "var(--color-surface-tertiary)",
+
+        /* Text & Foreground Colors */
+        "fg-primary": "var(--color-fg-primary)",
+        "fg-secondary": "var(--color-fg-secondary)",
+        "fg-tertiary": "var(--color-fg-tertiary)",
+
+        /* Border & Stroke Colors */
+        "border-primary": "var(--color-border-primary)",
+        "border-secondary": "var(--color-border-secondary)",
+
+        /* Availability Colors */
+        "avail-green": "var(--color-avail-green)",
       },
     },
     colors: {

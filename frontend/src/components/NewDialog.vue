@@ -22,7 +22,7 @@
             small
             @click="() => (tab = t.type)"
             :class="`tw-text-xs tw-text-dark-gray tw-transition-all ${
-              t.type == tab ? 'tw-bg-ligher-green tw-text-green' : ''
+              t.type == tab ? 'tw-bg-ligher-brand-primary tw-text-brand-primary' : ''
             }`"
           >
             {{ t.title }}

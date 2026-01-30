@@ -15,7 +15,7 @@
         <div
           class="tw-flex tw-size-10 tw-shrink-0 tw-items-center tw-justify-center tw-rounded"
           :class="{
-            'tw-bg-pale-green': isOwner,
+            'tw-bg-pale-brand-primary': isOwner,
             'tw-bg-off-white': !isOwner,
           }"
         >

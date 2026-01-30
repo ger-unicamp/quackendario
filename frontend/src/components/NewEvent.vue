@@ -424,7 +424,7 @@
           block
           :loading="loading"
           color="primary"
-          class="tw-mt-4 tw-bg-green"
+          class="tw-mt-4 tw-bg-brand-primary"
           @click="submit"
         >
           {{

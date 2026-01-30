@@ -33,7 +33,7 @@
       <div
         class="tw-flex tw-items-center tw-justify-center tw-text-sm tw-text-dark-gray"
       >
-        <v-icon class="tw-mx-2 tw-text-green" size="16"
+        <v-icon class="tw-mx-2 tw-text-brand-primary" size="16"
           >mdi-check-circle</v-icon
         >
         Timeful account created

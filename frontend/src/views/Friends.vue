@@ -5,7 +5,7 @@
         <div class="headline font-weight-bold">My friends</div>
         <div class="headline tw-text-gray">
           Requests
-          <v-chip color="green" text-color="white">3</v-chip>
+          <v-chip color="primary" text-color="white">3</v-chip>
         </div>
       </div>
 

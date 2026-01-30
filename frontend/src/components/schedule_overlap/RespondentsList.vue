@@ -194,7 +194,7 @@
                   <v-menu right offset-x>
                     <template v-slot:activator="{ on, attrs }">
                       <v-btn icon v-on="on" v-bind="attrs">
-                        <v-icon small color="#4F4F4F">mdi-dots-vertical</v-icon>
+                        <v-icon small color="#757575">mdi-dots-vertical</v-icon>
                       </v-btn>
                     </template>
                     <v-list class="tw-py-1" dense>
@@ -203,7 +203,7 @@
                         @click="$emit('editGuestAvailability', user._id)"
                       >
                         <v-list-item-title class="tw-flex tw-items-center">
-                          <v-icon small class="tw-mr-2" color="#4F4F4F"
+                          <v-icon small class="tw-mr-2" color="#757575"
                             >mdi-pencil</v-icon
                           >
                           Edit
@@ -214,7 +214,7 @@
                         @click="() => showDeleteAvailabilityDialog(user)"
                       >
                         <v-list-item-title class="tw-flex tw-items-center">
-                          <v-icon small class="tw-mr-2" color="#4F4F4F"
+                          <v-icon small class="tw-mr-2" color="#757575"
                             >mdi-delete</v-icon
                           >
                           Delete
@@ -230,7 +230,7 @@
                     icon
                     class="tw-bg-white"
                     @click="$emit('editGuestAvailability', user._id)"
-                    ><v-icon small color="#4F4F4F">mdi-pencil</v-icon></v-btn
+                    ><v-icon small color="#757575">mdi-pencil</v-icon></v-btn
                   >
                   <v-btn
                     v-if="isOwner && !isGroup"
@@ -238,7 +238,7 @@
                     icon
                     class="tw-bg-white"
                     @click="() => showDeleteAvailabilityDialog(user)"
-                    ><v-icon small class="hover:tw-text-red" color="#4F4F4F"
+                    ><v-icon small class="hover:tw-text-secondary-red" color="#757575"
                       >mdi-delete</v-icon
                     ></v-btn
                   >

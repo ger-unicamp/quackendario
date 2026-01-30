@@ -8,9 +8,13 @@ import posthogPlugin from "./plugins/posthog"
 import VueGtm from "@gtm-support/vue2-gtm"
 import VueMeta from "vue-meta"
 import { initializeGTMConsent, hasAnalyticsConsent } from "./utils/cookie_utils"
+import { themeManager } from "./utils/themeManager"
 import "./index.css"
 
 initializeGTMConsent()
+
+// Initialize theme
+themeManager.initializeTheme()
 
 // Posthog
 Vue.use(posthogPlugin)

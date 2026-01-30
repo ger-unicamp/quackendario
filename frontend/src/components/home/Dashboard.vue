@@ -1,9 +1,9 @@
 <template>
-  <div class="tw-rounded-md tw-px-6 tw-py-4 sm:tw-mx-4 sm:tw-bg-[#f3f3f366]">
+  <div class="tw-rounded-md tw-px-6 tw-py-4 sm:tw-mx-4 sm:tw-bg-surface-secondary/25">
     <div class="tw-mb-3 tw-flex tw-items-center tw-justify-between">
       <div class="tw-flex tw-flex-col">
         <div
-          class="tw-text-xl tw-font-medium tw-text-dark-green sm:tw-text-2xl"
+          class="tw-text-xl tw-font-medium tw-text-brand-primary-dark sm:tw-text-2xl"
         >
           Dashboard
         </div>
@@ -16,7 +16,7 @@
             created this month
           </div>
           <div
-            class="tw-cursor-pointer tw-select-none tw-text-xs tw-font-medium tw-text-green tw-underline"
+            class="tw-cursor-pointer tw-select-none tw-text-xs tw-font-medium tw-text-brand-primary tw-underline"
             @click="openUpgradeDialog"
           >
             Upgrade

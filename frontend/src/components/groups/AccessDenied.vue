@@ -15,7 +15,7 @@
       </h1>
       <div class="tw-text-center tw-text-dark-gray">
         Ask the group owner to share this group with your email: <br />
-        <span class="tw-font-medium tw-text-green">{{ authUser.email }}</span>
+        <span class="tw-font-medium tw-text-brand-primary">{{ authUser.email }}</span>
       </div>
     </div>
     <v-btn href="/home" color="primary">Back to home</v-btn>

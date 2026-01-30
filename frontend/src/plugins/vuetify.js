@@ -1,6 +1,5 @@
 import Vue from "vue"
 import Vuetify from "vuetify/lib"
-import tailwind from "../../tailwind.config"
 
 Vue.use(Vuetify)
 
@@ -8,8 +7,12 @@ export default new Vuetify({
   theme: {
     themes: {
       light: {
-        primary: tailwind.theme.colors.green,
-        error: tailwind.theme.colors.red,
+        primary: "#00994C",
+        error: "#DB1616",
+      },
+      dark: {
+        primary: "#00CC66",
+        error: "#FF4D4D",
       },
     },
   },

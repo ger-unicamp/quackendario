@@ -1,6 +1,5 @@
 <template>
   <v-app>
-    <DiscordBanner />
     <AutoSnackbar color="error" :text="error" />
     <AutoSnackbar color="tw-bg-blue" :text="info" />
     <SignInNotSupportedDialog v-model="webviewDialog" />
@@ -12,11 +11,6 @@
       :no-tabs="newDialogOptions.eventOnly"
       :folder-id="newDialogOptions.folderId"
     />
-    <UpgradeDialog
-      :value="upgradeDialogVisible"
-      @input="handleUpgradeDialogInput"
-    />
-    <UpvoteRedditSnackbar />
     <CookieConsent />
     <div
       v-if="showHeader"
@@ -32,7 +26,7 @@
         <v-expand-x-transition>
           <span
             v-if="isPremiumUser"
-            class="tw-ml-2 tw-cursor-default tw-rounded-md tw-bg-[linear-gradient(-25deg,#0a483d,#00994c,#126045,#0a483d)] tw-px-2 tw-py-1 tw-text-sm tw-font-semibold tw-text-white tw-opacity-80"
+            class="tw-ml-2 tw-cursor-default tw-rounded-md tw-bg-gradient-to-r tw-from-brand-primary-darkest tw-via-brand-primary tw-to-brand-primary-dark tw-px-2 tw-py-1 tw-text-sm tw-font-semibold tw-text-white tw-opacity-80"
           >
             Premium
           </span>
@@ -69,10 +63,7 @@
         <v-btn
           v-if="$route.name === 'home' && !isPhone"
           color="primary"
-          class="tw-mx-2 tw-rounded-md"
-          :style="{
-            boxShadow: '0px 2px 8px 0px #00994C80 !important',
-          }"
+          class="tw-mx-2 tw-rounded-md tw-shadow-brand"
           @click="() => _createNew()"
         >
           + Create new
@@ -147,12 +138,10 @@ html {
 }
 
 .v-btn.v-btn--is-elevated.primary,
-.v-btn.v-btn--is-elevated.tw-bg-green,
-.v-btn.v-btn--is-elevated.tw-bg-white.tw-text-green {
-  -webkit-box-shadow: 0px 2px 8px 0px #00994c80 !important;
-  -moz-box-shadow: 0px 2px 8px 0px #00994c80 !important;
-  box-shadow: 0px 2px 8px 0px #00994c80 !important;
-  border: 1px solid theme("colors.light-green") !important;
+.v-btn.v-btn--is-elevated.tw-bg-brand-primary,
+.v-btn.v-btn--is-elevated.tw-bg-white.tw-text-brand-primary {
+  box-shadow: 0px 2px 8px 0px var(--color-brand-primary) !important;
+  border: 1px solid var(--color-brand-primary-light) !important;
 }
 
 .v-btn.v-btn--is-elevated.tw-bg-very-dark-gray {
@@ -183,11 +172,11 @@ html {
   box-shadow: 0px 5px 5px -1px rgba(0, 0, 0, 0.1),
     0px 8px 10px 0.5px rgba(0, 0, 0, 0.07), 0px 3px 14px 1px rgba(0, 0, 0, 0.06) !important;
 }
-.overlay-avail-shadow-green {
-  box-shadow: 0px 3px 6px 0px #1c7d454d !important;
+.overlay-avail-shadow-brand-primary {
+  box-shadow: 0px 3px 6px 0px var(--color-brand-primary-dark) !important;
 }
 .overlay-avail-shadow-yellow {
-  box-shadow: 0px 2px 8px 0px #e5a8004d !important;
+  box-shadow: 0px 2px 8px 0px var(--color-secondary-orange) !important;
 }
 
 /** Switch  */
@@ -196,7 +185,7 @@ html {
   transform: scale(80%) !important;
 }
 .v-input--switch__track.primary--text {
-  border: 2px theme("colors.light-green") solid !important;
+  border: 2px var(--color-brand-primary-light) solid !important;
 }
 .v-input--switch__track {
   border: 2px theme("colors.gray") solid !important;
@@ -246,13 +235,10 @@ import {
 import AutoSnackbar from "@/components/AutoSnackbar"
 import AuthUserMenu from "@/components/AuthUserMenu.vue"
 import SignInNotSupportedDialog from "@/components/SignInNotSupportedDialog.vue"
-import UpvoteRedditSnackbar from "@/components/UpvoteRedditSnackbar.vue"
 import Logo from "@/components/Logo.vue"
 import isWebview from "is-ua-webview"
 import NewDialog from "./components/NewDialog.vue"
-import UpgradeDialog from "@/components/pricing/UpgradeDialog.vue"
 import SignInDialog from "@/components/SignInDialog.vue"
-import DiscordBanner from "@/components/DiscordBanner.vue"
 import CookieConsent from "@/components/CookieConsent.vue"
 
 export default {
@@ -269,11 +255,8 @@ export default {
     AuthUserMenu,
     SignInNotSupportedDialog,
     NewDialog,
-    UpvoteRedditSnackbar,
     Logo,
-    UpgradeDialog,
     SignInDialog,
-    DiscordBanner,
     CookieConsent,
   },
 
@@ -292,7 +275,6 @@ export default {
       "error",
       "info",
       "enablePaywall",
-      "upgradeDialogVisible",
       "newDialogOptions",
     ]),
     isPhone() {
@@ -329,12 +311,7 @@ export default {
       "setEnablePaywall",
       "setFeatureFlagsLoaded",
     ]),
-    ...mapActions([
-      "getEvents",
-      "showUpgradeDialog",
-      "hideUpgradeDialog",
-      "createNew",
-    ]),
+    ...mapActions(["getEvents", "createNew"]),
     handleScroll(e) {
       this.scrollY = window.scrollY
     },
@@ -401,11 +378,6 @@ export default {
     },
     trackFeedbackClick() {
       this.$posthog.capture("give_feedback_button_clicked")
-    },
-    handleUpgradeDialogInput(value) {
-      if (!value) {
-        this.hideUpgradeDialog()
-      }
     },
   },
 

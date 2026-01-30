@@ -217,7 +217,7 @@
                           class="tw-absolute tw-z-10 tw-grid tw-h-full tw-w-full tw-place-content-center"
                         >
                           <v-progress-circular
-                            class="tw-text-green"
+                            class="tw-text-brand-primary"
                             indeterminate
                           />
                         </div>
@@ -419,8 +419,8 @@
                                   class="tw-h-full tw-w-full tw-border-2"
                                   :class="
                                     timeBlock.type === 'available'
-                                      ? 'overlay-avail-shadow-green tw-border-[#00994CB3] tw-bg-[#00994C66]'
-                                      : 'overlay-avail-shadow-yellow tw-border-[#997700CC] tw-bg-[#FFE8B8B3]'
+                                      ? 'overlay-avail-available'
+                                      : 'overlay-avail-if-needed'
                                   "
                                 ></div>
                               </div>
@@ -3048,9 +3048,9 @@ export default {
           this.state === this.states.SINGLE_AVAILABILITY ||
           totalRespondents === 1
         ) {
-          classStyle.class += "tw-border-[#999999] "
+          classStyle.class += "tw-border-fg-secondary "
         } else {
-          classStyle.class += "tw-border-[#DDDDDD99] "
+          classStyle.class += "tw-border-border-secondary "
         }
       }
 
@@ -3100,7 +3100,8 @@ export default {
               c += "tw-bg-white "
             } else {
               if (this.availabilityType === availabilityTypes.AVAILABLE) {
-                s.backgroundColor = "#00994C77"
+                s.backgroundColor =
+                  "rgba(var(--color-brand-primary-rgb), 0.47)"
               } else if (
                 this.availabilityType === availabilityTypes.IF_NEEDED
               ) {
@@ -3123,7 +3124,8 @@ export default {
             }
           } else {
             if (this.availability.has(date.getTime())) {
-              s.backgroundColor = "#00994C77"
+              s.backgroundColor =
+                "rgba(var(--color-brand-primary-rgb), 0.47)"
             } else if (this.ifNeeded.has(date.getTime())) {
               c += "tw-bg-yellow "
             }
@@ -3138,7 +3140,8 @@ export default {
           if (this.parsedResponses[respondent]?.ifNeeded?.has(date.getTime())) {
             c += "tw-bg-yellow "
           } else {
-            s.backgroundColor = "#00994C77"
+            s.backgroundColor =
+              "rgba(var(--color-brand-primary-rgb), 0.47)"
           }
         } else {
           s.backgroundColor = "#E523230D"
@@ -3193,10 +3196,10 @@ export default {
             // Only set timeslot to green for the times that most people are available
             if (totalRespondents === 1 || this.overlayAvailability) {
               // Make single responses less saturated
-              const green = "#00994C88"
+              const green = "rgba(var(--color-brand-primary-rgb), 0.53)"
               s.backgroundColor = green
             } else {
-              const green = "#00994C"
+              const green = "var(--color-brand-primary)"
               s.backgroundColor = green
             }
           }
@@ -3214,13 +3217,13 @@ export default {
               ) {
                 c += "tw-bg-yellow "
               } else {
-                const green = "#00994C88"
+                const green = "rgba(var(--color-brand-primary-rgb), 0.53)"
                 s.backgroundColor = green
               }
             } else {
               // Determine color of timeslot based on number of people available
               const frac = numRespondents / max
-              const green = "#00994C"
+              const green = "var(--color-brand-primary)"
               let alpha
               if (!this.overlayAvailability) {
                 alpha = Math.floor(frac * (255 - 30))

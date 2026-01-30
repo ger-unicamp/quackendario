@@ -111,7 +111,7 @@
           </v-dialog>
           <v-spacer />
           <v-btn
-            class="tw-bg-green tw-px-5 tw-text-white tw-transition-opacity"
+            class="tw-bg-brand-primary tw-px-5 tw-text-white tw-transition-opacity"
             @click="acceptInvitation"
             :disabled="!calendarPermissionGranted"
             >Accept Invitation</v-btn

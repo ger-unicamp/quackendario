@@ -4,7 +4,7 @@
       <!-- Name change section -->
       <div class="tw-flex tw-flex-col tw-gap-5">
         <div
-          class="tw-text-xl tw-font-medium tw-text-dark-green sm:tw-text-2xl"
+          class="tw-text-xl tw-font-medium tw-text-dark-brand-primary sm:tw-text-2xl"
         >
           Profile
         </div>
@@ -49,7 +49,7 @@
         class="tw-flex tw-flex-col tw-gap-5"
       >
         <div
-          class="tw-text-xl tw-font-medium tw-text-dark-green sm:tw-text-2xl"
+          class="tw-text-xl tw-font-medium tw-text-dark-brand-primary sm:tw-text-2xl"
         >
           Billing
         </div>
@@ -63,7 +63,7 @@
       <!-- Calendar Access Section -->
       <div class="tw-flex tw-flex-col tw-gap-5">
         <div
-          class="tw-text-xl tw-font-medium tw-text-dark-green sm:tw-text-2xl"
+          class="tw-text-xl tw-font-medium tw-text-dark-brand-primary sm:tw-text-2xl"
         >
           Calendar access
         </div>
@@ -88,7 +88,7 @@
       <!-- Permissions Section -->
       <div class="tw-flex tw-flex-col tw-gap-5">
         <div
-          class="tw-text-xl tw-font-medium tw-text-dark-green sm:tw-text-2xl"
+          class="tw-text-xl tw-font-medium tw-text-dark-brand-primary sm:tw-text-2xl"
         >
           Permissions
         </div>
@@ -126,7 +126,7 @@
       <!-- Question Section -->
       <div class="tw-flex tw-flex-col tw-gap-5">
         <div
-          class="tw-text-xl tw-font-medium tw-text-dark-green sm:tw-text-2xl"
+          class="tw-text-xl tw-font-medium tw-text-dark-brand-primary sm:tw-text-2xl"
         >
           Have a question?
         </div>

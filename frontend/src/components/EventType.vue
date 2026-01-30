@@ -2,10 +2,10 @@
 <template>
   <div class="tw-mb-5">
     <div
-      class="tw-flex tw-flex-row tw-items-center tw-justify-between tw-text-xl tw-font-medium tw-text-dark-green sm:tw-text-2xl"
+      class="tw-flex tw-flex-row tw-items-center tw-justify-between tw-text-xl tw-font-medium tw-text-dark-brand-primary sm:tw-text-2xl"
     >
       <div class="tw-flex tw-flex-col">
-        {{ eventType.header }}
+        <div>{{ eventType.header }}</div>
         <div
           v-if="
             eventType.header === 'Events I created' &&
@@ -18,12 +18,7 @@
             {{ authUser?.numEventsCreated }} / {{ numFreeEvents }} free events
             created
           </div>
-          <div
-            class="tw-cursor-pointer tw-select-none tw-text-xs tw-font-medium tw-text-green tw-underline"
-            @click="openUpgradeDialog"
-          >
-            Upgrade
-          </div>
+          <span>Upgrade</span>
         </div>
       </div>
       <v-btn
@@ -96,7 +91,7 @@
 <script>
 import EventItem from "@/components/EventItem.vue"
 import FeatureNotReadyDialog from "@/components/FeatureNotReadyDialog.vue"
-import { numFreeEvents, upgradeDialogTypes } from "@/constants"
+import { numFreeEvents } from "@/constants"
 import { mapState, mapActions } from "vuex"
 import { isPremiumUser } from "@/utils"
 
@@ -143,7 +138,6 @@ export default {
   },
 
   methods: {
-    ...mapActions(["showUpgradeDialog"]),
     toggleShowAll() {
       this.showAll = !this.showAll
     },

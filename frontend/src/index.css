@@ -1,3 +1,92 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Semantic Theme Variables - Light Mode (default) */
+:root {
+  /* Brand & Primary Colors */
+  --color-brand-primary: #ce0000;
+  --color-brand-primary-rgb: 0, 153, 76;
+  --color-brand-primary-light: #e61e1e;
+  --color-brand-primary-lighter: #ebf7ef;
+  --color-brand-primary-pale: #cdebdc;
+  --color-brand-primary-dark: #1c7d45;
+  --color-brand-primary-darkest: #007f36;
+
+  /* Secondary Colors */
+  --color-secondary-blue: #006be8;
+  --color-secondary-blue-light: #53a2ff;
+  --color-secondary-orange: #e5a800;
+  --color-secondary-orange-rgb: 153, 119, 0;
+  --color-secondary-orange-dark: #997700;
+  --color-secondary-yellow: #ffe8b8;
+  --color-secondary-yellow-rgb: 255, 232, 184;
+  --color-secondary-red: #db1616;
+
+  /* Surface & Background Colors */
+  --color-surface-primary: #ffffff;
+  --color-surface-secondary: #f2f2f2;
+  --color-surface-tertiary: #f3f4f6;
+
+  /* Text & Foreground Colors */
+  --color-fg-primary: #000000;
+  --color-fg-secondary: #6b6b6b;
+  --color-fg-tertiary: #4f4f4f;
+
+  /* Border & Stroke Colors */
+  --color-border-primary: #bdbdbd;
+  --color-border-secondary: #dfdfdf;
+
+  /* Availability Colors */
+  --color-avail-green: #10b981;
+}
+
+/* Dark Mode */
+:root.dark {
+  /* Brand & Primary Colors */
+  --color-brand-primary: #ce0000;
+  --color-brand-primary-rgb: 0, 204, 102;
+  --color-brand-primary-light: #4dd99f;
+  --color-brand-primary-lighter: #1f4d38;
+  --color-brand-primary-pale: #2d6b4e;
+  --color-brand-primary-dark: #00804d;
+  --color-brand-primary-darkest: #005c36;
+
+  /* Secondary Colors */
+  --color-secondary-blue: #4a9eff;
+  --color-secondary-blue-light: #66b3ff;
+  --color-secondary-orange: #ffb84d;
+  --color-secondary-orange-rgb: 204, 136, 0;
+  --color-secondary-orange-dark: #cc8800;
+  --color-secondary-yellow: #ffd699;
+  --color-secondary-yellow-rgb: 255, 214, 153;
+  --color-secondary-red: #ff4d4d;
+
+  /* Surface & Background Colors */
+  --color-surface-primary: #1a1a1a;
+  --color-surface-secondary: #2d2d2d;
+  --color-surface-tertiary: #3f3f3f;
+
+  /* Text & Foreground Colors */
+  --color-fg-primary: #ffffff;
+  --color-fg-secondary: #cccccc;
+  --color-fg-tertiary: #999999;
+
+  /* Border & Stroke Colors */
+  --color-border-primary: #4d4d4d;
+  --color-border-secondary: #5a5a5a;
+
+  /* Availability Colors */
+  --color-avail-green: #34d399;
+}
+
+/* Overlay availability block styles */
+.overlay-avail-available {
+  border-color: var(--color-brand-primary) !important;
+  background-color: rgba(var(--color-brand-primary-rgb), 0.4) !important;
+}
+
+.overlay-avail-if-needed {
+  border-color: var(--color-secondary-orange-dark) !important;
+  background-color: rgba(var(--color-secondary-yellow-rgb), 0.7) !important;
+}
