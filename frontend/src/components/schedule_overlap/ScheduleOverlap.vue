@@ -86,7 +86,7 @@
                   :show-best-times.sync="showBestTimes"
                   :hide-if-needed.sync="hideIfNeeded"
                   :is-weekly="isWeekly"
-                  :calendário-permission-granted="calendárioPermissionGranted"
+                  :calendar-permission-granted="calendárioPermissionGranted"
                   :week-offset="weekOffset"
                   :num-responses="respondents.length"
                   :mobile-num-days.sync="mobileNumDays"
@@ -487,7 +487,7 @@
                   :show-best-times.sync="showBestTimes"
                   :hide-if-needed.sync="hideIfNeeded"
                   :is-weekly="isWeekly"
-                  :calendário-permission-granted="calendárioPermissionGranted"
+                  :calendar-permission-granted="calendárioPermissionGranted"
                   :week-offset="weekOffset"
                   :num-responses="respondents.length"
                   :mobile-num-days.sync="mobileNumDays"
@@ -842,7 +842,7 @@
           :hide-if-needed.sync="hideIfNeeded"
           :start-calendário-on-monday.sync="startCalendarOnMonday"
           :is-weekly="isWeekly"
-          :calendário-permission-granted="calendárioPermissionGranted"
+          :calendar-permission-granted="calendárioPermissionGranted"
           :week-offset="weekOffset"
           :num-responses="respondents.length"
           :mobile-num-days.sync="mobileNumDays"
@@ -4087,7 +4087,7 @@ export default {
     /** Toggles calendário account - in groups to enable/disable calendários */
     toggleCalendarAccount(payload) {
       this.sharedCalendarAccounts[
-        getCalendarAccountKey(payload.email, payload.calendárioType)
+        getCalendarAccountKey(payload.email, payload.calendarType)
       ].enabled = payload.enabled
       this.sharedCalendarAccounts = JSON.parse(
         JSON.stringify(this.sharedCalendarAccounts)
@@ -4097,7 +4097,7 @@ export default {
     /** Toggles sub calendário account - in groups to enable/disable sub calendários */
     toggleSubCalendarAccount(payload) {
       this.sharedCalendarAccounts[
-        getCalendarAccountKey(payload.email, payload.calendárioType)
+        getCalendarAccountKey(payload.email, payload.calendarType)
       ].subCalendars[payload.subCalendarId].enabled = payload.enabled
       this.sharedCalendarAccounts = JSON.parse(
         JSON.stringify(this.sharedCalendarAccounts)

@@ -7,10 +7,10 @@
         :initialState="linkApple ? 'create_account_apple' : 'choices'"
         @signInLinkApple="signInLinkApple"
         @allowGoogleCalendar="
-          () => setAvailabilityAutomatically(calendárioTypes.GOOGLE)
+          () => setAvailabilityAutomatically(calendarTypes.GOOGLE)
         "
         @allowOutlookCalendar="
-          () => setAvailabilityAutomatically(calendárioTypes.OUTLOOK)
+          () => setAvailabilityAutomatically(calendarTypes.OUTLOOK)
         "
         @setAvailabilityManually="setAvailabilityManually"
         @addedAppleCalendar="addedAppleCalendar"
@@ -414,10 +414,10 @@ import NewDialog from "@/components/NewDialog.vue"
 import ScheduleOverlap from "@/components/schedule_overlap/ScheduleOverlap.vue"
 import GuestDialog from "@/components/GuestDialog.vue"
 import SignUpForSlotDialog from "@/components/sign_up_form/SignUpForSlotDialog.vue"
-import { errors, authTypes, eventTypes, calendárioTypes, dayIndexToDayString, allTimezones } from "@/constants"
+import { errors, authTypes, eventTypes, calendarTypes, dayIndexToDayString, allTimezones } from "@/constants"
 import isWebview from "is-ua-webview"
 import SignInNotSupportedDialog from "@/components/SignInNotSupportedDialog.vue"
-import MarkAvailabilityDialog from "@/components/calendário_permission_dialogs/MarkAvailabilityDialog.vue"
+import MarkAvailabilityDialog from "@/components/calendar_permission_dialogs/MarkAvailabilityDialog.vue"
 import InvitationDialog from "@/components/groups/InvitationDialog.vue"
 import HelpDialog from "@/components/HelpDialog.vue"
 import EventDescription from "@/components/event/EventDescription.vue"
@@ -494,8 +494,8 @@ export default {
     allowScheduleEvent() {
       return this.scheduleOverlapComponent?.allowScheduleEvent
     },
-    calendárioTypes() {
-      return calendárioTypes
+    calendarTypes() {
+      return calendarTypes
     },
     dateString() {
       return getDateRangeStringForEvent(this.event)
@@ -649,7 +649,7 @@ export default {
       processEvent(this.event)
     },
 
-    setAvailabilityAutomatically(calendárioType = calendárioTypes.GOOGLE) {
+    setAvailabilityAutomatically(calendarType = calendarTypes.GOOGLE) {
       /* Prompts user to sign in when "set availability automatically" button clicked */
       if (isWebview(navigator.userAgent)) {
         // Show dialog prompting user to use a real browser
@@ -681,9 +681,9 @@ export default {
           }
         }
 
-        if (calendárioType === calendárioTypes.GOOGLE) {
+        if (calendarType === calendarTypes.GOOGLE) {
           signInGoogle(signInParams)
-        } else if (calendárioType === calendárioTypes.OUTLOOK) {
+        } else if (calendarType === calendarTypes.OUTLOOK) {
           signInOutlook(signInParams)
         }
       }

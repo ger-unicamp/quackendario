@@ -11,7 +11,7 @@
         <div class="tw-mb-4 tw-flex tw-w-full tw-flex-col tw-gap-2">
           <v-btn
             block
-            @click="signIn(calendárioTypes.GOOGLE)"
+            @click="signIn(calendarTypes.GOOGLE)"
             class="tw-bg-white"
           >
             <div class="tw-flex tw-w-full tw-items-center tw-gap-2">
@@ -28,7 +28,7 @@
           </v-btn>
           <v-btn
             block
-            @click="signIn(calendárioTypes.OUTLOOK)"
+            @click="signIn(calendarTypes.OUTLOOK)"
             class="tw-bg-white"
           >
             <div class="tw-flex tw-w-full tw-items-center tw-gap-2">
@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { calendárioTypes } from "@/constants"
+import { calendarTypes } from "@/constants"
 
 export default {
   name: "SignInDialog",
@@ -65,7 +65,7 @@ export default {
   },
   data() {
     return {
-      calendárioTypes,
+      calendarTypes,
     }
   },
   methods: {

@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import AppleCredentials from "@/components/calendário_permission_dialogs/AppleCredentials.vue"
+import AppleCredentials from "@/components/calendar_permission_dialogs/AppleCredentials.vue"
 
 export default {
   name: "CalendarTypeSelector",

@@ -126,7 +126,7 @@
 import { mapState } from "vuex"
 import { isPhone, post, generateEnabledCalendarsPayload } from "@/utils"
 import CalendarAccounts from "@/components/settings/CalendarAccounts.vue"
-import CalendarPermissionsCard from "@/components/calendário_permission_dialogs/CalendarPermissionsCard.vue"
+import CalendarPermissionsCard from "@/components/calendar_permission_dialogs/CalendarPermissionsCard.vue"
 import UserChip from "@/components/general/UserChip.vue"
 
 export default {
@@ -192,13 +192,13 @@ export default {
 
     toggleCalendarAccount(payload) {
       this.calendárioAccounts[
-        `${payload.email}_${payload.calendárioType}`
+        `${payload.email}_${payload.calendarType}`
       ].enabled = payload.enabled
     },
 
     toggleSubCalendarAccount(payload) {
       this.calendárioAccounts[
-        `${payload.email}_${payload.calendárioType}`
+        `${payload.email}_${payload.calendarType}`
       ].subCalendars[payload.subCalendarId].enabled = payload.enabled
     },
   },

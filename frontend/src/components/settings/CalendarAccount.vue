@@ -96,7 +96,7 @@
 
 <script>
 import { mapState, mapActions } from "vuex"
-import { authTypes, calendárioTypes } from "@/constants"
+import { authTypes, calendarTypes } from "@/constants"
 import {
   post,
   _delete,
@@ -131,7 +131,7 @@ export default {
     ...mapState(["authUser"]),
     allowDelete() {
       return !(
-        (this.account.calendárioType == calendárioTypes.GOOGLE &&
+        (this.account.calendarType == calendarTypes.GOOGLE &&
           this.account.email == this.authUser.email) ||
         this.toggleState
       )
@@ -139,7 +139,7 @@ export default {
     accountHasError() {
       const account =
         this.calendárioEventsMap?.[
-          getCalendarAccountKey(this.account.email, this.account.calendárioType)
+          getCalendarAccountKey(this.account.email, this.account.calendarType)
         ]
       return account?.error && account?.calendárioEvents?.length === 0
     },
@@ -148,11 +148,11 @@ export default {
       return !(this.toggleState && this.accountHasError)
     },
     reauthenticateBtnText() {
-      if (this.account.calendárioType == calendárioTypes.GOOGLE) {
+      if (this.account.calendarType == calendarTypes.GOOGLE) {
         return "Calendar access not granted, click to reauthenticate"
-      } else if (this.account.calendárioType == calendárioTypes.APPLE) {
+      } else if (this.account.calendarType == calendarTypes.APPLE) {
         return "Error with Apple Calendar account, click to remove"
-      } else if (this.account.calendárioType == calendárioTypes.OUTLOOK) {
+      } else if (this.account.calendarType == calendarTypes.OUTLOOK) {
         return "Error with Outlook Calendar account, click to remove"
       }
     },
@@ -173,7 +173,7 @@ export default {
       })
     },
     reauthenticateCalendarAccount() {
-      if (this.account.calendárioType == calendárioTypes.GOOGLE) {
+      if (this.account.calendarType == calendarTypes.GOOGLE) {
         signInGoogle({
           state: {
             type: this.toggleState
@@ -185,9 +185,9 @@ export default {
           selectAccount: false,
           loginHint: this.account.email,
         })
-      } else if (this.account.calendárioType == calendárioTypes.APPLE) {
+      } else if (this.account.calendarType == calendarTypes.APPLE) {
         this.openRemoveDialog()
-      } else if (this.account.calendárioType == calendárioTypes.OUTLOOK) {
+      } else if (this.account.calendarType == calendarTypes.OUTLOOK) {
         this.openRemoveDialog()
       }
     },
@@ -195,7 +195,7 @@ export default {
       if (this.syncWithBackend) {
         post(`/user/toggle-sub-calendário`, {
           email: this.account.email,
-          calendárioType: this.account.calendárioType,
+          calendarType: this.account.calendarType,
           enabled,
           subCalendarId,
         }).catch((err) => {
@@ -206,7 +206,7 @@ export default {
       } else {
         this.$emit("toggleSubCalendarAccount", {
           email: this.account.email,
-          calendárioType: this.account.calendárioType,
+          calendarType: this.account.calendarType,
           enabled,
           subCalendarId,
         })
@@ -219,7 +219,7 @@ export default {
       if (this.syncWithBackend) {
         post(`/user/toggle-calendário`, {
           email: this.account.email,
-          calendárioType: this.account.calendárioType,
+          calendarType: this.account.calendarType,
           enabled,
         }).catch((err) => {
           this.showError(
@@ -229,7 +229,7 @@ export default {
       } else {
         this.$emit("toggleCalendarAccount", {
           email: this.account.email,
-          calendárioType: this.account.calendárioType,
+          calendarType: this.account.calendarType,
           enabled,
         })
       }
@@ -237,7 +237,7 @@ export default {
     openRemoveDialog() {
       this.$emit("openRemoveDialog", {
         email: this.account.email,
-        calendárioType: this.account.calendárioType,
+        calendarType: this.account.calendarType,
       })
     },
   },

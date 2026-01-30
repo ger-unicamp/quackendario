@@ -89,7 +89,7 @@
 
 <script>
 import { mapState, mapActions, mapMutations } from "vuex"
-import { authTypes, calendárioTypes } from "@/constants"
+import { authTypes, calendarTypes } from "@/constants"
 import {
   get,
   post,
@@ -149,7 +149,7 @@ export default {
             ? authTypes.ADD_CALENDAR_ACCOUNT_FROM_EDIT
             : authTypes.ADD_CALENDAR_ACCOUNT,
           eventId: this.eventId,
-          calendárioType: calendárioTypes.GOOGLE,
+          calendarType: calendarTypes.GOOGLE,
         },
         requestCalendarPermission: true,
         selectAccount: true,
@@ -166,7 +166,7 @@ export default {
             ? authTypes.ADD_CALENDAR_ACCOUNT_FROM_EDIT
             : authTypes.ADD_CALENDAR_ACCOUNT,
           eventId: this.eventId,
-          calendárioType: calendárioTypes.OUTLOOK,
+          calendarType: calendarTypes.OUTLOOK,
         },
         requestCalendarPermission: true,
       })
@@ -181,7 +181,7 @@ export default {
           // Remove calendário account locally
           const calendárioAccountKey = getCalendarAccountKey(
             this.removePayload.email,
-            this.removePayload.calendárioType
+            this.removePayload.calendarType
           )
           delete this.authUser.calendárioAccounts[calendárioAccountKey]
           this.setAuthUser(this.authUser)
