@@ -18,11 +18,9 @@ import (
 	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
-	"github.com/stripe/stripe-go/v82"
 	"schej.it/server/db"
 	"schej.it/server/logger"
 	"schej.it/server/routes"
-	"schej.it/server/services/gcloud"
 	"schej.it/server/slackbot"
 	"schej.it/server/utils"
 
@@ -101,9 +99,9 @@ func main() {
 	closeConnection := db.Init()
 	defer closeConnection()
 
-	// Init google cloud stuff
-	closeTasks := gcloud.InitTasks()
-	defer closeTasks()
+	// // Init google cloud stuff
+	// closeTasks := gcloud.InitTasks()
+	// defer closeTasks()
 
 	// Session
 	store := cookie.NewStore([]byte(os.Getenv("SESSION_SECRET")))
@@ -115,7 +113,6 @@ func main() {
 	routes.InitUser(apiRouter)
 	routes.InitEvents(apiRouter)
 	routes.InitAnalytics(apiRouter)
-	routes.InitStripe(apiRouter)
 	routes.InitFolders(apiRouter)
 	slackbot.InitSlackbot(apiRouter)
 
@@ -160,9 +157,6 @@ func loadDotEnv() {
 	if err := godotenv.Load(".env"); err != nil {
 		logger.StdOut.Println(".env not found; relying on environment variables")
 	}
-
-	// Load stripe key
-	stripe.Key = os.Getenv("STRIPE_API_KEY")
 
 	// Validate session secret
 	validateSessionSecret()
