@@ -1,7 +1,7 @@
 <template>
-  <div class="tw-bg-light-gray">
+  <div class="tw-bg-light-gray tw-flex tw-flex-col tw-justify-between tw-h-full">
     <div
-      class="tw-relative tw-m-auto tw-mb-12 tw-flex tw-max-w-6xl tw-flex-col tw-px-4 sm:tw-mb-20"
+      class="tw-relative tw-h-full tw-m-auto tw-mb-12 tw-flex tw-max-w-6xl tw-flex-col tw-px-4 sm:tw-mb-20"
     >
       <!-- Header -->
       <div class="tw-mb-16 sm:tw-mb-28">
@@ -19,9 +19,9 @@
         </div>
       </div>
 
-      <div class="tw-flex tw-flex-col tw-items-center">
+      <div class="tw-flex tw-flex-col tw-items-center tw-mt-32 ">
         <div
-          class="tw-mb-6 tw-flex tw-max-w-[26rem] tw-flex-col tw-items-center sm:tw-w-[35rem] sm:tw-max-w-none"
+          class="tw-mb-6 tw-flex tw-max-w-[26rem] tw-flex-col  tw-items-center sm:tw-w-[35rem] sm:tw-max-w-none"
         >
           
           <div
