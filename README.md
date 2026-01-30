@@ -1,5 +1,5 @@
-<div align="center">
 # Quackendário
+<div align="center">
 <!-- Logo GER será adicionado aqui -->
 <!-- <img src="./.github/assets/images/logo.svg" width="200px" alt="GER logo" /> -->
 
