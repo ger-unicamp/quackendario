@@ -23,14 +23,6 @@
         <router-link :to="{ name: 'home' }">
           <Logo type="timeful" />
         </router-link>
-        <v-expand-x-transition>
-          <span
-            v-if="isPremiumUser"
-            class="tw-ml-2 tw-cursor-default tw-rounded-md tw-bg-gradient-to-r tw-from-brand-primary-darkest tw-via-brand-primary tw-to-brand-primary-dark tw-px-2 tw-py-1 tw-text-sm tw-font-semibold tw-text-white tw-opacity-80"
-          >
-            Premium
-          </span>
-        </v-expand-x-transition>
 
         <v-spacer />
 
@@ -51,14 +43,6 @@
           @click="trackFeedbackClick"
         >
           Give feedback
-        </v-btn>
-        <v-btn
-          v-if="!isPhone"
-          text
-          href="https://www.paypal.com/donate/?hosted_button_id=KWCH6LGJCP6E6"
-          target="_blank"
-        >
-          Donate
         </v-btn>
         <v-btn
           v-if="$route.name === 'home' && !isPhone"
@@ -215,7 +199,7 @@ html {
 </style>
 
 <script>
-import { mapMutations, mapState, mapActions, mapGetters } from "vuex"
+import { mapMutations, mapState, mapActions } from "vuex"
 import {
   get,
   getLocation,
@@ -223,15 +207,8 @@ import {
   post,
   signInGoogle,
   signInOutlook,
-  isPremiumUser,
 } from "@/utils"
-import {
-  authTypes,
-  calendarTypes,
-  eventTypes,
-  numFreeEvents,
-  upgradeDialogTypes,
-} from "@/constants"
+import { authTypes, calendarTypes, eventTypes } from "@/constants"
 import AutoSnackbar from "@/components/AutoSnackbar"
 import AuthUserMenu from "@/components/AuthUserMenu.vue"
 import SignInNotSupportedDialog from "@/components/SignInNotSupportedDialog.vue"
@@ -269,12 +246,10 @@ export default {
   }),
 
   computed: {
-    ...mapGetters(["isPremiumUser"]),
     ...mapState([
       "authUser",
       "error",
       "info",
-      "enablePaywall",
       "newDialogOptions",
     ]),
     isPhone() {
@@ -307,8 +282,6 @@ export default {
     ...mapMutations([
       "setAuthUser",
       "setSignUpFormEnabled",
-      "setPricingPageConversion",
-      "setEnablePaywall",
       "setFeatureFlagsLoaded",
     ]),
     ...mapActions(["getEvents", "createNew"]),
@@ -316,9 +289,6 @@ export default {
       this.scrollY = window.scrollY
     },
     _createNew(eventOnly = false) {
-      this.$posthog.capture("create_new_button_clicked", {
-        eventOnly: eventOnly,
-      })
       this.createNew({ eventOnly })
     },
     signIn() {
@@ -366,18 +336,10 @@ export default {
       }
     },
     setFeatureFlags() {
-      if (!this.$posthog) return
-
-      // this.setSignUpFormEnabled(this.$posthog.isFeatureEnabled("sign-up-form"))
-      // this.setPricingPageConversion(
-      // this.$posthog.getFeatureFlag("pricing-page-conversion")
-      // )
-      // )
-      // this.setEnablePaywall(this.$posthog.isFeatureEnabled("enable-paywall"))
       this.setFeatureFlagsLoaded(true)
     },
     trackFeedbackClick() {
-      this.$posthog.capture("give_feedback_button_clicked")
+      // Analytics removido
     },
   },
 
@@ -385,12 +347,6 @@ export default {
     await get("/user/profile")
       .then((authUser) => {
         this.setAuthUser(authUser)
-
-        this.$posthog?.identify(authUser._id, {
-          email: authUser.email,
-          firstName: authUser.firstName,
-          lastName: authUser.lastName,
-        })
       })
       .catch(() => {
         this.setAuthUser(null)
@@ -420,7 +376,7 @@ export default {
       async handler() {
         const originalHref = window.location.href
         if (this.$route.name) {
-          this.$posthog?.capture("$pageview")
+           // Pageview tracking removido
         }
 
         // Check for poster query parameter
@@ -442,16 +398,7 @@ export default {
     authUser: {
       immediate: true,
       handler() {
-        if (this.$posthog) {
           this.setFeatureFlags()
-          // Check feature flags (only if posthog is enabled)
-          // this.$posthog.setPersonPropertiesForFlags({
-          //   email: this.authUser?.email,
-          // })
-          // this.$posthog.onFeatureFlags(() => {
-          //   this.setFeatureFlags()
-          // })
-        }
       },
     },
   },

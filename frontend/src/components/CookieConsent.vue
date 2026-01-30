@@ -90,7 +90,6 @@ export default {
       preferences: {
         necessary: true,
         analytics: true,
-        advertising: true,
       },
     }
   },
@@ -117,7 +116,6 @@ export default {
       this.preferences = {
         necessary: true,
         analytics: true,
-        advertising: true,
       }
       this.saveConsent()
     },
@@ -126,7 +124,6 @@ export default {
       this.preferences = {
         necessary: true,
         analytics: false,
-        advertising: false,
       }
       this.saveConsent()
     },
@@ -151,7 +148,6 @@ export default {
         name: "cookie-settings",
         query: {
           analytics: this.preferences.analytics ? "1" : "0",
-          advertising: this.preferences.advertising ? "1" : "0",
         },
       })
     },

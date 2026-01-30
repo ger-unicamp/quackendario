@@ -167,11 +167,10 @@
 import TimezoneSelector from "./TimezoneSelector.vue"
 import GCalWeekSelector from "./GCalWeekSelector.vue"
 import { isPhone } from "@/utils"
-import Advertisement from "../event/Advertisement.vue"
 import ExpandableSection from "../ExpandableSection.vue"
 import EventOptions from "./EventOptions.vue"
 import { timeTypes, guestUserId } from "@/constants"
-import { mapState, mapGetters } from "vuex"
+import { mapState } from "vuex"
 
 export default {
   name: "ToolRow",
@@ -197,7 +196,6 @@ export default {
   components: {
     TimezoneSelector,
     GCalWeekSelector,
-    Advertisement,
     ExpandableSection,
     EventOptions,
   },
@@ -213,28 +211,8 @@ export default {
     ],
   }),
 
-  mounted() {
-    // Initialize Google Ads only for non-premium users
-    // if (!this.isPremiumUser) {
-    //   this.$nextTick(() => {
-    //     this.initializeAd()
-    //  })
-    // }
-  },
-
-  methods: {
-    initializeAd() {
-      try {
-        (window.adsbygoogle = window.adsbygoogle || []).push({})
-      } catch (e) {
-        console.error('AdSense error:', e)
-      }
-    }
-  },
-
   computed: {
     ...mapState(["authUser"]),
-    ...mapGetters(["isPremiumUser"]),
     isPhone() {
       return isPhone(this.$vuetify)
     },

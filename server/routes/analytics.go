@@ -34,7 +34,6 @@ func InitAnalytics(router *gin.RouterGroup) {
 	analyticsRouter := router.Group("/analytics")
 
 	analyticsRouter.POST("/scanned-poster", scannedPoster)
-	analyticsRouter.POST("/upgrade-dialog-viewed", upgradeDialogViewed)
 	analyticsRouter.GET("/monthly-active-event-creators", AnalyticsBasicAuth(), getMonthlyActiveEventCreators)
 	analyticsRouter.GET("/monthly-active-event-creators-with-more-than-x-events", AnalyticsBasicAuth(), getMonthlyActiveEventCreatorsWithMoreThanXEvents)
 	analyticsRouter.GET("/user/:email", AnalyticsBasicAuth(), getUserByEmail)
@@ -70,39 +69,6 @@ func scannedPoster(c *gin.Context) {
 			fmt.Sprintf(":face_with_monocle: Poster was scanned :face_with_monocle:\n*URL:* %s", payload.Url),
 		)
 	}
-
-	c.JSON(http.StatusOK, gin.H{})
-}
-
-// @Summary Notifies us when user has viewed the upgrade dialog
-// @Tags analytics
-// @Accept json
-// @Produce json
-// @Param payload body object{userId=string} true "Object containing the user id"
-// @Success 200
-// @Router /analytics/upgrade-dialog-viewed [post]
-func upgradeDialogViewed(c *gin.Context) {
-	payload := struct {
-		UserId string `json:"userId" binding:"required"`
-		Price  string `json:"price" binding:"required"`
-		Type   string `json:"type" binding:"required"`
-	}{}
-	if err := c.BindJSON(&payload); err != nil {
-		return
-	}
-
-	var message string
-	user := db.GetUserById(payload.UserId)
-	if user == nil {
-		message = fmt.Sprintf(":eyes: %s viewed the upgrade dialog (%s), type: %s", payload.UserId, payload.Price, payload.Type)
-	} else {
-		message = fmt.Sprintf(":eyes: %s %s (%s) viewed the upgrade dialog (%s), type: %s", user.FirstName, user.LastName, user.Email, payload.Price, payload.Type)
-	}
-
-	slackbot.SendTextMessageWithType(
-		message,
-		slackbot.MONETIZATION,
-	)
 
 	c.JSON(http.StatusOK, gin.H{})
 }

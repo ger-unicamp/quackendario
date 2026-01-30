@@ -282,18 +282,6 @@
           <div
             class="tw-w-full tw-border-t tw-border-solid tw-border-gray"
           ></div>
-          <v-btn
-            class="tw-h-16"
-            block
-            text
-            href="https://www.paypal.com/donate/?hosted_button_id=KWCH6LGJCP6E6"
-            target="_blank"
-          >
-            Donate
-          </v-btn>
-          <div
-            class="tw-w-full tw-border-t tw-border-solid tw-border-gray"
-          ></div>
           <v-btn class="tw-h-16" block text :to="{ name: 'privacy-policy' }">
             Política de Privacidade
           </v-btn>

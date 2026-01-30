@@ -1013,7 +1013,6 @@ import {
   getISODateString,
   getDateWithTimezone,
   timeNumToTimeString,
-  isPremiumUser,
   prefersStartOnMonday,
 } from "@/utils"
 import {
@@ -1023,12 +1022,10 @@ import {
   guestUserId,
   timeTypes,
   timeslotDurations,
-  upgradeDialogTypes,
 } from "@/constants"
 import { mapMutations, mapActions, mapState } from "vuex"
 import UserAvatarContent from "@/components/UserAvatarContent.vue"
 import CalendarAccounts from "@/components/settings/CalendarAccounts.vue"
-import Advertisement from "@/components/event/Advertisement.vue"
 import SignUpBlock from "@/components/sign_up_form/SignUpBlock.vue"
 import SignUpCalendarBlock from "@/components/sign_up_form/SignUpCalendarBlock.vue"
 import SignUpBlocksList from "@/components/sign_up_form/SignUpBlocksList.vue"
@@ -4614,7 +4611,6 @@ export default {
     ToolRow,
     CalendarAccounts,
     RespondentsList,
-    Advertisement,
     GCalWeekSelector,
     WorkingHoursToggle,
     SignUpBlock,

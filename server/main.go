@@ -165,10 +165,6 @@ func loadDotEnv() {
 func getCorsOrigins() []string {
 	defaultOrigins := []string{
 		"http://localhost:8080",
-		"https://www.schej.it",
-		"https://schej.it",
-		"https://www.timeful.app",
-		"https://timeful.app",
 	}
 
 	originsEnv := os.Getenv("CORS_ORIGINS")

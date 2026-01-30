@@ -149,7 +149,6 @@ export default {
     createFolder() {},
     convertW2M() {
       this.showW2MDialog = true
-      this.$posthog?.capture("convert_when2meet_to_timeful_clicked")
     },
   },
 

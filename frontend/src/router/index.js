@@ -57,11 +57,6 @@ const routes = [
     component: () => import("@/components/CookieSettings.vue"),
   },
   {
-    path: "/stripe-redirect",
-    name: "stripe-redirect",
-    component: () => import("@/views/StripeRedirect.vue"),
-  },
-  {
     path: "*",
     name: "404",
     component: () => import("@/views/PageNotFound.vue"),
