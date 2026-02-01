@@ -1,4 +1,4 @@
-<!-- Displays auth user's avatar, which displays a menu when clicked -->
+<!-- Exibe o avatar do usuário autenticado, que mostra um menu quando clicado -->
 <template>
   <span>
     <v-menu v-if="authUser" offset-y left>
@@ -31,20 +31,20 @@
         >
           <v-list-item-title class="tw-flex tw-items-center tw-gap-1">
             <v-icon class="tw-mr-1" small color="black">mdi-message</v-icon>
-            Give feedback
+            Enviar feedback
           </v-list-item-title>
         </v-list-item>
         <v-list-item id="settings-btn" @click="goToSettings">
           <v-list-item-title class="tw-flex tw-items-center tw-gap-1">
             <v-icon class="tw-mr-1" small color="black">mdi-cog</v-icon>
-            Settings
+            Configurações
           </v-list-item-title>
         </v-list-item>
         <v-divider></v-divider>
         <v-list-item id="sign-out-btn" @click="signOut">
           <v-list-item-title class="red--text tw-flex tw-items-center tw-gap-1">
             <v-icon class="tw-mr-1" small color="red">mdi-logout</v-icon>
-            Sign Out
+            Sair
           </v-list-item-title>
         </v-list-item>
       </v-list>

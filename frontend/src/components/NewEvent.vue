@@ -27,8 +27,7 @@
         <HelpDialog v-model="helpDialog">
           <template v-slot:header>Eventos</template>
           <div class="tw-mb-4">
-            Use events to collect people's availabilities and compare them
-            across certain days.
+          Você pode usar eventos para coletar a disponibilidade das pessoas e compará-las em determinados dias.
           </div>
         </HelpDialog>
       </template>
@@ -132,9 +131,9 @@
           </v-expand-transition>
 
           <div class="tw-mb-2 tw-text-lg tw-text-black">
-            What
-            {{ selectedDateOption === dateOptions.SPECIFIC ? "dates" : "days" }}
-            might work?
+            Qauis 
+            {{ selectedDateOption === dateOptions.SPECIFIC ? "datas" : "dias" }}
+            podem funcionar?
           </div>
           <v-select
             v-if="!edit && !daysOnly"
@@ -527,16 +526,16 @@ export default {
 
     daysOnly: false,
     daysOnlyOptions: Object.freeze([
-      { text: "Dates and times", value: false },
-      { text: "Dates only", value: true },
+      { text: "Datas e horários", value: false },
+      { text: "Só datas", value: true },
     ]),
 
     // Date options
     dateOptions: Object.freeze({
-      SPECIFIC: "Specific dates",
-      DOW: "Days of the week",
+      SPECIFIC: "Datas específicas",
+      DOW: "Dias da semana",
     }),
-    selectedDateOption: "Specific dates",
+    selectedDateOption: "Datas específicas",
 
     // Lembretes por e-mail
     showEmailReminders: false,
@@ -586,12 +585,12 @@ export default {
   computed: {
     ...mapState(["authUser", "daysOnlyEnabled"]),
     nameRules() {
-      return [(v) => !!v || "Event name is required"]
+      return [(v) => !!v || "Nome do evento é obrigatório"]
     },
     selectedDaysRules() {
       return [
         (selectedDays) =>
-          selectedDays.length > 0 || "Please select at least one day",
+          selectedDays.length > 0 || "Escolha pelo menos um dia",
       ]
     },
     addedEmails() {
@@ -645,7 +644,7 @@ export default {
       this.selectedDaysOfWeek = []
       this.notificationsEnabled = true
       this.daysOnly = false
-      this.selectedDateOption = "Specific dates"
+      this.selectedDateOption = "Datas específicas"
       this.emails = []
       this.showAdvancedOptions = false
       this.blindAvailabilityEnabled = false
@@ -780,7 +779,7 @@ export default {
             this.reset()
 
             posthogPayload.eventId = eventId
-            this.$posthog?.capture("Event created", posthogPayload)
+            this.$posthog?.capture("Evento criado", posthogPayload)
 
             if (!this.authUser) {
               // Add eventId to localStorage, so the user can claim it later
@@ -789,7 +788,7 @@ export default {
           })
           .catch((err) => {
             this.showError(
-              "There was a problem creating that event! Please try again later."
+            "Houve um problema ao criar esse evento! Por favor, tente novamente mais tarde."
             )
             console.error(err)
           })
@@ -811,7 +810,8 @@ export default {
             })
             .catch((err) => {
               this.showError(
-                "There was a problem editing this event! Please try again later."
+              "Houve um problema ao editar esse evento! Por favor, tente novamente mais tarde."
+
               )
               console.log(err)
             })

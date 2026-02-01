@@ -7,13 +7,13 @@
     <v-card-title class="tw-mb-2 tw-flex tw-gap-2 tw-px-4 sm:tw-px-8">
       <div>
         <div class="tw-mb-1">
-          {{ edit ? "Edit sign up" : "New sign up" }}
+          {{ edit ? "Editar inscrição" : "Nova inscrição" }}
         </div>
         <div
           v-if="dialog && showHelp"
           class="tw-text-xs tw-font-normal tw-italic tw-text-dark-gray"
         >
-          Ideal for events with sign up slots
+          Ideal para eventos com vagas de inscrição
         </div>
       </div>
       <v-spacer />
@@ -27,8 +27,7 @@
         <HelpDialog v-model="helpDialog">
           <template v-slot:header>Eventos</template>
           <div class="tw-mb-4">
-            Use events to collect people's availabilities and compare them
-            across certain days.
+            Use eventos para coletar disponibilidades das pessoas e compará-las em certos dias.
           </div>
         </HelpDialog>
       </template>
@@ -80,7 +79,7 @@
                   hide-details
                   solo
                 ></v-select>
-                <div>to</div>
+                <div>até</div>
                 <v-select
                   :value="endTime"
                   @input="(t) => (endTime = t.time)"
@@ -95,9 +94,9 @@
           </v-expand-transition>
 
           <div class="tw-mb-2 tw-text-lg tw-text-black">
-            What
+            Quais
             {{ selectedDateOption === dateOptions.SPECIFIC ? "dates" : "days" }}
-            might work?
+            podem funcionar?
           </div>
           <v-select
             v-if="!edit && !daysOnly"
@@ -163,7 +162,7 @@
         <v-checkbox v-model="notificationsEnabled" hide-details class="tw-mt-2">
           <template v-slot:label>
             <span class="tw-text-sm tw-text-very-dark-gray"
-              >Email me each time someone signs up</span
+              >Me envie um e-mail cada vez que alguém se inscrever</span
             >
           </template>
         </v-checkbox>
@@ -171,7 +170,7 @@
         <v-checkbox v-model="collectEmails">
           <template v-slot:label>
             <span class="tw-text-sm tw-text-very-dark-gray">
-              Collect email address on sign up
+              Coletar endereço de e-mail na inscrição
             </span>
           </template>
         </v-checkbox>
@@ -222,18 +221,18 @@
 
           <ExpandableSection
             v-model="showAdvancedOptions"
-            label="Advanced options"
+            label="Opções avançadas"
             :auto-scroll="dialog"
           >
             <div class="tw-flex tw-flex-col tw-gap-5 tw-pt-2">
               <v-checkbox
                 v-if="authUser"
                 v-model="blindAvailabilityEnabled"
-                messages="Only show attendees to sign up creator"
+                messages="Mostrar apenas para o criador da inscrição"
               >
                 <template v-slot:label>
                   <span class="tw-text-sm tw-text-black">
-                    Hide attendees from each other
+                    Ocultar participantes uns dos outros
                   </span>
                 </template>
                 <template v-slot:message="{ key, message }">
@@ -298,7 +297,7 @@
                   </div>
                 </template>
               </v-checkbox> -->
-              <TimezoneSelector v-model="timezone" label="Timezone" />
+              <TimezoneSelector v-model="timezone" label="Fuso horário" />
             </div>
           </ExpandableSection>
         </div>
@@ -314,13 +313,13 @@
           class="tw-mt-4 tw-bg-brand-primary"
           @click="submit"
         >
-          {{ edit ? "Save edits" : "Criar evento" }}
+          {{ edit ? "Salvar edições" : "Criar evento" }}
         </v-btn>
         <div
           :class="formValid ? 'tw-invisible' : 'tw-visible'"
           class="tw-mt-1 tw-text-xs tw-text-red"
         >
-          Please fix form errors before continuing
+          Por favor, corrija os erros do formulário antes de continuar
         </div>
       </div>
     </v-card-actions>
@@ -405,16 +404,16 @@ export default {
 
     daysOnly: false,
     daysOnlyOptions: Object.freeze([
-      { text: "Dates and times", value: false },
-      { text: "Dates only", value: true },
+      { text: "Datas e horários", value: false },
+      { text: "Só datas", value: true },
     ]),
 
     // Date options
     dateOptions: Object.freeze({
-      SPECIFIC: "Specific dates",
-      DOW: "Days of the week",
+      SPECIFIC: "Datas específicas",
+      DOW: "Dias da semana",
     }),
-    selectedDateOption: "Specific dates",
+    selectedDateOption: "Datas específicas",
 
     // Lembretes por e-mail
     showEmailReminders: false,
@@ -462,12 +461,12 @@ export default {
   computed: {
     ...mapState(["authUser", "daysOnlyEnabled"]),
     nameRules() {
-      return [(v) => !!v || "Event name is required"]
+      return [(v) => !!v || "Nome do evento é obrigatório"]
     },
     selectedDaysRules() {
       return [
         (selectedDays) =>
-          selectedDays.length > 0 || "Please select at least one day",
+          selectedDays.length > 0 || "Selecione pelo menos um dia",
       ]
     },
     addedEmails() {
@@ -510,7 +509,7 @@ export default {
       this.selectedDaysOfWeek = []
       this.notificationsEnabled = false
       this.daysOnly = false
-      this.selectedDateOption = "Specific dates"
+      this.selectedDateOption = "Datas específicas"
       this.emails = []
       this.showAdvancedOptions = false
       this.blindAvailabilityEnabled = false
@@ -629,7 +628,7 @@ export default {
           })
           .catch((err) => {
             this.showError(
-              "There was a problem creating that event! Please try again later."
+              "Houve um problema ao editar esse evento! Por favor, tente novamente mais tarde."
             )
           })
           .finally(() => {
@@ -649,7 +648,7 @@ export default {
             })
             .catch((err) => {
               this.showError(
-                "There was a problem editing this event! Please try again later."
+                "Houve um problema ao editar esse evento! Por favor, tente novamente mais tarde."
               )
             })
             .finally(() => {

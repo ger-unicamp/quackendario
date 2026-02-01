@@ -31,17 +31,7 @@
           text
           @click="() => _createNew(true)"
         >
-          Create an event
-        </v-btn>
-        <v-btn
-          v-if="showFeedbackBtn"
-          id="feedback-btn"
-          text
-          href="https://forms.gle/A96i4TTWeKgH3P1W6"
-          target="_blank"
-          @click="trackFeedbackClick"
-        >
-          Give feedback
+          Criar um evento
         </v-btn>
         <v-btn
           v-if="$route.name === 'home' && !isPhone"
@@ -49,13 +39,13 @@
           class="tw-mx-2 tw-rounded-md tw-shadow-brand"
           @click="() => _createNew()"
         >
-          + Create new
+          + Criar novo
         </v-btn>
         <div v-if="authUser" class="sm:tw-ml-4">
           <AuthUserMenu />
         </div>
         <v-btn v-else id="top-right-sign-in-btn" text @click="signIn">
-          Sign in
+          Entrar
         </v-btn>
       </div>
     </div>

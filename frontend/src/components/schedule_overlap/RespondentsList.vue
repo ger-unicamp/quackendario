@@ -2,11 +2,11 @@
   <div>
     <div class="tw-flex tw-items-center tw-font-medium">
       <template v-if="!isOwner && event.blindAvailabilityEnabled">
-        Your response
+        Sua resposta
       </template>
       <template v-else>
         <div class="tw-mr-1 tw-text-lg">
-          {{ !isGroup ? "Responses" : "Members" }}
+          {{ !isGroup ? "Respostas" : "Membros" }}
         </div>
         <div class="tw-font-normal">
           <template v-if="curRespondents.length === 0">
@@ -41,13 +41,13 @@
                     v-bind="attrs"
                     @click="trackExportCsvClick"
                   >
-                    <v-list-item-title>Export CSV</v-list-item-title>
+                    <v-list-item-title>Exportar CSV</v-list-item-title>
                   </v-list-item>
                 </template>
                 <v-card>
-                  <v-card-title>Export CSV</v-card-title>
+                  <v-card-title>Exportar CSV</v-card-title>
                   <v-card-text>
-                    <div class="tw-mb-1">Select CSV format:</div>
+                    <div class="tw-mb-1">Selecione o formato CSV:</div>
                     <v-select
                       v-model="exportCsvDialog.type"
                       solo
@@ -70,7 +70,7 @@
                       @click="exportCsv"
                       color="primary"
                       :loading="exportCsvDialog.loading"
-                      >Export</v-btn
+                      >Exportar</v-btn
                     >
                   </v-card-actions>
                 </v-card>
@@ -85,7 +85,7 @@
           class="tw-mt-2 tw-text-sm tw-font-normal tw-text-dark-gray"
           :class="showIfNeededStar ? 'tw-visible' : 'tw-invisible'"
         >
-          * if needed
+          * se necessário
         </div>
       </template>
     </div>
@@ -93,7 +93,7 @@
       v-if="isOwner && !isPhone && event.blindAvailabilityEnabled"
       class="tw-mb-2 tw-mt-1 tw-text-xs tw-italic tw-text-very-dark-gray"
     >
-      Responses are only visible to {{ isOwner ? "you" : "event creator" }}
+      As respostas são visíveis apenas para {{ isOwner ? "você" : "criador do evento" }}
     </div>
     <div
       ref="scrollableSection"
@@ -120,9 +120,9 @@
             class="tw-text-very-dark-gray"
             v-if="!isOwner && event.blindAvailabilityEnabled"
           >
-            No response yet!
+            Nenhuma resposta ainda!
           </span>
-          <span class="tw-text-very-dark-gray" v-else>No responses yet!</span>
+          <span class="tw-text-very-dark-gray" v-else>Nenhuma resposta ainda!</span>
         </div>
         <template v-else>
           <transition-group
@@ -206,7 +206,7 @@
                           <v-icon small class="tw-mr-2" color="#757575"
                             >mdi-pencil</v-icon
                           >
-                          Edit
+                          Editar
                         </v-list-item-title>
                       </v-list-item>
                       <v-list-item
@@ -217,7 +217,7 @@
                           <v-icon small class="tw-mr-2" color="#757575"
                             >mdi-delete</v-icon
                           >
-                          Delete
+                          Excluir
                         </v-list-item-title>
                       </v-list-item>
                     </v-list>
@@ -263,14 +263,14 @@
         class="tw-col-span-full tw-mb-2 tw-mt-1 tw-text-sm tw-text-dark-gray"
         :class="showIfNeededStar ? 'tw-visible' : 'tw-invisible'"
       >
-        * if needed
+        * se necessário
       </div>
       <div
         v-if="!maxHeight && pendingUsers.length > 0"
         class="tw-mb-4 sm:tw-mb-6"
       >
         <div class="tw-mb-2 tw-flex tw-items-center tw-font-medium">
-          <div class="tw-mr-1 tw-text-lg">Pending</div>
+          <div class="tw-mr-1 tw-text-lg">Pendente</div>
           <div class="tw-font-normal">({{ pendingUsers.length }})</div>
         </div>
         <div>
@@ -305,7 +305,7 @@
           "
         >
           {{
-            authUser ? "+ Add guest availability" : "+ Add availability"
+            authUser ? "+ Adicionar disponibilidade de visitante" : "+ Adicionar disponibilidade"
           }}</v-btn
         >
         <v-switch
@@ -319,7 +319,7 @@
         >
           <template v-slot:label>
             <div class="tw-text-sm tw-text-black">
-              Show best {{ event.daysOnly ? "days" : "times" }}
+              Mostrar melhores {{ event.daysOnly ? "dias" : "horários" }}
             </div>
           </template>
         </v-switch>
@@ -348,17 +348,17 @@
       v-if="(!isOwner || isPhone) && event.blindAvailabilityEnabled"
       class="tw-mt-2 tw-text-xs tw-italic tw-text-very-dark-gray"
     >
-      Responses are only visible to {{ isOwner ? "you" : "event creator" }}
+      As respostas são visíveis apenas para {{ isOwner ? "você" : "criador do evento" }}
     </div>
 
     <v-dialog v-model="deleteAvailabilityDialog" width="500" persistent>
       <v-card>
-        <v-card-title>Are you sure?</v-card-title>
+        <v-card-title>Tem certeza?</v-card-title>
         <v-card-text class="tw-text-sm tw-text-dark-gray"
-          >Are you sure you want to delete
+          >Tem certeza que deseja excluir a disponibilidade de
           <strong>{{ userToDelete?.firstName }}</strong
-          >'s availability from this
-          {{ isGroup ? "group" : "event" }}?</v-card-text
+          > deste
+          {{ isGroup ? "grupo" : "evento" }}?</v-card-text
         >
         <v-card-actions>
           <v-spacer />
@@ -388,7 +388,7 @@
       hide-details
     >
       <template v-slot:label>
-        <div class="tw-text-sm tw-text-black">Overlay calendar events</div>
+        <div class="tw-text-sm tw-text-black">Sobrepor eventos do calendário</div>
       </template>
     </v-switch>
 
@@ -413,7 +413,7 @@
         }
       "
     >
-      {{ authUser ? "+ Add guest availability" : "+ Add availability" }}</v-btn
+      {{ authUser ? "+ Adicionar disponibilidade de convidado" : "+ Adicionar disponibilidade" }}</v-btn
     >
   </div>
 </template>
@@ -472,10 +472,10 @@ export default {
         type: "datesToDisponível",
         types: [
           {
-            text: "Dates <> people available",
+            text: "Datas <> pessoas disponíveis",
             value: "datesToDisponível",
           },
-          { text: "Name <> dates available", value: "nameToDates" },
+          { text: "Nome <> datas disponíveis", value: "nameToDates" },
         ],
       },
       userToDelete: null,
@@ -649,7 +649,7 @@ export default {
           name: user._id,
         })
         this.$emit("refreshEvent")
-        this.showInfo("Availability successfully deleted!")
+        this.showInfo("Disponibilidade excluída com sucesso!")
 
         this.$posthog?.capture("Deleted availability of another user", {
           eventId: this.eventId,
@@ -658,7 +658,7 @@ export default {
       } catch (e) {
         console.error(e)
         this.showError(
-          "There was an error deleting that person's availability!"
+          "Ocorreu um erro ao excluir a disponibilidade dessa pessoa!"
         )
       }
     },
@@ -787,10 +787,10 @@ export default {
     async copyEmailToClipboard(email) {
       try {
         await navigator.clipboard.writeText(email)
-        this.showInfo("Email copied to clipboard!")
+        this.showInfo("E-mail copiado para a área de transferência!")
       } catch (err) {
         console.error("Failed to copy email: ", err)
-        this.showError("Failed to copy email.")
+        this.showError("Falha ao copiar o e-mail.")
       }
     },
   },

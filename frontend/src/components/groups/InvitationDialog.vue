@@ -34,8 +34,7 @@
 
               <div class="tw-mt-5 tw-space-y-4">
                 <div class="tw-font-medium tw-text-black">
-                  Your calendar availability from these calendars will be shared
-                  with:
+                  Sua disponibilidade de calendário desses calendários será compartilhada com:
                 </div>
                 <div
                   class="tw-flex tw-flex-wrap tw-gap-1"
@@ -48,10 +47,10 @@
                   ></UserChip>
                 </div>
                 <div v-else class="tw-flex tw-items-center tw-italic">
-                  <div>No members added yet</div>
+                  <div>Nenhum membro adicionado ainda</div>
                 </div>
                 <div class="tw-text-xs tw-text-dark-gray">
-                  Your calendar events will NOT be visible to others
+                  Seus eventos de calendário NÃO serão visíveis para outros
                 </div>
               </div>
             </div>
@@ -87,13 +86,13 @@
           <v-dialog v-model="rejectDialog" width="400" persistent>
             <template v-slot:activator="{ on, attrs }">
               <v-btn text class="tw-text-dark-gray" v-bind="attrs" v-on="on"
-                >Reject invitation</v-btn
+                >Rejeitar convite</v-btn
               >
             </template>
             <v-card>
-              <v-card-title>Are you sure?</v-card-title>
+              <v-card-title>Tem certeza?</v-card-title>
               <v-card-text
-                >Are you sure you want to reject this invite?</v-card-text
+                >Tem certeza de que deseja rejeitar este convite?</v-card-text
               >
               <v-card-actions>
                 <v-spacer />
@@ -104,7 +103,7 @@
                   >Cancelar</v-btn
                 >
                 <v-btn text @click="rejectInvitation" color="error"
-                  >I'm sure</v-btn
+                  >Tenho certeza</v-btn
                 >
               </v-card-actions>
             </v-card>
@@ -114,7 +113,7 @@
             class="tw-bg-brand-primary tw-px-5 tw-text-white tw-transition-opacity"
             @click="acceptInvitation"
             :disabled="!calendarPermissionGranted"
-            >Accept Invitation</v-btn
+            >Aceitar convite</v-btn
           >
         </v-card-actions>
       </v-card>

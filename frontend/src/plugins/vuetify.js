@@ -1,9 +1,17 @@
 import Vue from "vue"
 import Vuetify from "vuetify/lib"
+import ptBR from "date-fns/locale/pt-BR"
+import DateFnsUtils from "@date-io/date-fns"
 
 Vue.use(Vuetify)
 
 export default new Vuetify({
+  date: {
+    adapter: DateFnsUtils,
+    locale: {
+      pt: ptBR,
+    },
+  },
   theme: {
     themes: {
       light: {

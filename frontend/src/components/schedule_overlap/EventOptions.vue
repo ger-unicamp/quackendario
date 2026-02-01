@@ -1,7 +1,7 @@
 <template>
   <ExpandableSection
     v-if="event.daysOnly || numResponses >= 1"
-    label="Options"
+    label="Opções"
     :value="showEventOptions"
     @input="$emit('toggleShowEventOptions')"
   >
@@ -16,7 +16,7 @@
       >
         <template v-slot:label>
           <div class="tw-text-sm tw-text-black">
-            Show best {{ event.daysOnly ? "days" : "times" }}
+            Mostrar melhores {{ event.daysOnly ? "dias" : "horários" }}
           </div>
         </template>
       </v-switch>
@@ -30,7 +30,7 @@
       >
         <template v-slot:label>
           <div class="tw-text-sm tw-text-black">
-            Hide if needed {{ event.daysOnly ? "days" : "times" }}
+            Ocultar {{ event.daysOnly ? "dias" : "horários" }} se necessário 
           </div>
         </template>
       </v-switch>
@@ -42,7 +42,7 @@
         hide-details
       >
         <template v-slot:label>
-          <div class="tw-text-sm tw-text-black">Overlay calendar events</div>
+          <div class="tw-text-sm tw-text-black">Sobrepor eventos do calendário</div>
         </template>
       </v-switch>
 

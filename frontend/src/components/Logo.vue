@@ -17,8 +17,8 @@ export default {
 
   props: {
     type: {
-      type: "timeful",
-      default: "timeful",
+      type: "ger",
+      default: "ger",
     },
   },
 
@@ -32,13 +32,13 @@ export default {
     },
     src() {
       switch (this.type) {
-        case "timeful":
-          return require("@/assets/timeful_logo_with_text.png")
+        case "ger":
+          return require("@/assets/ger.png")
       }
     },
     width() {
       switch (this.type) {
-        case "timeful":
+        case "ger":
           return this.isPhone ? 90 : 110
       }
     },

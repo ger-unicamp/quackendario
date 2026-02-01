@@ -535,12 +535,12 @@
                 >
                   <div v-if="!authUser || alreadyRespondedToSignUpForm">
                     <a class="tw-underline" :href="`mailto:${event.ownerId}`"
-                      >Contact sign up creator</a
+                      >Entre em contato com o criador da inscrição</a
                     >
-                    to edit your slot
+                    para editar seu slot
                   </div>
                   <div v-if="event.blindAvailabilityEnabled">
-                    Responses are only visible to creator
+                    As respostas são visíveis apenas para o criador
                   </div>
                 </div>
               </div>
@@ -582,10 +582,10 @@
                   {{
                     (userHasResponded && !addingAvailabilityAsGuest) ||
                     curGuestId
-                      ? "Editing"
-                      : "Adding"
+                      ? "Editando"
+                      : "Adicionando"
                   }}
-                  availability as
+                  disponibilidade como
                   <div
                     v-if="curGuestId && canEditGuestName"
                     class="tw-group tw-mt-0.5 tw-flex tw-w-fit tw-cursor-pointer tw-items-center tw-gap-1"
@@ -602,7 +602,7 @@
                         ? `${authUser.firstName} ${authUser.lastName}`
                         : curGuestId?.length > 0
                         ? curGuestId
-                        : "a guest"
+                        : "um convidado"
                     }}
                   </span>
                   <v-dialog
@@ -611,11 +611,11 @@
                     content-class="tw-m-0"
                   >
                     <v-card>
-                      <v-card-title>Edit guest name</v-card-title>
+                      <v-card-title>Editar nome do convidado</v-card-title>
                       <v-card-text>
                         <v-text-field
                           v-model="newGuestName"
-                          label="Guest name"
+                          label="Nome do convidado"
                           autofocus
                           @keydown.enter="saveGuestName"
                           hide-details
@@ -670,13 +670,13 @@
                   >
                     <template v-slot:label>
                       <div class="tw-text-sm tw-text-black">
-                        Overlay availabilities
+                        Sobrepor disponibilidades
                       </div>
                     </template>
                   </v-switch>
 
                   <div class="tw-mt-2 tw-text-xs tw-text-dark-gray">
-                    View everyone's availability while inputting your own
+                    Visualize a disponibilidade de todos enquanto digita a sua
                   </div>
                 </div>
 
@@ -703,13 +703,13 @@
                             v-on="on"
                             v-bind="attrs"
                           >
-                            Calendar options...
+                            Opções de calendário...
                           </v-btn>
                         </template>
 
                         <v-card>
                           <v-card-title class="tw-flex">
-                            <div>Calendar options</div>
+                            <div>Opções de calendário</div>
                             <v-spacer />
                             <v-btn icon @click="calendarOptionsDialog = false">
                               <v-icon>mdi-close</v-icon>
@@ -758,12 +758,12 @@
                         v-on="on"
                         class="tw-cursor-pointer tw-text-sm tw-text-red"
                       >
-                        {{ !isGroup ? "Delete availability" : "Leave group" }}
+                        {{ !isGroup ? "Excluir disponibilidade" : "Sair do grupo" }}
                       </span>
                     </template>
 
                     <v-card>
-                      <v-card-title>Are you sure?</v-card-title>
+                      <v-card-title>Tem certeza?</v-card-title>
                       <v-card-text class="tw-text-sm tw-text-dark-gray"
                         >Are you sure you want to
                         {{
@@ -784,7 +784,7 @@
                             $emit('deleteAvailability')
                             deleteAvailabilityDialog = false
                           "
-                          >{{ !isGroup ? "Excluir" : "Leave" }}</v-btn
+                          >{{ !isGroup ? "Excluir" : "Sair" }}</v-btn
                         >
                       </v-card-actions>
                     </v-card>

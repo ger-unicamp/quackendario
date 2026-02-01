@@ -1,4 +1,4 @@
-<!-- Allows user to change timezone -->
+<!-- Permite ao usuário alterar o fuso horário -->
 <template>
   <div
     class="tw-flex tw-items-center tw-justify-center"
@@ -49,7 +49,7 @@ export default {
 
   props: {
     value: { type: Object, required: true },
-    label: { type: String, default: "Shown in" },
+    label: { type: String, default: "Exibido em" },
     labelColor: { type: String, default: "" },
   },
 
@@ -77,7 +77,7 @@ export default {
   },
 
   computed: {
-    /** Returns an array of all supported timezones */
+    /** Retorna um array de todos os fusos horários suportados */
     timezones() {
       // ===============================================================================
       // Source: https://github.com/ndom91/react-timezone-select/blob/main/src/index.tsx
@@ -114,13 +114,13 @@ export default {
   },
 
   methods: {
-    /** Updates local storage and emits the new timezone */
+    /** Atualiza o armazenamento local e emite o novo fuso horário */
     onChange(val) {
       localStorage["timezone"] = JSON.stringify(val)
       this.$emit("input", val)
       this.timezoneModified = true
     },
-    /** Returns a timezone object for the local timezone */
+    /** Retorna um objeto de fuso horário para o fuso horário local */
     getLocalTimezone() {
       const localTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone
       let timezoneObject = this.timezones.find((t) => t.value === localTimezone)
@@ -132,7 +132,7 @@ export default {
       }
       return timezoneObject
     },
-    /** Resets timezone to the local timezone and clears localstorage as well */
+    /** Reseta o fuso horário para o fuso horário local e limpa o armazenamento local também */
     resetTimezone() {
       this.$emit("input", this.getLocalTimezone())
       localStorage.removeItem("timezone")

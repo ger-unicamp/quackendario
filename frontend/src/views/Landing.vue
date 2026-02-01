@@ -6,7 +6,7 @@
       <!-- Header -->
       <div class="tw-mb-16 sm:tw-mb-28">
         <div class="tw-flex tw-items-center tw-pt-5">
-          <Logo type="timeful" />
+          <Logo type="ger" />
 
           <v-spacer />
 
@@ -46,20 +46,19 @@
                   class="tw-cursor-pointer tw-border-b tw-border-dashed tw-border-dark-gray"
                   v-bind="attrs"
                   v-on="on"
-                  >calendar</span
+                  >calendário</span
                 >
               </template>
               <span
-                >Timeful allows you to autofill your availability from Google
-                Calendar,<br class="tw-hidden sm:tw-block" />
-                Outlook, and Apple Calendar</span
+                >Dá pra puxar os horários do seu google calendar.
+                </span
               > </v-tooltip
             >.
           </div>
         </div>
 
         <div class="tw-mb-12 tw-space-y-2">
-          <v-btn
+          <v-btn 
             class="tw-block tw-self-center tw-rounded-lg tw-bg-brand-primary tw-px-10 tw-text-base sm:tw-px-10 lg:tw-px-12"
             dark
             @click="authUser ? openDashboard() : (newDialog = true)"
@@ -68,18 +67,6 @@
           >
             {{ authUser ? "Abrir painel" : "Criar evento" }}
           </v-btn>
-          <div
-            v-if="!authUser"
-            class="tw-text-center tw-text-xs tw-text-dark-gray sm:tw-text-sm"
-          >
-            É grátis! Não precisa de login.
-          </div>
-        </div>
-        <div class="tw-relative tw-w-full">
-          <!-- Green background -->
-          <div
-            class="tw-absolute -tw-bottom-12 tw-left-1/2 tw-h-[85%] tw-w-screen -tw-translate-x-1/2 tw-bg-brand-primary sm:-tw-bottom-20"
-          ></div>
         </div>
       </div>
     </div>
@@ -119,10 +106,8 @@ import LandingPageHeader from "@/components/landing/LandingPageHeader.vue"
 import Logo from "@/components/Logo.vue"
 import GithubButton from "vue-github-button"
 import SignInDialog from "@/components/SignInDialog.vue"
-import { calendarTypes } from "@/constants"
 import { vueVimeoPlayer } from "vue-vimeo-player"
 import Footer from "@/components/Footer.vue"
-import PronunciationMenu from "@/components/PronunciationMenu.vue"
 import { mapState } from "vuex"
 import AuthUserMenu from "@/components/AuthUserMenu.vue"
 
@@ -130,7 +115,7 @@ export default {
   name: "Landing",
 
   metaInfo: {
-    title: "Timeful (formerly Schej) - Encontre um horário para reunir",
+    title: "Quackendário - Encontre o melhor horário pra marcar uma reunião",
   },
 
   components: {
@@ -145,7 +130,6 @@ export default {
     SignInDialog,
     vueVimeoPlayer,
     Footer,
-    PronunciationMenu,
     AuthUserMenu,
   },
 

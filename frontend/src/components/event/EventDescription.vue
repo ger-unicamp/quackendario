@@ -31,7 +31,7 @@
       class="-tw-ml-2 tw-mt-0 tw-w-min tw-px-2 tw-text-dark-gray"
       @click="isEditing = true"
     >
-      + Add description
+      + Adicionar descrição
     </v-btn>
     <div
       :class="
@@ -45,7 +45,7 @@
       >
         <v-textarea
           v-model="newDescription"
-          placeholder="Enter a description..."
+          placeholder="Digite uma descrição..."
           class="tw-flex-grow tw-p-2 tw-text-xs sm:tw-text-sm"
           autofocus
           :rows="1"
@@ -127,7 +127,7 @@ export default {
       this.isEditing = false
       put(`/events/${this.event._id}`, eventPayload).catch((err) => {
         console.error(err)
-        this.showError("Failed to save description! Please try again later.")
+        this.showError("Falha ao salvar a descrição! Por favor, tente novamente mais tarde.")
         this.$emit("update:event", {
           ...oldEvent,
         })

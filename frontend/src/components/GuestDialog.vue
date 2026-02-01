@@ -7,7 +7,7 @@
   >
     <v-card>
       <v-card-title class="tw-flex">
-        <div>Continue as guest</div>
+        <div>Continuar como convidado</div>
         <v-spacer />
         <v-btn icon @click="$emit('input', false)">
           <v-icon>mdi-close</v-icon>
@@ -37,7 +37,7 @@
             @keyup.enter="submit"
             :rules="emailRules"
             placeholder="Digite seu e-mail..."
-            hint="The event creator is collecting emails. We will never share your email with anyone or contact you in any way."
+              hint="O criador do evento está coletando e-mails. Nunca compartilharemos seu e-mail com ninguém ou o contataremos de forma alguma."
             persistent-hint
             solo
           ></v-text-field>
@@ -49,7 +49,7 @@
               :dark="formValid"
               :disabled="!formValid"
             >
-              Continue
+              Continuar
             </v-btn>
           </div>
         </v-form>
@@ -92,12 +92,12 @@ export default {
     submit() {
       // Set rules only on submit
       this.nameRules = [
-        (name) => !!name || "Name is required",
-        (name) => !this.respondents.includes(name) || "Name already taken",
+        (name) => !!name || "Nome é obrigatório",
+        (name) => !this.respondents.includes(name) || "Nome já foi tomado",
       ]
       this.emailRules = [
-        (email) => !!email || "Email is required",
-        (email) => !!validateEmail(email) || "Invalid email",
+        (email) => !!email || "E-mail é obrigatório",
+        (email) => !!validateEmail(email) || "E-mail inválido",
       ]
 
       this.$nextTick(() => {

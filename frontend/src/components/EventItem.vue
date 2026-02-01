@@ -41,7 +41,7 @@
           v-if="isGroup && !userHasResponded"
           class="tw-inline-block tw-text-sm tw-italic tw-text-gray"
         >
-          Invited
+          Convidado
         </div>
         <v-chip
           v-else
@@ -69,7 +69,7 @@
           <v-list class="tw-py-1" dense>
             <v-list-item @click="copyLink">
               <v-list-item-content>
-                <v-list-item-title>Copy link</v-list-item-title>
+                <v-list-item-title>Copiar link</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
             <v-divider />
@@ -82,12 +82,12 @@
               <template v-slot:activator="{ on, attrs }">
                 <v-list-item id="duplicate-event-btn" v-bind="attrs" v-on="on">
                   <v-list-item-content>
-                    <v-list-item-title>Duplicate</v-list-item-title>
+                    <v-list-item-title>Duplicar</v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
               </template>
               <v-card>
-                <v-card-title>Duplicate {{ typeText }}</v-card-title>
+                <v-card-title>Duplicar {{ typeText }}</v-card-title>
                 <v-card-text>
                   <v-text-field
                     v-model="duplicateDialogOptions.name"
@@ -99,7 +99,7 @@
                   />
                   <v-checkbox
                     v-model="duplicateDialogOptions.copyAvailability"
-                    label="Copy responses"
+                    label="Copiar respostas"
                     :disabled="duplicateDialogOptions.loading"
                     hide-details
                     class="tw-mt-2"
@@ -136,7 +136,7 @@
                   v-on="onMenu"
                   class="tw-cursor-pointer tw-pr-1 hover:tw-bg-light-gray"
                 >
-                  <v-list-item-title>Move to</v-list-item-title>
+                  <v-list-item-title>Mover para</v-list-item-title>
                   <v-list-item-icon>
                     <v-icon small>mdi-chevron-right</v-icon>
                   </v-list-item-icon>
@@ -144,7 +144,7 @@
               </template>
               <v-list dense class="tw-py-1">
                 <v-list-item @click="moveEventToFolder(null)" class="tw-pr-1">
-                  <v-list-item-title>No folder</v-list-item-title>
+                  <v-list-item-title>Sem pasta</v-list-item-title>
                   <v-list-item-action v-if="folderId === null">
                     <v-icon small>mdi-check</v-icon>
                   </v-list-item-action>
@@ -165,7 +165,7 @@
             <v-divider />
             <v-list-item @click="_archiveEvent">
               <v-list-item-title>{{
-                event.isArchived ? "Unarchive" : "Archive"
+                event.isArchived ? "Desarquivar" : "Arquivar"
               }}</v-list-item-title>
             </v-list-item>
             <v-dialog v-model="removeDialog" width="400" persistent>
@@ -177,21 +177,21 @@
                   v-on="on"
                 >
                   <v-list-item-content>
-                    <v-list-item-title>Delete {{ typeText }}</v-list-item-title>
+                    <v-list-item-title>Excluir {{ typeText }}</v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
               </template>
               <v-card>
-                <v-card-title>Are you sure?</v-card-title>
+                <v-card-title>Tem certeza?</v-card-title>
                 <v-card-text
-                  >Are you sure you want to delete this
+                  >Tem certeza que deseja excluir este
                   {{ typeText }}?</v-card-text
                 >
                 <v-card-actions>
                   <v-spacer />
                   <v-btn text @click="removeDialog = false">Cancelar</v-btn>
                   <v-btn text color="error" @click="removeEvent"
-                    >I'm sure</v-btn
+                    >Tenho certeza</v-btn
                   >
                 </v-card-actions>
               </v-card>
@@ -299,7 +299,7 @@ export default {
       navigator.clipboard.writeText(
         `${window.location.origin}/e/${this.event.shortId ?? this.event._id}`
       )
-      this.showInfo("Link copied to clipboard!")
+      this.showInfo("Link copiado para a área de transferência!")
       this.showMenu = false
     },
     isPhone() {
@@ -323,7 +323,7 @@ export default {
         })
         .catch((err) => {
           this.showError(
-            "There was a problem removing that event! Please try again later."
+            "Houve um problema ao remover esse evento! Por favor, tente novamente mais tarde."
           )
         })
     },
@@ -349,7 +349,7 @@ export default {
         })
         .catch((err) => {
           this.showError(
-            "There was a problem duplicating that event! Please try again later."
+            "Houve um problema ao duplicar esse evento! Por favor, tente novamente mais tarde."
           )
         })
         .finally(() => {

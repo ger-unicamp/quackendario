@@ -9,11 +9,11 @@
       <v-expand-transition>
         <div v-show="state === states.CHOICES">
           <div class="tw-text-md mb-1 tw-text-center">
-            How would you like to add <br class="tw-block sm:tw-hidden" />
-            your availability?
+            Como você gostaria de adicionar <br class="tw-block sm:tw-hidden" />
+            sua disponibilidade?
           </div>
           <div class="tw-pb-4 tw-text-center tw-text-xs tw-text-dark-gray">
-            You can always manually edit after autofilling
+            Você sempre pode editar manualmente após o preenchimento automático
           </div>
           <div class="tw-flex tw-flex-col tw-gap-2">
             <v-btn block @click="autofillWithGcal" class="tw-bg-white">
@@ -25,7 +25,7 @@
                   src="@/assets/google_logo.svg"
                 />
                 <v-spacer />
-                Autofill with Google Calendar
+                Preenchimento automático com o Google Agenda
                 <v-spacer />
               </div>
             </v-btn>
@@ -38,7 +38,7 @@
                   src="@/assets/apple_logo.svg"
                 />
                 <v-spacer />
-                Autofill with Apple Calendar
+                Preenchimento automático com o Calendário Apple
                 <v-spacer />
               </div>
             </v-btn>
@@ -51,7 +51,7 @@
                   src="@/assets/outlook_logo.svg"
                 />
                 <v-spacer />
-                Autofill with Outlook Calendar
+                Preenchimento automático com o Calendário do Outlook
                 <v-spacer />
               </div>
             </v-btn>
@@ -60,11 +60,11 @@
               <div
                 class="tw-text-center tw-text-xs tw-font-medium tw-text-dark-gray"
               >
-                or
+                ou
               </div>
               <v-divider />
             </div>
-            <v-btn @click="setAvailabilityManually" block>Manually</v-btn>
+            <v-btn @click="setAvailabilityManually" block>Manualmente</v-btn>
           </div>
         </div>
       </v-expand-transition>

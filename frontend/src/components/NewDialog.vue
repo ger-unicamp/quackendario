@@ -114,9 +114,9 @@ export default {
     return {
       tab: this.type,
       tabs: [
-        { title: "Event", type: "event" },
-        { title: "Sign up form", type: "signup" },
-        { title: "Availability group", type: "group" },
+        { title: "Evento", type: "event" },
+        { title: "Entrar", type: "signup" },
+        { title: "Grupo de disponibilidade", type: "group" },
       ],
 
       unsavedChangesDialog: false,
@@ -157,22 +157,22 @@ export default {
       immediate: true,
       handler() {
         this.tabs = [
-          { title: "Event", type: "event" },
-          { title: "Sign up form", type: "signup" },
+          { title: "Evento", type: "event" },
+          { title: "Entrar", type: "signup" },
         ]
         if (this.groupsEnabled) {
-          this.tabs.push({ title: "Availability group", type: "group" })
+          this.tabs.push({ title: "Grupo de disponibilidade", type: "group" })
         }
       },
     },
     signUpFormEnabled: {
       immediate: true,
       handler() {
-        this.tabs = [{ title: "Event", type: "event" }]
+        this.tabs = [{ title: "Evento", type: "event" }]
         if (this.signUpFormEnabled) {
-          this.tabs.push({ title: "Sign up form", type: "signup" })
+          this.tabs.push({ title: "Entrar", type: "signup" })
         }
-        this.tabs.push({ title: "Availability group", type: "group" })
+        this.tabs.push({ title: "Grupo de disponibilidade", type: "group" })
       },
     },
     value: {

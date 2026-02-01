@@ -63,14 +63,12 @@
         content-class="tw-m-0"
       >
         <v-card>
-          <v-card-title>Are you sure?</v-card-title>
+          <v-card-title>Tem certeza?</v-card-title>
           <v-card-text
             ><span class="tw-font-medium"
-              >You're about to add your availability without filling out all
-              pages of this Timeful.</span
+              >Você está prestes a adicionar sua disponibilidade sem preencher todas as páginas deste Timeful.</span
             >
-            Click the left and right arrows at the top to switch between
-            pages.</v-card-text
+            Clique nas setas esquerda e direita no topo para alternar entre páginas.</v-card-text
           >
           <v-card-actions>
             <v-spacer />
@@ -84,7 +82,7 @@
                   this.pagesNotVisitedDialog = false
                 }
               "
-              >Add anyways</v-btn
+              >Adicionar mesmo assim</v-btn
             >
           </v-card-actions>
         </v-card>
@@ -104,7 +102,7 @@
                   :href="`https://when2meet.com${event.when2meetHref}`"
                   :small="isPhone"
                   class="tw-cursor-pointer tw-select-none tw-rounded tw-bg-light-gray tw-px-2 tw-font-medium sm:tw-px-3"
-                  >Imported from when2meet</v-chip
+                  >Importado do when2meet</v-chip
                 >
                 <template v-if="isGroup">
                   <div class="">
@@ -116,11 +114,9 @@
                     >
                   </div>
                   <HelpDialog v-model="helpDialog">
-                    <template v-slot:header>Availability group</template>
+                    <template v-slot:header>Grupo de disponibilidade</template>
                     <div class="mb-4">
-                      Use availability groups to see group members' weekly
-                      calendar availabilities from Google Calendar. Your actual
-                      calendar events are NOT visible to others.
+                      Use grupos de disponibilidade para ver disponibilidades do calendário semanal dos membros do grupo no Google Calendar. Seus eventos reais do calendário NÃO são visíveis para outros.
                     </div>
                   </HelpDialog>
                 </template>
@@ -138,7 +134,7 @@
                     class="tw-px-2 tw-text-sm tw-text-brand-primary"
                     text
                   >
-                    Edit {{ isGroup ? "group" : "event" }}
+                    Editar {{ isGroup ? "grupo" : "evento" }}
                   </v-btn>
                 </template>
               </div>
@@ -154,7 +150,7 @@
                   @click="resetWeekOffset"
                 >
                   <v-icon class="sm:tw-mr-2">mdi-calendar-today</v-icon>
-                  <span v-if="!isPhone">Today</span>
+                  <span v-if="!isPhone">Hoje</span>
                 </v-btn>
                 <v-btn
                   :icon="isPhone"
@@ -164,7 +160,7 @@
                   :loading="loading"
                 >
                   <v-icon class="tw-mr-1" v-if="!isPhone">mdi-refresh</v-icon>
-                  <span v-if="!isPhone" class="tw-mr-2">Refresh</span>
+                  <span v-if="!isPhone" class="tw-mr-2">Atualizar</span>
                   <v-icon class="tw-text-brand-primary" v-else>mdi-refresh</v-icon>
                 </v-btn>
               </div>
@@ -176,7 +172,7 @@
                   @click="copyLink"
                 >
                   <span v-if="!isPhone" class="tw-mr-2 tw-text-brand-primary"
-                    >Copy link</span
+                    >Copiar link</span
                   >
                   <v-icon class="tw-text-brand-primary" v-if="!isPhone"
                     >mdi-content-copy</v-icon
@@ -198,8 +194,8 @@
                   >
                     {{
                       event.blindAvailabilityEnabled
-                        ? "Edit availability"
-                        : `Edit ${selectedGuestRespondent}'s availability`
+                        ? "Editar disponibilidade"
+                        : `Editar disponibilidade de ${selectedGuestRespondent}`
                     }}
                   </v-btn>
                   <v-btn
@@ -220,14 +216,14 @@
                     @click="cancelEditing"
                     outlined
                   >
-                    Cancel
+                    Cancelar
                   </v-btn>
                   <v-btn
                     class="tw-w-20 tw-text-white"
                     :class="'tw-bg-brand-primary'"
                     @click="() => saveChanges()"
                   >
-                    Save
+                    Salvar
                   </v-btn></template
                 >
               </div>
@@ -277,7 +273,7 @@
             href="https://forms.gle/A96i4TTWeKgH3P1W6"
             target="_blank"
           >
-            Give feedback to Timeful team
+            Dê feedback ao time do Timeful
           </v-btn>
         </div>
       </template>
@@ -297,7 +293,7 @@
             text
             class="tw-text-white"
             @click="scheduleEvent"
-            >Schedule</v-btn
+            >Agendar</v-btn
           >
           <v-spacer />
           <v-btn
@@ -320,16 +316,16 @@
         </template>
         <template v-else-if="isEditing">
           <v-btn text class="tw-text-white" @click="cancelEditing">
-            Cancel
+            Cancelar
           </v-btn>
           <v-spacer />
           <v-btn class="tw-bg-white tw-text-brand-primary" @click="() => saveChanges()">
-            Save
+            Salvar
           </v-btn>
         </template>
         <template v-else-if="isScheduling">
           <v-btn text class="tw-text-white" @click="cancelScheduleEvent">
-            Cancel
+            Cancelar
           </v-btn>
           <v-spacer />
           <v-btn
@@ -337,7 +333,7 @@
             class="tw-bg-white tw-text-blue"
             @click="confirmScheduleEvent"
           >
-            Schedule
+            Agendar
           </v-btn>
         </template>
       </div>
@@ -518,18 +514,18 @@ export default {
       return this.scheduleOverlapComponent?.respondents.length
     },
     actionButtonText() {
-      if (this.isSignUp) return "Edit slots"
-      else if (this.userHasResponded || this.isGroup) return "Edit availability"
+      if (this.isSignUp) return "Editar slots"
+      else if (this.userHasResponded || this.isGroup) return "Editar disponibilidade"
       return "Add availability"
     },
     mobileGuestActionButtonText() {
       return this.event.blindAvailabilityEnabled
-        ? "Edit availability"
-        : `Edit ${this.selectedGuestRespondent}'s availability`
+        ? "Editar disponibilidade"
+        : `Editar disponibilidade de ${this.selectedGuestRespondent}`
     },
     mobileActionButtonText() {
-      if (this.isSignUp) return "Edit slots"
-      return this.userHasResponded ? "Edit availability" : "Add availability"
+      if (this.isSignUp) return "Editar slots"
+      return this.userHasResponded ? "Editar disponibilidade" : "Adicionar disponibilidade"
     },
     isIOS() {
       return isIOS()

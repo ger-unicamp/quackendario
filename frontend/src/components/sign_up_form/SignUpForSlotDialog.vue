@@ -7,7 +7,7 @@
   >
     <v-card>
       <v-card-title class="tw-flex">
-        <div>Join slot <span v-if="!authUser">as</span></div>
+        <div>Ingressar em um slot <span v-if="!authUser">como</span></div>
         <v-spacer />
         <v-btn icon @click="$emit('input', false)">
           <v-icon>mdi-close</v-icon>
@@ -42,24 +42,23 @@
               @keyup.enter="submit"
               :rules="emailRules"
               placeholder="Digite seu e-mail..."
-              hint="The event creator is collecting emails. We will never share your email with anyone or contact you in any way."
+              hint="O criador do evento está coletando e-mails. Nunca compartilharemos seu e-mail com ninguém ou o contataremos de forma alguma."
               persistent-hint
               solo
             ></v-text-field>
           </div>
 
           <div>
-            NOTE: After joining a slot,
+            OBSERVAÇÃO: Depois de ingressar em um slot,
             <span class="tw-font-bold"
-              >you will need to contact the sign up creator in order to edit
-              your slot.</span
+              >você precisará entrar em contato com o criador da inscrição para editar seu slot.</span
             >
           </div>
 
           <div v-if="event.blindAvailabilityEnabled">
-            The sign up creator has hidden attendees from each other.
+            O criador da inscrição ocultou os participantes uns dos outros.
             <span class="tw-font-bold"
-              >Your name will only be visible to you.</span
+              >Seu nome será visível apenas para você.</span
             >
           </div>
 
@@ -71,7 +70,7 @@
               :dark="formValid"
               :disabled="!formValid"
             >
-              Join slot
+              Ingressar no slot
             </v-btn>
           </div>
         </v-form>
@@ -121,13 +120,13 @@ export default {
       console.log(this.signUpBlock)
       // Set rules only on submit
       this.nameRules = [
-        (name) => !!name || "Name is required",
+        (name) => !!name || "Nome é obrigatório",
         // (name) =>
         //   !this.signUpBlock.respondents.includes(name) || "Name already taken",
       ]
       this.emailRules = [
-        (email) => !!email || "Email is required",
-        (email) => !!validateEmail(email) || "Invalid email",
+        (email) => !!email || "E-mail é obrigatório",
+        (email) => !!validateEmail(email) || "E-mail inválido",
       ]
 
       this.$nextTick(() => {
